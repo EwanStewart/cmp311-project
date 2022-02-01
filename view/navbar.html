@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+   <script>
+      $(document).on("click", ".navbar-right .dropdown-menu", function(e){
+      	e.stopPropagation();
+      });
+   </script>
+   <body>
+      <nav class="navbar navbar-default navbar-expand-lg navbar-light">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="#">TCPG</a>  		
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="navbar-toggler-icon"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+         </div>
+         <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+               <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Store <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                     <li><a href="#">Home</a></li>
+                     <li><a href="#">Categories</a></li>
+                     <li><a href="#">Recently Added</a></li>
+                  </ul>
+               </li>
+               <li><a href="#">Contribute</a></li>
+               <li><a href="#">Community</a></li>
+               <li><a href="#">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+               <li>
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Register</a>
+                  <ul class="dropdown-menu form-wrapper">
+                     <li>
+                        <form action="#" method="post">
+                           <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Username" required="required">
+                           </div>
+                           <div class="form-group">
+                              <input type="password" class="form-control" placeholder="Password" required="required">
+                           </div>
+                           <input type="submit" class="btn btn-primary btn-block" value="Register">
+                           <div class="form-group social-btn clearfix">
+                              <a onclick="window.location = '<?php echo $login_url; ?>'"class="btn btn-outline-dark" role="button" style="text-transform:none">
+                              <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                              Login with Google
+                              </a>							
+                           </div>
+                        </form>
+                     </li>
+                  </ul>
+               </li>
+               <li>
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Login</a>
+                  <ul class="dropdown-menu form-wrapper">
+                     <li>
+                        <form action="#" method="post">
+                           <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Username" required="required">
+                           </div>
+                           <div class="form-group">
+                              <input type="password" class="form-control" placeholder="Password" required="required">
+                           </div>
+                           <input type="submit" class="btn btn-primary btn-block" value="Login">
+                           <div class="form-group social-btn clearfix">
+                              <a onclick="window.location = '<?php echo $login_url; ?>'"class="btn btn-outline-dark" role="button" style="text-transform:none">
+                              <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                              Login with Google
+                              </a>							
+                           </div>
+                        </form>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+      </nav>
+   </body>
+</html>
+
