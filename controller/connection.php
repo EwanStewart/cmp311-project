@@ -1,6 +1,5 @@
 <?php
 	function getDatabaseConnection() {
-		//  Database connections 
 		$servername = "lochnagar.abertay.ac.uk";
 		$username = "sqlcmp311g21c02";
 		$password = "6XYSo4gbvVFy";

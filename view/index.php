@@ -5,6 +5,7 @@
 		<?php   
 			session_start();
 		?>
+		
 	   <meta charset="utf-8">
 	   <meta name="viewport" content="width=device-width, initial-scale=1">
 	   
@@ -25,14 +26,27 @@
 		include('config.php');
 		include('navbar.php');
 	?>
+	
+	<script>	
+		const query = window.location.search;
+		const params = new URLSearchParams(query);
+		const pop = params.get('pop');
+		console.log(pop);
+		
+		if (pop == 1) {
+			document.getElementById("reg").click();
+		} else if (pop == 2) {
+			document.getElementById("log").click();
+		}
+	</script>
 
 	  
       <div class="container-fluid">
          <div class="container">
             <div class="row justify-content-center">
-				<?php
+			
 
-				?>
+				
             </div>
          </div>
       </div>
