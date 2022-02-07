@@ -2,6 +2,9 @@
 <html lang="en">
 
    <head>
+		<?php   
+			session_start();
+		?>
 	   <meta charset="utf-8">
 	   <meta name="viewport" content="width=device-width, initial-scale=1">
 	   
@@ -18,33 +21,19 @@
    
    <body>
    
-	<?php
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);
-	
-	require_once('config.php');
-	include('navbar.html');
+	<?php	
+		include('config.php');
+		include('navbar.php');
 	?>
 
 	  
       <div class="container-fluid">
          <div class="container">
             <div class="row justify-content-center">
-				<?php 
-					if(isset($_GET['code'])) {
-						$token = $gClient->fetchAccessTokenWithAuthCode($_GET['code']);
-						if (isset($token["error"]) != "invalid_grant") {
-							$oAuth = new Google_Service_Oauth2($gClient);
-							$userData = $oAuth->userinfo_v2_me->get();
-							echo $userData["email"];
-							echo '<br>';
-							echo $userData["givenName"]. " " .$userData["familyName"];
-						} else {
-							echo 'failed login';
-						}
+				<?php
+					if(isset($_SESSION['email'])) {
+						echo $_SESSION['email'] . " " . $_SESSION['forename'] . " " . $_SESSION['surname'];
 					}
-				
 				?>
             </div>
          </div>
