@@ -31,7 +31,9 @@
          <div class="container">
             <div class="row justify-content-center">
 				<?php
-
+					if(isset($_SESSION['email'])) {
+						echo $_SESSION['email'] . " " . $_SESSION['forename'] . " " . $_SESSION['surname'];
+					}
 				?>
             </div>
          </div>

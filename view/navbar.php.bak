@@ -86,7 +86,7 @@
 					echo '<li class="dropdown">';
 					echo '<a data-toggle="dropdown" class="dropdown-toggle" href="#">'. $_SESSION['email']. '<b class="caret"></b></a>';
 					echo '<ul class="dropdown-menu">';
-					echo '<li><a href="#">Account Balance: £9,999</a></li>';
+					echo '<li><a href="#">Account Balance: £99999999</a></li>';
 					echo '<li><a href="account.php">Account Details</a></li>';
 					echo '<li><a href="../model/logout.php">Logout</a></li>';
 				echo '</ul>';

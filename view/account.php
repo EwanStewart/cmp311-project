@@ -22,7 +22,6 @@
    <body>
    
 	<?php	
-		include('config.php');
 		include('navbar.php');
 	?>
 
@@ -30,8 +29,9 @@
       <div class="container-fluid">
          <div class="container">
             <div class="row justify-content-center">
+			<h1> account page </h1>
 				<?php
-
+					//some fancy code
 				?>
             </div>
          </div>
