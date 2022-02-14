@@ -68,7 +68,7 @@
 						<img class="rounded-circle" width="150px" src="../image/blank.png">
 					</div>
 					<div class="row text-center">
-						<button class="btn btn-primary text-center" id="edit" type="button"> Edit Avatar </button>
+						<button class="btn btn-primary text-center" id="edit" type="button"> Edit Profile </button>
 					</div>
 			</div>
 			
