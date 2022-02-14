@@ -56,7 +56,8 @@
 	if ($_SESSION['signup_error'] != '') {
 		header("Location:../view/index.php?pop=1"); //return to home
 	} else {
-		header("Location:../view/index.php?pop=2"); //return to home
+		$_SESSION['email'] = $email;
+		header("Location:../view/index.php"); //return to home
 	}
 
 	
