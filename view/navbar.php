@@ -23,7 +23,7 @@
                      <li><a href="#">Recently Added</a></li>
                   </ul>
                </li>
-               <li><a href="#">Contribute</a></li>
+               <li><a href="contribute.php">Contribute</a></li>
                <li><a href="#">Community</a></li>
                <li><a href="#">About</a></li>
             </ul>
