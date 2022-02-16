@@ -41,6 +41,7 @@
 					$("input[name='forename']").removeAttr( "readonly" ); 
 					$("input[name='surname']").removeAttr( "readonly" ); 
 					$("input[name='email']").removeAttr( "readonly" ); 
+					$("textarea[name='bio']").removeAttr( "readonly" ); 
 					$("#edit").text("Save Changes");
 			});	
 		});
@@ -167,7 +168,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label> Bio </label>
-								<textarea class="form-control" name="bio" rows="3"></textarea>
+								<textarea class="form-control" name="bio" rows="3" readonly> </textarea>
 							</div>
 						</div>
 						<br>

@@ -25,6 +25,9 @@
 			if(password_verify($password, $row["password"])) {
 				  $_SESSION['login_error'] = '';
 				  $_SESSION['email'] = $email;
+				  $_SESSION['forename'] = $row["forename"];
+				  $_SESSION['surname'] = $row["surname"];
+				  $_SESSION['admin'] = $row["admin"];
 				  header("Location:../view/index.php");
 			}
 		}
