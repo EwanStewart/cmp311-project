@@ -63,12 +63,6 @@
 						<input type="checkbox" id="public" name="public">
 					</div>
 				</div>					
-				<div class="row">
-					<div class="col-md-12">
-						<label> Notes </label>
-						<textarea class="form-control" name="notes" rows="3"> </textarea>
-					</div>
-				</div>
 				<br>
 				<div class="row">
 					<div class="col-md-12">

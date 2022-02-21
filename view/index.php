@@ -56,17 +56,17 @@
 			
 			  <div class="item active">
 			  	<b> The Witcher 3 - 1000 Credits - 99 Keys </b>
-				<img class="img-fluid" style="height:50% width:100%; margin:auto;" src="../image/witcher3.png">
+				<img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/witcher3.png">
 			  </div>
 
 			  <div class="item">
 			  	<b> Skyrim Special Edition - 1000 Credits - 99 Keys </b>
-				<img class="img-fluid" style="height:50% width:100%; margin:auto;" src="../image/skyrim.png">
+				<img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/skyrim.png">
 			  </div>
 			
 			  <div class="item">
 			  	<b> Pokemon - 1000 Credits - 99 Keys </b>
-				<img class="img-fluid" style="height:50% width:100%; margin:auto;" src="../image/pokeball.png">
+				<img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/pokeball.png">
 			  </div>
 			</div>
 
