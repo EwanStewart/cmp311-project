@@ -87,7 +87,7 @@
 					</div>
 					<br/>
 					
-					<div class="col-sm-2 text-left">
+					<div class="col-sm-2 text-right">
 						<h4>
 							Community
 						</h4>
@@ -108,7 +108,7 @@
 							<?php
 								for ($i=0;$i<4;$i++){
 									echo '
-									<div class="row border-bottom text-center" style="padding-right:20px; border-bottom: 1px solid #ccc;">
+									<div class="row border-bottom text-right" style="padding-right:20px; border-bottom: 1px solid #ccc;">
 										Friend
 									</div>
 									
@@ -117,13 +117,10 @@
 								}		
 							?>
 					</div>
-					
 				</div>
-			</div>
-			
+				
 			<br/>
 			<br/>
-			<!-- Once list of keys is created and populated, this section will pull from it -->
 			<?php
 			for ($i=0;$i<4;$i++){
 				echo '
@@ -144,8 +141,11 @@
 			';
 			}		
 			?>
-	  
-		</div>
-		
+			
+			</div>
+			
+			<br/>
+			<br/>
+			<!-- Once list of keys is created and populated, this section will pull from it -->
    </body>
 </html>
