@@ -122,7 +122,6 @@
 			</div>
 			
 			<br/>
-			<br/>
 			<!-- Once list of keys is created and populated, this section will pull from it -->
 			<?php
 			for ($i=0;$i<4;$i++){
