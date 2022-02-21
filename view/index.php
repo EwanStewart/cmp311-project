@@ -43,91 +43,69 @@
 
 	  
 		<div class="container">
-		  <h2>Hot Games</h2>  
-		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-		  
+			<h2>Hot Games</h2>  
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			
 			<ol class="carousel-indicators">
-			  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			  <li data-target="#myCarousel" data-slide-to="1"></li>
-			  <li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
 
 			<div class="carousel-inner">
 			
-			  <div class="item active">
-			  	<b> The Witcher 3 - 1000 Credits - 99 Keys </b>
+				<div class="item active">
+				<b> The Witcher 3 - 1000 Credits - 99 Keys </b>
 				<img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/witcher3.png">
-			  </div>
+				</div>
 
-			  <div class="item">
-			  	<b> Skyrim Special Edition - 1000 Credits - 99 Keys </b>
+				<div class="item">
+				<b> Skyrim Special Edition - 1000 Credits - 99 Keys </b>
 				<img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/skyrim.png">
-			  </div>
+				</div>
 			
-			  <div class="item">
-			  	<b> Pokemon - 1000 Credits - 99 Keys </b>
+				<div class="item">
+				<b> Pokemon - 1000 Credits - 99 Keys </b>
 				<img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/pokeball.png">
-			  </div>
+				</div>
 			</div>
 
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-			  <span class="glyphicon glyphicon-chevron-left"></span>
-			  <span class="sr-only">Previous</span>
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				<span class="sr-only">Previous</span>
 			</a>
 			
 			<a class="right carousel-control" href="#myCarousel" data-slide="next">
-			  <span class="glyphicon glyphicon-chevron-right"></span>
-			  <span class="sr-only">Next</span>
+				<span class="glyphicon glyphicon-chevron-right"></span>
+				<span class="sr-only">Next</span>
 			</a>
 			
-		  </div>
-		  
-		  <br/>
+			</div>
+			
+			<br/>
 
-
-		  <div class="row border-bottom text-center" style="padding-right:20px; border: 1px solid #ccc;">
-				<div class="col-sm-4">
-					<div><img class="img-fluid" style="height: 100px; width: 100px" src="../image/pokeball.png"/></div> 
+			<!-- Once list of keys is created and populated, this section will pull from it -->
+			<?php
+			for ($i=0;$i<4;$i++){
+				echo '
+				<div class="row border-bottom text-center" style="padding-right:20px; border: 1px solid #ccc;">
+					<div class="col-sm-3">
+						<div><img class="img-fluid" style="height: 100px; width: 100px" src="../image/pokeball.png"/></div> 
+					</div>
+					<div class="col-sm text-left">
+						<span class="font-weight-bold"> AAAAA AAAA </span>
+						<br/>
+						<span>1000 Credits</span>
+						<br/>
+						<a href="#" class="btn btn-lg btn-outline-success">Purchase</a>
+					</div>
 				</div>
-				<div class="col-sm-8 text-left">
-					<span class="font-weight-bold"> AAAAA AAAA </span>
-					<br/>
-					<span>1000 Credits</span>
-					<br/>
-					<a href="#" class="btn btn-lg btn-outline-success">Purchase</a>
-				</div>
-		  </div>
-		  
-		  <br/>
-		  
-		  <div class="row border-bottom text-center" style="padding-right:20px; border: 1px solid #ccc;">
-				<div class="col-sm-4">
-					<div><img class="img-fluid" style="height: 100px; width: 100px" src="../image/pokeball.png"/></div> 
-				</div>
-				<div class="col-sm-8 text-left">
-					<span class="font-weight-bold"> AAAAA AAAA </span>
-					<br/>
-					<span>1000 Credits</span>
-					<br/>
-					<a href="#" class="btn btn-lg btn-outline-success">Purchase</a>
-				</div>
-		  </div>	
-		  
-		  <br/>
-		  
-		  <div class="row border-bottom text-center" style="padding-right:20px; border: 1px solid #ccc;">
-				<div class="col-sm-4">
-					<div><img class="img-fluid" style="height: 100px; width: 100px" src="../image/pokeball.png"/></div> 
-				</div>
-				<div class="col-sm-8 text-left">
-					<span class="font-weight-bold"> AAAAA AAAA </span>
-					<br/>
-					<span>1000 Credits</span>
-					<br/>
-					<a href="#" class="btn btn-lg btn-outline-success">Purchase</a>
-				</div>
-		  </div>
-		  
+				
+				<br/>
+			';
+			}		
+			?>
+	  
 		</div>
 		
    </body>
