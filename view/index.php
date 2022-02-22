@@ -43,10 +43,11 @@
 
 	  
 		<div class="container">
-		
+		    <h3>
+                <strong> Hot Games </strong>
+            </h3>
 			<div class="row">
 				<div class="col-sm-10">
-					<h2>Hot Games</h2>  
 					<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					
 					<ol class="carousel-indicators">
@@ -121,26 +122,53 @@
 				
 			<br/>
 			<br/>
-			<?php
+			<div class="title">
+            <h3>
+                <strong> Hot Games Continued </strong>
+            </h3>
+            
+        </div>
+		
+		<?php
 			for ($i=0;$i<4;$i++){
 				echo '
-				<div class="row border-bottom text-center" style="padding-right:20px; border: 1px solid #ccc;">
-					<div class="col-sm-3">
-						<div><img class="img-fluid" style="height: 100px; width: 100px" src="../image/pokeball.png"/></div> 
+					<div class="card">
+						<div class="card-wrapper">
+							<div class="row align-items-center">
+								<div class="col-12 col-md-3">
+									<div class="image-wrapper">
+										<img src="../image/pokeball.png" class="img-fluid" title="">
+									</div>
+								</div>
+								<div class="col-12 col-md">
+									<div class="card-box">
+										<div class="row">
+											<div class="col-12">
+												<div class="top-line">
+													<h4 class="card-title"><strong>Pokemon</strong></h4>
+													<p class="cost">
+														99 Credits
+													</p>
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="bottom-line">
+													<p>
+														Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat rutrum nunc ac malesuada.
+														In nunc massa, ultricies et efficitur nec, hendrerit nec urna. Aenean ut eleifend enim.
+														Maecenas aliquet est ac ex posuere pulvinar. 
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="col-sm text-left">
-						<span class="font-weight-bold"> AAAAA AAAA </span>
-						<br/>
-						<span>1000 Credits</span>
-						<br/>
-						<a href="#" class="btn btn-lg btn-outline-success">Purchase</a>
-					</div>
-				</div>
-				
-				<br/>
-			';
+				';
 			}		
-			?>
+		?>
 			
 			</div>
 			
