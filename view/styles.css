@@ -1,0 +1,37 @@
+body {
+	background-color: #C0C0C0;
+} 
+
+.plan {
+	margin-top: 100px;
+	padding: 10px 5px;
+	background-color: white;
+}
+
+.plan-header {
+	color: blue;
+}
+
+.popup {
+	background: #d1005c;
+	padding: 20px;
+	color: #fff;
+	min-height: 200px;
+	position: absolute;
+	bottom:100%;         
+	margin-top:-20px;    
+	left: -47px;
+	width: 300px;
+	z-index: 100;
+}
+
+.img-fluid {
+	width: 100px; 
+	height: 100px;
+	object-fit: cover;   
+}
+
+.plan-header, .plan-button {
+	text-align: center;
+}
+

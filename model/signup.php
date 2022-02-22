@@ -57,6 +57,7 @@
 		header("Location:../view/index.php?pop=1"); //return to home
 	} else {
 		$_SESSION['email'] = $email;
+		$_SESSION['admin'] = 0;
 		header("Location:../view/index.php"); //return to home
 	}
 
