@@ -24,7 +24,7 @@
                   </ul>
                </li>
                <li><a href="contribute.php">Contribute</a></li>
-               <li><a href="#">Community</a></li>
+               <li><a href="community.php">Community</a></li>
                <li><a href="about.php">About</a></li>
             </ul>
             <?php
