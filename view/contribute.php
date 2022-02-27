@@ -5,7 +5,7 @@
 		<?php   
 			session_start();
 		?>
-		
+		<title> Contribute </title>
 	   <meta charset="utf-8">
 	   <meta name="viewport" content="width=device-width, initial-scale=1">
 	   
@@ -21,56 +21,122 @@
 	   
    </head>
    
+   <script>
+	//do something
+	jQuery(document).ready(function(){
+		$("#prevBtn").toggle();
+		$("#contributeConfirmation").toggle();
+	});
+
+	function tabs() {
+
+		
+		var x = document.querySelectorAll("[id='tab']");
+
+		for(var i = 0; i < x.length; i++) {
+			if (x[i].style.display === "none") {
+				x[i].style.display = "block";
+				$("#nextBtn").toggle();
+				$("#prevBtn").toggle();
+			} else {
+				x[i].style.display = "none";
+			}
+		}	
+
+
+	} 
+
+	function confirmation() {
+		var x = document.querySelectorAll("[id='tab']");
+		for(var i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		}
+		$("#prevBtn").toggle();
+		$("#contributeConfirmation").toggle();
+	}
+
+   </script>
+
+
    <body>
    
 	<?php	
 		include('navbar.php');
 	?>
 	  
-		<div class="container">
-			<div class="row">
-			<form>
-				<div class="col-md-6">
-					<label> Please enter the game title </label>
-					<input type="text" class="form-control" name="title">
-				</div>
-				<div class="col-md-6">
-					<label> Which game store is this key for? </label>
-					<input type="text" class="form-control" name="store">
-				</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<label> Game key: </label>
-						<input type="text" class="form-control" name="key">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<label> Notes </label>
-						<textarea class="form-control" name="bio" rows="3" > </textarea>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<label> I confirm that this a valid game key </label>
-						<input type="checkbox" id="confirm" name="confirm">
-					</div>
-				</div>	
-				<div class="row">
-					<div class="col-md-12">
-						<label> Should this key be public right away? </label>
-						<input type="checkbox" id="public" name="public">
-					</div>
-				</div>					
-				<br>
-				<div class="row">
-					<div class="col-md-12">
-						<button class="btn btn-primary" type="button"> Add </button>
-					</div>
-				</div>
-			</form>
-		</div>
+	  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <form class="contributeCard">
+                <h1 style="text-align:center;">Contribute</h1>
+               
+				<div id="tab">
+					<h4>Game Information</h6>
+					<br/>
+                    <h6>Game Title</h6>
+                    <p> <input placeholder="Example: FIFA 2022" name="gameTitle"></p>
+					<h6>Game Key</h6>
+					<p> <input placeholder="Example: (XXXXX-XXXXX-XXXXX-XXXXX-XXXXX)" name="key"></p>
+					<h6>Applicable Store</h6>
+					<p class="storeDrop">
+						<select name="steam">
+							<option value="steam">Steam</option>
+						</select>
+					</p>
+                </div>
+
+                <div id="tab" style="display:none;">
+					<h4>Additional Information</h6>
+					<br/>
+
+                    <h6>Notes</h6>
+                    <p><textarea name="gameNotes"> </textarea></p>
+
+					<h6> Should the key be made public? </h6>
+                    <p class="public">
+						<select name="Public">
+							<option value="steam">Add to my account only</option>
+							<option value="steam">Public</option>
+						</select>
+					</p>
+
+					<h6> By checking this tickbox you agree that this a valid and legally obtained game key. </h6>
+                    <p> <input type="checkbox" id="tick" name="tick1"></p>
+					
+					<button type="button" onClick="confirmation()" id="contributeSubmit" href="#" > Submit </button>
+                </div>
+
+                <div style="overflow:auto;">
+                    <div style="float:right;">
+					 <button type="button" id="prevBtn" onclick="tabs()"><i class="fa fa-angle-double-left"></i></button>
+					 <button type="button" id="nextBtn" onclick="tabs()"><i class="fa fa-angle-double-right"></i></button>
+					 </div>
+                </div>
+
+				<div id="contributeConfirmation">
+             		<h3>Confirmation</h3>
+					 <br/>
+					<p>Contribution Reference: </p>
+					<p>Title: </p>
+					<p>Store: </p>
+					<p>Notes: </p>
+					<p>Listed Price:</p>
+
+					<a href="contribute.php"> <input style="font-size:20px;" type="button" value="Contribute another" />  </a>
+					<br/>
+					<br/>
+					<a href="index.php"> <input style="font-size:20px;" type="button" value="Return to homepage" />  </a>
+
+            	</div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+</div>
 		
    </body>
    

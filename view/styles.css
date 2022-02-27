@@ -35,3 +35,56 @@ body {
 	text-align: center;
 }
 
+
+
+.contributeCard {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px
+}
+
+#register {
+    color: black
+}
+
+
+
+
+#tab input, #tab select, #tab textarea {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+#tab #tick {
+    -webkit-appearance: checkbox;
+	width: auto;
+}
+
+#tab input {
+    -webkit-appearance: none;
+}
+
+
+
+
+#nextBtn, #prevBtn {
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    padding: 10px 20px;
+    font-size: 25px;
+    cursor: pointer
+}
+
+
+
+#contributeSubmit {
+    padding: 5px;
+    font-size: 20px;
+}
+
+
+
