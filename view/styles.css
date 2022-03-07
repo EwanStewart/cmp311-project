@@ -48,7 +48,9 @@ body {
 }
 
 
-
+#titles {
+	visibility: hidden;
+}
 
 #tab input, #tab select, #tab textarea {
     padding: 10px;

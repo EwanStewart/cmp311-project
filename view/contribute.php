@@ -60,17 +60,13 @@
 	function updatetitles(str) {
 
 		if (str.length == 0) {
-			document.getElementById("txtHint").innerHTML = "";
 			return;
 		} else {
 			const xmlhttp = new XMLHttpRequest();
 			xmlhttp.onload = function() {
-			var a=document.getElementById("titles").options.length;
-			var b=document.getElementById("titles").options[0].value;
 
 			document.getElementById("titles").innerHTML = this.responseText;
-
-
+			document.getElementById("titles").style.visibility = "visible"; 
 		}
 		xmlhttp.open("GET", "../model/a.php?q=" + str);
 		xmlhttp.send();
@@ -96,7 +92,7 @@
 					<div id="tab">
 						<h4>Game Information</h6>
 						<br/>
-						<h6>Game Title</h6>
+						<h6>Search for your game</h6>
 						<p class="gameDrop">
 							
 							<?php
@@ -104,27 +100,24 @@
 								ini_set('display_startup_errors', 1);
 								error_reporting(E_ALL);
 
-								require('../model/fetchGameTitles.php');
-
-								function fetch($str) {
-									return fetchFromDB($str);
-								}
-
 							?>
 
-							<div id="txtHint">
-								
-							</div>
 
 							<input type="text" id="t" oninput="updatetitles(this.value);" list="titles" />
-							<datalist id="titles">
+							<br/>
+							<br/>
+							<select id="titles">
+								<h6>Select from our choices</h6>
 								<?php
-									$data = fetch('Call');
-									for ($i=0;$i < count($data); $i++) {
-										echo '<option value="'. $data[$i]["name"] .'">'. $data[$i]["name"] .'</option>';
+									$data = NULL;
+									if ($data != NULL) {
+										for ($i=0;$i < count($data); $i++) {
+											echo '<option value="'. $data[$i]["name"] .'">'. $data[$i]["name"] .'</option>';
+										}
 									}
+
 								?>
-							</datalist>
+							</select>
 						</p>						
 						
 						<h6>Game Key</h6>

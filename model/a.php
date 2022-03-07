@@ -10,7 +10,7 @@
 
     $conn = getDatabaseConnection();
     
-    $sql = "SELECT `name` FROM steam WHERE `name` LIKE ? ORDER BY `name` DESC LIMIT 10" ;
+    $sql = "SELECT `name` FROM steam WHERE `name` LIKE ? ORDER BY `name` DESC" ;
     $stmt = $conn->prepare($sql);
 
     $a =  $_GET['q'].'%';
@@ -22,7 +22,7 @@
     while($r = mysqli_fetch_assoc($result)) {
         echo '<option value="'. $r["name"] .'">'. $r["name"] .'</option>';
     }
-    
+
     mysqli_close($conn);
 
 
