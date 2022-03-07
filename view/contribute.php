@@ -68,7 +68,7 @@
 			document.getElementById("titles").innerHTML = this.responseText;
 			document.getElementById("titles").style.visibility = "visible"; 
 		}
-		xmlhttp.open("GET", "../model/a.php?q=" + str);
+		xmlhttp.open("GET", "../model/fetch.php?q=" + str);
 		xmlhttp.send();
 		}
 	}
