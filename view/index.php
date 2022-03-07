@@ -4,6 +4,22 @@
    <head>
 		<?php   
 			session_start();
+
+			//NEED TO MOVE THIS SOMEWHERE
+			require ("../controller/connection.php");
+			$conn = getDatabaseConnection();
+			$sql = "SELECT `id` FROM cmp311user WHERE `email` = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param("s", $_SESSION['email']);
+			$stmt->execute();
+
+			$result = $stmt->get_result();
+
+			while($r = mysqli_fetch_assoc($result)) {
+				$_SESSION['userID'] = $r["id"];
+			}
+			/////
+
 		?>
 		
 	   <meta charset="utf-8">
