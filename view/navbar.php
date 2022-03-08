@@ -5,8 +5,9 @@
    <body>
       <nav class="navbar navbar-default navbar-expand-lg navbar-light">
          <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">TCPG</a>  		
-            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+		    <image src="../image/TPCG_logo" style="height:100px; width:100px;" class="image-fluid navbar-left" /> 
+            <a class="navbar-brand" href="../view/index.php">Home</a>  		
+			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
             <span class="navbar-toggler-icon"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -18,7 +19,6 @@
                <li class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">Store <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                     <li><a href="#">Home</a></li>
                      <li><a href="#">Categories</a></li>
                      <li><a href="#">Recently Added</a></li>
                   </ul>
