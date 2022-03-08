@@ -123,41 +123,41 @@
 			<br/>
 			<br/>
 			<div class="title">
-            <h3>
-                <strong> Hot Games Continued </strong>
-            </h3>
-            
-        </div>
+				<h3>
+					<strong> Hot Games Continued </strong>
+				</h3>
+			</div>
 		
-		<?php
-			for ($i=0;$i<4;$i++){
-				echo '
-					<div class="card">
-						<div class="card-wrapper">
-							<div class="row align-items-center">
-								<div class="col-12 col-md-3">
-									<div class="image-wrapper">
-										<img src="../image/pokeball.png" class="img-fluid" title="">
+			<?php
+				for ($i=0;$i<4;$i++){
+					echo '
+						<div class="card">
+							<div class="card-wrapper">
+								<div class="row align-items-center">
+									<div class="col-12 col-md-3">
+										<div class="image-wrapper">
+											<img src="../image/pokeball.png" class="img-fluid" title="">
+										</div>
 									</div>
-								</div>
-								<div class="col-12 col-md">
-									<div class="card-box">
-										<div class="row">
-											<div class="col-12">
-												<div class="top-line">
-													<h4 class="card-title"><strong>Pokemon</strong></h4>
-													<p class="cost">
-														99 Credits
-													</p>
+									<div class="col-12 col-md">
+										<div class="card-box">
+											<div class="row">
+												<div class="col-12">
+													<div class="top-line">
+														<h4 class="card-title"><strong>Pokemon</strong></h4>
+														<p class="cost">
+															99 Credits
+														</p>
+													</div>
 												</div>
-											</div>
-											<div class="col-12">
-												<div class="bottom-line">
-													<p>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat rutrum nunc ac malesuada.
-														In nunc massa, ultricies et efficitur nec, hendrerit nec urna. Aenean ut eleifend enim.
-														Maecenas aliquet est ac ex posuere pulvinar. 
-													</p>
+												<div class="col-12">
+													<div class="bottom-line">
+														<p>
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat rutrum nunc ac malesuada.
+															In nunc massa, ultricies et efficitur nec, hendrerit nec urna. Aenean ut eleifend enim.
+															Maecenas aliquet est ac ex posuere pulvinar. 
+														</p>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -165,15 +165,13 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				';
-			}		
-		?>
+					';
+				}		
+			?>
 			
-			</div>
-			
-			<br/>
-			<br/>
-			<!-- Once list of keys is created and populated, this section will pull from it -->
+		<br><br>
+
+		</div>
+
    </body>
 </html>
