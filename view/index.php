@@ -141,18 +141,32 @@
 			<div class="title">
 				<h3>
 					<strong> Hot Games Continued </strong>
+							</br></br>
 				</h3>
 			</div>
 		
 			<?php
-				for ($i=0;$i<4;$i++){
+				ini_set('display_errors', 1);
+				ini_set('display_startup_errors', 1);
+				error_reporting(E_ALL);
+				include('../model/getGames.php');
+				$data = getAvaliableGames();
+								
+				for ($i=0;$i<count($data);$i++){
+					$title = getGameTitle($data[$i]["appID"]);
+					$info = getSteamData($data[$i]["appID"]);
+
+					$img = $info[$data[$i]["appID"]]["data"]["header_image"];
+					$price = $info[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
+
+					$desc = strip_tags(min(100,$info[$data[$i]["appID"]]["data"]["detailed_description"]));
 					echo '
 						<div class="card">
 							<div class="card-wrapper">
 								<div class="row align-items-center">
 									<div class="col-12 col-md-3">
 										<div class="image-wrapper">
-											<img src="../image/pokeball.png" class="img-fluid" title="">
+											<img src="'.$img.'" class="img-fluid" title="">
 										</div>
 									</div>
 									<div class="col-12 col-md">
@@ -160,27 +174,31 @@
 											<div class="row">
 												<div class="col-12">
 													<div class="top-line">
-														<h4 class="card-title"><strong>Pokemon</strong></h4>
+														<h4 class="card-title"><strong>'.$title[0]["name"].'</strong></h4>
 														<p class="cost">
-															99 Credits
+															'.$price.'
+														</p>
+														<p> 															
+															<input type="submit" name="submit" value="Add to Basket">
 														</p>
 													</div>
 												</div>
-												<div class="col-12">
-													<div class="bottom-line">
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat rutrum nunc ac malesuada.
-															In nunc massa, ultricies et efficitur nec, hendrerit nec urna. Aenean ut eleifend enim.
-															Maecenas aliquet est ac ex posuere pulvinar. 
-														</p>
+												</div>
+												<br/><br/>
+												<div class="row align-items-center">
+													<div class="col-12">
+														<div class="bottom-line">
+															<p>'. $desc .'
+															</p>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 							</div>
 						</div>
+						</br></br>
 					';
 				}		
 			?>
