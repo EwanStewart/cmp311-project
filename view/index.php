@@ -161,7 +161,7 @@
 					$img = $info[$data[$i]["appID"]]["data"]["header_image"];
 					$price = $info[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
 
-					$desc = strip_tags(min(100,$info[$data[$i]["appID"]]["data"]["detailed_description"]));
+					$desc = strip_tags(min(100,$info[$data[$i]["appID"]]["data"]["short_description"]));
 					echo '
 						<div class="card">
 							<div class="card-wrapper">
@@ -171,7 +171,7 @@
 											<img src="'.$img.'" class="img-fluid" title="">
 										</div>
 									</div>
-									<div class="col-12 col-md">
+									<div class="col-12 col-md-9">
 										<div class="card-box">
 											<div class="row">
 												<div class="col-12">
