@@ -4,6 +4,9 @@
    <head>
 		<?php   
 			session_start();
+			if(!isset($_SESSION['userID'])) {
+				header("Location: ../view/index.php?");
+			}
 		?>
 		<title> Contribute </title>
 	   <meta charset="utf-8">

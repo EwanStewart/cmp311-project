@@ -4,7 +4,7 @@
    <head>
 		<?php   
 			session_start();
-
+			$_SESSION['userID'] = NULL;
 			//NEED TO MOVE THIS SOMEWHERE
 			require ("../controller/connection.php");
 			$conn = getDatabaseConnection();
@@ -18,6 +18,8 @@
 			while($r = mysqli_fetch_assoc($result)) {
 				$_SESSION['userID'] = $r["id"];
 			}
+
+
 			/////
 
 		?>
