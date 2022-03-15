@@ -153,7 +153,8 @@
 				error_reporting(E_ALL);
 				include('../model/getGames.php');
 				$data = getAvaliableGames();
-								
+
+
 				for ($i=0;$i<count($data);$i++){
 					$title = getGameTitle($data[$i]["appID"]);
 					$info = getSteamData($data[$i]["appID"]);
