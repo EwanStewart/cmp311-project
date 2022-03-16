@@ -4,6 +4,9 @@
    <head>
 		<?php   
 			session_start();
+			if(!isset($_SESSION['userID'])) {
+				header("Location: ../view/index.php?");
+			}
 		?>
 		<title> Contribute </title>
 	   <meta charset="utf-8">
@@ -17,7 +20,7 @@
 	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	   
-	   <link rel="stylesheet" type="text/css" href="styles.css" >
+	   <link rel="stylesheet" type="text/css" href="styles/styles.css" >
 	   
    </head>
    

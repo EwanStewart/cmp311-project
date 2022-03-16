@@ -4,7 +4,7 @@
    <head>
 		<?php   
 			session_start();
-
+			$_SESSION['userID'] = NULL;
 			//NEED TO MOVE THIS SOMEWHERE
 			require ("../controller/connection.php");
 			$conn = getDatabaseConnection();
@@ -18,6 +18,8 @@
 			while($r = mysqli_fetch_assoc($result)) {
 				$_SESSION['userID'] = $r["id"];
 			}
+
+
 			/////
 
 		?>
@@ -29,11 +31,12 @@
 	   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	   
-	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	   
-	   <link rel="stylesheet" type="text/css" href="styles.css" >
+	   <link rel="stylesheet" type="text/css" href="styles/styles.css" >
 	   
    </head>
    
@@ -58,7 +61,7 @@
 	</script>
 
 	  
-		<div class="container">
+		<div class="container mdc-top-app-bar--dense-fixed-adjustt">
 		    <h3>
                 <strong> Hot Games </strong>
             </h3>
@@ -114,7 +117,10 @@
 							  <input type="text" placeholder="Search for a friend" name="search">
 							  <br/>
 							  <br/>
-							  <button type="submit">Search</button>
+							  <button class="mdc-button" type="submit">
+                                  <div class="mdc-button__ripple"></div>
+                                  <span class="mdc-button__label">Search</span>
+                              </button>
 							</form>
 							
 							<br/>
@@ -139,57 +145,104 @@
 			<br/>
 			<br/>
 			<div class="title">
-            <h3>
-                <strong> Hot Games Continued </strong>
-            </h3>
-            
-        </div>
+				<h3>
+					<strong> Hot Games Continued </strong>
+							</br></br>
+				</h3>
+			</div>
 		
-		<?php
-			for ($i=0;$i<4;$i++){
-				echo '
-					<div class="card">
-						<div class="card-wrapper">
-							<div class="row align-items-center">
-								<div class="col-12 col-md-3">
-									<div class="image-wrapper">
-										<img src="../image/pokeball.png" class="img-fluid" title="">
+			<?php
+				ini_set('display_errors', 1);
+				ini_set('display_startup_errors', 1);
+				error_reporting(E_ALL);
+				include('../model/getGames.php');
+				$data = getAvaliableGames();
+
+
+				for ($i=0;$i<count($data);$i++){
+					$cached = checkedGameCached($data[$i]["appID"]);
+					if (!$cached) {
+						$steamData = getSteamData($data[$i]["appID"]);
+						$param = array();
+
+
+						if ($steamData[$data[$i]["appID"]]["success"]) {
+							$appid = $data[$i]["appID"];
+							$title = getGameTitle($data[$i]["appID"])[0]["name"];
+							$s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
+							$price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
+							$img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
+							$genre = $steamData[$data[$i]["appID"]]["data"]["genres"][0]["description"];
+						} else {
+							$appid = $data[$i]["appID"];
+							$title = getGameTitle($appid)[0]["name"];
+							$s_desc = "No data avaliable from Steam";
+							$price = "No data avaliable from Steam";
+							$img = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+							$genre = "No data avaliable from Steam";
+
+						}
+						
+
+						array_push($param, $appid, $title, $s_desc, $price, $img, $genre);
+						insertGameDataToCache($param);
+					}
+
+					$cached = checkedGameCached($data[$i]["appID"])[0];
+
+					$title = $cached["title"];
+					$img = $cached["img"];
+					$price = $cached["price"];
+					$desc = $cached["s_desc"];
+
+					echo '
+						<div class="card">
+							<div class="card-wrapper">
+								<div class="row align-items-center">
+									<div class="col-12 col-md-3">
+										<div class="image-wrapper">
+											<img src="'.$img.'" class="img-fluid" title="">
+										</div>
 									</div>
-								</div>
-								<div class="col-12 col-md">
-									<div class="card-box">
-										<div class="row">
-											<div class="col-12">
-												<div class="top-line">
-													<h4 class="card-title"><strong>Pokemon</strong></h4>
-													<p class="cost">
-														99 Credits
-													</p>
+									<div class="col-12 col-md-9">
+										<div class="card-box">
+											<div class="row">
+												<div class="col-12">
+													<div class="top-line">
+														<h4 class="card-title"><strong>'.$title.'</strong></h4>
+														<p class="cost">
+															'.$price.'
+														</p>
+														<p> 															
+															<input type="submit" name="submit" value="Add to Basket">
+														</p>
+													</div>
 												</div>
-											</div>
-											<div class="col-12">
-												<div class="bottom-line">
-													<p>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat rutrum nunc ac malesuada.
-														In nunc massa, ultricies et efficitur nec, hendrerit nec urna. Aenean ut eleifend enim.
-														Maecenas aliquet est ac ex posuere pulvinar. 
-													</p>
+												</div>
+												<br/><br/>
+												<div class="row align-items-center">
+													<div class="col-12">
+														<div class="bottom-line">
+															<p>'. $desc .'
+															</p>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 							</div>
 						</div>
-					</div>
-				';
-			}		
-		?>
+						</br></br>
+					';
+					
+				}	
+				
+			?>
 			
-			</div>
-			
-			<br/>
-			<br/>
-			<!-- Once list of keys is created and populated, this section will pull from it -->
+		<br><br>
+
+		</div>
+
    </body>
 </html>
