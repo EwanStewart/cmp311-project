@@ -69,15 +69,34 @@ function insertGameDataToCache($param) {
     $s_desc = $param[2];
     $price = $param[3];
     $img = $param[4];
-
-    $sqlSelect = "INSERT INTO cachedGameData (appid, title, s_desc, price, img) VALUES (?,?,?,?,?)";							
+    $genre = $param[5];
+    $sqlSelect = "INSERT INTO cachedGameData (appid, title, s_desc, price, img, genres) VALUES (?,?,?,?,?,?)";							
     $stmtSelect = $conn->prepare($sqlSelect);
-    $stmtSelect->bind_param("issss", $appid, $title, $s_desc, $price, $img);
+    $stmtSelect->bind_param("isssss", $appid, $title, $s_desc, $price, $img, $genre);
     $stmtSelect->execute();										
     $result = $stmtSelect->get_result();		
 
     
     return $result;
+}
+
+function checkGenreCached($param) {
+    global $conn;
+
+    $sqlSelect = "SELECT genres FROM cachedGameData WHERE appID = ?";							
+    $stmtSelect = $conn->prepare($sqlSelect);
+    $stmtSelect->bind_param("i", $param);
+    $stmtSelect->execute();										
+    $result = $stmtSelect->get_result();		
+
+    if ($result->num_rows > 0) { 
+        while($row = $result->fetch_assoc()) { 					
+            $rows[] = $row;
+        }
+        return $rows;
+    } else {
+        return false;
+    }
 }
 
 
