@@ -4,11 +4,40 @@
   $background: #fff,
 );
 @use "../../node_modules/material-components-web";
-@use "../../node_modules/@material/button";
-@use "../../node_modules/@material/button/mdc-button";
-@use "../../node_modules/@material/button/styles";
-
 @use "../../node_modules/@material/ripple";
+@use "../../node_modules/@material/icon-button";
+
+@import "../../node_modules/@material/button";
+@import "../../node_modules/@material/button/mdc-button";
+@import "../../node_modules/@material/button/styles";
+@import "../../node_modules/@material/top-app-bar/mdc-top-app-bar";
+@import "../../node_modules/@material/icon-button/mdc-icon-button";
+@import "../../node_modules/@material/tab-bar/mdc-tab-bar";
+@import "../../node_modules/@material/tab-scroller/mdc-tab-scroller";
+@import "../../node_modules/@material/tab-indicator/mdc-tab-indicator";
+@import "../../node_modules/@material/tab/mdc-tab";
+
+.mdc-top-app-bar {
+  @include mdc-top-app-bar-fill-color(#cfcfcf);
+  @include mdc-top-app-bar-ink-color(#000);
+  @include mdc-top-app-bar-icon-ink-color(#000);
+}
+
+.mdc-tab-bar-appBarMenu{
+  @include mdc-tab-bar-width(24px);
+}
+
+.top-app-bar-button{
+  @include mdc-button-ink-color(#000);
+}
+
+.brand_icon{
+  width: 48px;
+  height: 48px;
+}
+
+
+//@include icon-button.core-styles;
 
 .my-surface {
   @include ripple.surface;

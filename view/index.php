@@ -44,7 +44,7 @@
    
 	<?php	
 		include('config.php');
-		include('navbar-material.php');
+		include('navbar.php');
 	?>
 	
 	<script>	
@@ -61,7 +61,7 @@
 	</script>
 
 	  
-		<div class="container mdc-top-app-bar--dense-prominent-fixed-adjust">
+		<div class="container mdc-top-app-bar--dense-fixed-adjustt">
 		    <h3>
                 <strong> Hot Games </strong>
             </h3>

@@ -4,9 +4,85 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="scripts/require.js"></script>
+    <script src="../dist/app.js"></script>
     <link rel="stylesheet" href="styles/app.css">
 </head>
 <body>
+<nav class="mdc-top-app-bar mdc-top-app-bar--dense">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <img src="../image/TPCG_logo.png" class="mdc-top-app-bar__navigation-icon brand_icon"/>
+            <span class="mdc-top-app-bar__title">Page title</span>
+            <div class="mdc-tab-bar mdc-tab-bar-appBarMenu" role="tablist">
+                <div class="mdc-tab-scroller__scroll-content">
+                    <button class="mdc-tab" role="tab" aria-selected="false" tabindex="0">
+                        <span class="mdc-tab__content">
+                            <span class="mdc-tab__text-label">Store</span>
+                            </span>
+                        <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span
+                            </span>
+                        <span class="mdc-tab__ripple"></span>
+                    </button>
+                    <button class="mdc-tab" role="tab" aria-selected="false" tabindex="1">
+                        <span class="mdc-tab__content">
+                            <span class="mdc-tab__text-label">Contribute</span>
+                            </span>
+                        <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span
+                            </span>
+                        <span class="mdc-tab__ripple"></span>
+                    </button>
+                    <button class="mdc-tab" role="tab" aria-selected="false" tabindex="2">
+                        <span class="mdc-tab__content">
+                            <span class="mdc-tab__text-label">Community</span>
+                            </span>
+                        <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span
+                            </span>
+                        <span class="mdc-tab__ripple"></span>
+                    </button>
+                    <button class="mdc-tab" role="tab" aria-selected="false" tabindex="3">
+                        <span class="mdc-tab__content">
+                            <span class="mdc-tab__text-label">About</span>
+                            </span>
+                        <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span
+                            </span>
+                        <span class="mdc-tab__ripple"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <button class="mdc-button mdc-top-app-bar__action-item mdc-button--outlined mdc-button--icon-leading top-app-bar-button">
+                <div class="mdc-button__ripple"></div>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">expand_more</i>
+                <span class="mdc-button__label">Login</span>
+            </button>
+            <button class="mdc-button mdc-top-app-bar__action-item mdc-button--outlined top-app-bar-button">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Register</span>
+            </button>
+        </section>
+    </div>
+    <div class="mdc-top-app-bar__row">
+        <div class="mdc-top-app-bar__section--align-start">
+            <button class="mdc-button mdc-top-app-bar__action-item mdc-button--outlined top-app-bar-button">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Home</span>
+            </button>
+            <button class="mdc-button mdc-top-app-bar__action-item mdc-button--outlined top-app-bar-button">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Categories</span>
+            </button>
+            <button class="mdc-button mdc-top-app-bar__action-item mdc-button--outlined top-app-bar-button">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Recently Added</span>
+            </button>
+        </div>
+    </div>
+</nav>
 <nav class="navbar navbar-default navbar-expand-lg navbar-light">
     <div class="navbar-header">
         <img src="../image/TPCG_logo.png" style="height:100px; width:100px;" class="image-fluid navbar-left"/>
@@ -112,7 +188,6 @@
         ?>
     </div>
 </nav>
-<script src="../dist/app.js"></script>
 </body>
 </html>
 
