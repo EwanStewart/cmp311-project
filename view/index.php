@@ -160,13 +160,28 @@
 
 
 				for ($i=0;$i<count($data);$i++){
-					$title = getGameTitle($data[$i]["appID"]);
-					$info = getSteamData($data[$i]["appID"]);
+					$cached = checkedGameCached($data[$i]["appID"]);
+					if (!$cached) {
+						$steamData = getSteamData($data[$i]["appID"]);
+						$param = array();
 
-					$img = $info[$data[$i]["appID"]]["data"]["header_image"];
-					$price = $info[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
+						$appid = $data[$i]["appID"];
+						$title = getGameTitle($data[$i]["appID"])[0]["name"];
+						$s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
+						$price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
+						$img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
 
-					$desc = strip_tags(min(100,$info[$data[$i]["appID"]]["data"]["short_description"]));
+						array_push($param, $appid, $title, $s_desc, $price, $img);
+						insertGameDataToCache($param);
+					}
+
+					$cached = checkedGameCached($data[$i]["appID"])[0];
+
+					$title = $cached["title"];
+					$img = $cached["img"];
+					$price = $cached["price"];
+					$desc = $cached["s_desc"];
+
 					echo '
 						<div class="card">
 							<div class="card-wrapper">
@@ -181,7 +196,7 @@
 											<div class="row">
 												<div class="col-12">
 													<div class="top-line">
-														<h4 class="card-title"><strong>'.$title[0]["name"].'</strong></h4>
+														<h4 class="card-title"><strong>'.$title.'</strong></h4>
 														<p class="cost">
 															'.$price.'
 														</p>
@@ -207,7 +222,9 @@
 						</div>
 						</br></br>
 					';
-				}		
+					
+				}	
+				
 			?>
 			
 		<br><br>
