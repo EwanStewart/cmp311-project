@@ -1,0 +1,17 @@
+@use "../../node_modules/@material/theme" with (
+  $primary: #D57711,
+  $secondary: #245AF5,
+  $background: #fff,
+);
+@use "../../node_modules/material-components-web";
+@use "../../node_modules/@material/button";
+@use "../../node_modules/@material/button/mdc-button";
+@use "../../node_modules/@material/button/styles";
+
+@use "../../node_modules/@material/ripple";
+
+.my-surface {
+  @include ripple.surface;
+  @include ripple.radius-bounded;
+  @include ripple.states;
+}

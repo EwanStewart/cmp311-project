@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+       <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+       <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+       <link href="styles/app.css" rel="stylesheet">
+       <script src="scripts/mdc-instantiate.js"></script>
    </head>
    <body>
       <nav class="navbar navbar-default navbar-expand-lg navbar-light">
          <div class="navbar-header">
-		    <image src="../image/TPCG_logo" style="height:100px; width:100px;" class="image-fluid navbar-left" /> 
+             <img src="../image/TPCG_logo.png" style="height:100px; width:100px;" class="image-fluid navbar-left"/>
             <a class="navbar-brand" href="../view/index.php">Home</a>  		
 			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
             <span class="navbar-toggler-icon"></span>
