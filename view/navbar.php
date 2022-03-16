@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-   </head>
-   <body>
-      <nav class="navbar navbar-default navbar-expand-lg navbar-light">
-         <div class="navbar-header">
-		    <image src="../image/TPCG_logo" style="height:100px; width:100px;" class="image-fluid navbar-left" /> 
-            <a class="navbar-brand" href="../view/index.php">Home</a>  		
-			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-            <span class="navbar-toggler-icon"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+
+<head>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-expand-lg navbar-light">
+        <div class="navbar-header">
+            <image src="../image/TPCG_logo" style="height:100px; width:100px;" class="image-fluid navbar-left" />
+            <a class="navbar-brand" href="../view/index.php">Home</a>
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="navbar-toggler-icon"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-         </div>
-         <div id="navbarCollapse" class="collapse navbar-collapse">
+        </div>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-               <li class="dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Store <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                     <li><a href="#">Categories</a></li>
-                     <li><a href="#">Recently Added</a></li>
-                  </ul>
-               </li>
-               <li><a href="contribute.php">Contribute</a></li>
-               <li><a href="community.php">Community</a></li>
-               <li><a href="about.php">About</a></li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Store <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Recently Added</a></li>
+                    </ul>
+                </li>
+                <li><a href="contribute.php">Contribute</a></li>
+                <li><a href="community.php">Community</a></li>
+                <li><a href="about.php">About</a></li>
             </ul>
             <?php
                echo '<ul class="nav navbar-nav navbar-right">';
@@ -90,7 +92,7 @@
                		echo '<li><a href="#">Account Balance: £9,999</a></li>';
                		echo '<li><a href="account.php">Account Settings</a></li>';
 					echo '<li><a href="#">Key Inventory</a></li>';
-               		echo '<li><a href="#">Friends</a></li>';
+               		echo '<li><a href="friends.php">Friends</a></li>';
                		
                		if ($_SESSION['admin']){
                			echo '<li><a href="#">Admin Panel</a></li>';
@@ -103,8 +105,8 @@
                	echo '</li>';
                	echo '</ul>';
                ?>
-         </div>
-      </nav>
-   </body>
-</html>
+        </div>
+    </nav>
+</body>
 
+</html>

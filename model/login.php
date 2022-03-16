@@ -23,6 +23,7 @@
 	if ($result->num_rows > 0) { 								//if there is comments
 		while($row = $result->fetch_assoc()) { 					//output row
 			if(password_verify($password, $row["password"])) {
+				  $_SESSION['uID'] = $row["id"];
 				  $_SESSION['login_error'] = '';
 				  $_SESSION['email'] = $email;
 				  $_SESSION['forename'] = $row["forename"];
