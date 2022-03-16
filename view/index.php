@@ -165,11 +165,21 @@
 						$steamData = getSteamData($data[$i]["appID"]);
 						$param = array();
 
-						$appid = $data[$i]["appID"];
-						$title = getGameTitle($data[$i]["appID"])[0]["name"];
-						$s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
-						$price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
-						$img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
+
+						if ($steamData[$data[$i]["appID"]]["success"]) {
+							$appid = $data[$i]["appID"];
+							$title = getGameTitle($data[$i]["appID"])[0]["name"];
+							$s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
+							$price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
+							$img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
+						} else {
+							$appid = $data[$i]["appID"];
+							$title = getGameTitle($appid)[0]["name"];
+							$s_desc = "No data avaliable from Steam";
+							$price = "No data avaliable from Steam";
+							$img = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+						}
+						
 
 						array_push($param, $appid, $title, $s_desc, $price, $img);
 						insertGameDataToCache($param);
