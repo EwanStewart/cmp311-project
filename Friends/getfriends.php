@@ -48,31 +48,13 @@ function getSent($id){
 
 function sendRequest($firstUser, $secondUser){
     $conn = getDatabaseConnection();
-
-        $sql = "INSERT INTO friends (fUserID, sUserID, status) VALUES (?, ?, ?)";
-        $stmt = mysqli_stmt_init($conn);
-        $r1 = mysqli_stmt_prepare($stmt, $sqlInsert);
-        $r2 = mysqli_stmt_bind_param($stmt, "ssi", $firstUser, $secondUser, 0);
-        $result = mysqli_stmt_execute($stmt);
-        mysqli_close($stmt);
-        return $result;
-}
-
-function getUsers($email){
-    $conn = getDatabaseConnection();
-
-    $sql = "SELECT forename, surname, created FROM cmp311user WHERE email LIKE '$email%'";
-    $result = mysqli_query($conn, $sql);
-    while ($r = mysqli_fetch_assoc($result)) {
-        $rows[] = $r;
-    }
-    $results = json_encode($rows);
+    $status = 0;
+    $sqlInsert = "INSERT INTO friends (fUserID, sUserID, status) VALUES (?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    $r1 = mysqli_stmt_prepare($stmt, $sqlInsert);
+    $r2 = mysqli_stmt_bind_param($stmt, "ssi", $firstUser, $secondUser, $status);
+    $results = mysqli_stmt_execute($stmt);
+    mysqli_close($stmt);
     return $results;
-    mysqli_close($conn);
-
 }
-
-         
-         
-
 ?>

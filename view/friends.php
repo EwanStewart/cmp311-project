@@ -1,10 +1,7 @@
 <?php
 session_start();
-include("../Friends/getfriends.php");
+include ("../Friends/getfriends.php");
 $userID = $_SESSION['uID'];
-if(!isset($_SESSION['uID'])){
-    header("Location: index.php");
-}
 ?>
 
 <!DOCTYPE html>
