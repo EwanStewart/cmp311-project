@@ -36,8 +36,6 @@
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	   
-	   <link rel="stylesheet" type="text/css" href="styles/styles.css" >
-	   
    </head>
    
    <body>
@@ -61,7 +59,7 @@
 	</script>
 
 	  
-		<div class="container mdc-top-app-bar--dense-fixed-adjustt">
+		<div class="container mdc-top-app-bar--dense-fixed-adjust">
 		    <h3>
                 <strong> Hot Games </strong>
             </h3>
