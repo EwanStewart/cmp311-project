@@ -8,10 +8,46 @@
     <link rel="stylesheet" href="styles/app.css">
 </head>
 <body>
+<nav>
+    <div>
+        <div>
+            <img class="brand_icon" src="image/TPCG_logo_no_text.png"/>
+            <H2>TPCG</H2>
+        </div>
+        <div>
+            <ul>
+                <li><a href="#">Store</a></li>
+                <li><a href="#">Contribute</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Recently Added</a></li>
+            </ul>
+        </div>
+        <div>
+            <input type="search"/>
+        </div>
+    </div>
+</nav>
+
+
 
 <nav class="mdc-top-app-bar mdc-top-app-bar--dense navbar navbar-default navbar-expand-lg navbar-light">
     <div class="navbar-header">
-        <img src="../image/TPCG_logo_no_text.png" class="mdc-top-app-bar__navigation-icon brand_icon"/>
+        <img width="48" height="48" src="../image/TPCG_logo_no_text.png" class="mdc-top-app-bar__navigation-icon brand_icon"/>
         <span class="mdc-top-app-bar__title mdc-top-app-bar__navigation-icon brand_icon" href="../view/index.php">TPCG</span>
         <div class="mdc-top-app-bar__section">
             <div id="navbarCollapse">

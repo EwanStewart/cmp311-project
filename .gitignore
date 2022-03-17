@@ -350,3 +350,14 @@ MigrationBackup/
 .ionide/
 
 *.css.map
+/dist/require.js.map
+/dist/app.js.map
+/.idea/cmp311-project.iml
+/.idea/libraries/Generated_files.xml
+/.idea/jsLibraryMappings.xml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/vcs.xml
+/.idea/watcherTasks.xml
+/dist/webpack.config.js
+/dist/webpack.config.js.map
