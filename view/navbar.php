@@ -7,7 +7,7 @@
 <body>
     <nav class="navbar navbar-default navbar-expand-lg navbar-light">
         <div class="navbar-header">
-            <image src="../image/TPCG_logo" style="height:100px; width:100px;" class="image-fluid navbar-left" />
+            <img src="../image/TPCG_logo_no_text.png" style="height:100px; width:100px;" class="image-fluid navbar-left" />
             <a class="navbar-brand" href="../view/index.php">Home</a>
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                 <span class="navbar-toggler-icon"></span>
