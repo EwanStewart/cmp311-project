@@ -1,10 +1,11 @@
 <?php
 session_start();
 include("../controller/connection.php");
+$conn = getDatabaseConnection();
 
 function getFriends($id, $email){
-    $conn = getDatabaseConnection();
-
+    
+    global $conn;
     //SQL STATEMENT TO RETRIEVE FRIENDS
     $sqlSelect = "SELECT friends.sUserID, friends.fUserID, friends.status , cmp311user.forename, cmp311user.email FROM friends
     LEFT JOIN cmp311user ON friends.sUserID = cmp311user.id OR friends.fUserID = cmp311user.id 
@@ -19,7 +20,7 @@ function getFriends($id, $email){
 }
 
 function getRequests($id){
-    $conn = getDatabaseConnection();
+    global $conn;
     //SQL STATEMENT TO RETRIEVE RECIEVED REQUESTS
             $sql = "SELECT friends.fUserID, friends.status, cmp311user.forename, cmp311user.email FROM friends
             LEFT JOIN cmp311user ON friends.fUserID = cmp311user.id WHERE status=1 AND sUserID='".$id."'";
@@ -35,7 +36,7 @@ function getRequests($id){
 
 function getSent($id){
  //SQL STATEMENT TO RETRIEVE RECIEVED REQUESTS
- $conn = getDatabaseConnection();
+ global $conn;
         $sql = "SELECT friends.sUserID, friends.status, cmp311user.forename, cmp311user.email FROM friends
          LEFT JOIN cmp311user ON friends.sUserID = cmp311user.id WHERE status=1 AND fUserID='".$id."'";
         $result = mysqli_query($conn, $sql);
