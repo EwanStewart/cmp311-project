@@ -74,7 +74,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">Store <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Categories</a></li>
+                        <li><a href="search.php">Categories</a></li>
                         <li><a href="#">Recently Added</a></li>
                     </ul>
                 </li>
@@ -83,6 +83,9 @@
                 <li><a href="about.php">About</a></li>
             </ul>
             <?php
+				require_once('config.php');
+				session_start();
+				
                 echo '<ul class="nav navbar-nav navbar-right">';
 
                 if (!isset($_SESSION['email'])) {

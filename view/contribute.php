@@ -1,9 +1,8 @@
 <?php
-    session_start();
+    include('header.php');
     if(!isset($_SESSION['userID'])) {
         header("Location: ../view/index.php?");
     }
-    include('header.php');
 ?>
 
 <script>

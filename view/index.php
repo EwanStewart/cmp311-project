@@ -1,6 +1,6 @@
 <?php
-    include('config.php');
-    include('header.php'); ?>
+    include('header.php');
+?>
 <div>
     <script>
         const query = window.location.search;
@@ -105,9 +105,6 @@
         </div>
 
         <?php
-            ini_set('display_errors', 1);
-            ini_set('display_startup_errors', 1);
-            error_reporting(E_ALL);
             include('../model/getGames.php');
             $data = getAvaliableGames();
 

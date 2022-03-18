@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	
 	require_once '../controller/connection.php';
 	$conn = getDatabaseConnection();
 	$error = '';
@@ -56,6 +55,14 @@
 	if ($_SESSION['signup_error'] != '') {
 		header("Location:../view/index.php?pop=1"); //return to home
 	} else {
+		$sql = "SELECT `id` FROM cmp311user WHERE `email` = ?";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($r = mysqli_fetch_assoc($result)) {
+			$_SESSION['userID'] = $r["id"];
+		}
 		$_SESSION['email'] = $email;
 		$_SESSION['admin'] = 0;
 		header("Location:../view/index.php"); //return to home
