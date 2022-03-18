@@ -14,6 +14,10 @@
 @use "../../node_modules/@material/ripple";
 @use "../../node_modules/@material/icon-button";
 
+//CSS for navigation drawer
+@use "../../node_modules/@material/drawer";
+@use "../../node_modules/@material/list";
+
 @import "../../node_modules/@material/button";
 @import "../../node_modules/@material/button/mdc-button";
 @import "../../node_modules/@material/button/styles";
@@ -23,6 +27,13 @@
 @import "../../node_modules/@material/tab-scroller/mdc-tab-scroller";
 @import "../../node_modules/@material/tab-indicator/mdc-tab-indicator";
 @import "../../node_modules/@material/tab/mdc-tab";
+
+
+
+
+@include drawer.core-styles;
+@include drawer.dismissible-core-styles;
+@include drawer.modal-core-styles;
 
 .mdc-top-app-bar {
   @include mdc-top-app-bar-fill-color(#eeeeee);

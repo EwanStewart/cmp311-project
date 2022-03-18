@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <?php   
-         session_start();
-         ?>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-
-<body>
-    <script>
+<?php
+    include('header.php');
+    session_start();
+?>
+<script>
     $(document).ready(function() {
 
         $('#editProfilePicture').click(function() {
@@ -36,166 +21,163 @@
             $("#edit").text("Save Changes");
         });
     });
-    </script>
-    <?php	
-         include('navbar.php');
-         
-         $fname = '';
-         $sname = '';
-         $email = '';
-         $country = '';
-         
-         if (isset($_SESSION['forename'])) { 
-         	$fname = $_SESSION['forename'];
-         }
-         if (isset($_SESSION['surname'])) { 
-         	$sname = $_SESSION['surname'];
-         }		
-         if (isset($_SESSION['email'])) { 
-         	$email = $_SESSION['email'];
-         }
-            if (isset($_SESSION['country'])) { 
-         	$email = $_SESSION['country'];
-         }
-         ?>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div id="popup" style="display:none;" class="row">
-                <br>
-                <div class="row">
-                    <div class="col-md-3 text-center">
-                        <img class="img-fluid" src="../image/witcher3.png">
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <img class="img-fluid" src="../image/gta5trevor.png">
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <img class="img-fluid" src="../image/owgenji.png">
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <img class="img-fluid" src="../image/mario.png">
-                    </div>
+</script>
+<?php
+    $fname = '';
+    $sname = '';
+    $email = '';
+    $country = '';
+
+    if (isset($_SESSION['forename'])) {
+        $fname = $_SESSION['forename'];
+    }
+    if (isset($_SESSION['surname'])) {
+        $sname = $_SESSION['surname'];
+    }
+    if (isset($_SESSION['email'])) {
+        $email = $_SESSION['email'];
+    }
+    if (isset($_SESSION['country'])) {
+        $email = $_SESSION['country'];
+    }
+?>
+<div class="container">
+    <div class="row justify-content-center">
+        <div id="popup" style="display:none;" class="row">
+            <br>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid" src="../image/witcher3.png">
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-3 text-center">
-                        <img class="img-fluid" src="../image/pokeball.png">
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <img class="img-fluid" src="../image/falloutboy.png">
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <img class="img-fluid" src="../image/skyrim.png">
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <img class="img-fluid" src="../image/zombie.png">
-                    </div>
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid" src="../image/gta5trevor.png">
                 </div>
-                <br>
-            </div>
-            <div class="col-md-3" id="profile" style="padding-right:20px; border-right: 1px solid #ccc;">
-                <div class="row" id="editProfilePicture">
-                    <h4 class="text-center"> Profile Picture </h4>
-                    <i style="font-size:24px;" class="fa fa-align-right fa-pull-right fa-3x"> &#xf040; </i>
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid" src="../image/owgenji.png">
                 </div>
-                <div class="row text-center">
-                    <img class="rounded-circle" width="150px" src="../image/blank.png">
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid" src="../image/mario.png">
                 </div>
             </div>
-            <div class="col-md-5">
-                <div>
-                    <div class="align-items-center">
-                        <h4> Account Details </h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label> Forename </label>
-                            <input type="text" class="form-control" name="forename" value="<?php echo $fname;?>"
-                                readonly>
-                        </div>
-                        <div class="col-md-6">
-                            <label> Surname </label>
-                            <input type="text" class="form-control" name="surname" value="<?php echo $sname;?>"
-                                readonly>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label> Email </label>
-                            <input type="email" class="form-control" name="email" value="<?php echo $email;?>" readonly>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label> Bio </label>
-                            <textarea class="form-control" name="bio" rows="3" readonly> </textarea>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-primary" id="edit" type="button"> Edit Profile </button>
-                        </div>
-                    </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid" src="../image/pokeball.png">
                 </div>
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid" src="../image/falloutboy.png">
+                </div>
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid" src="../image/skyrim.png">
+                </div>
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid" src="../image/zombie.png">
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="col-md-3" id="profile" style="padding-right:20px; border-right: 1px solid #ccc;">
+            <div class="row" id="editProfilePicture">
+                <h4 class="text-center"> Profile Picture </h4>
+                <i style="font-size:24px;" class="fa fa-align-right fa-pull-right fa-3x"> &#xf040; </i>
+            </div>
+            <div class="row text-center">
+                <img class="rounded-circle" width="150px" src="../image/blank.png">
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 align-center col-lg-6">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h3 class="plan-title">
-                            <strong>Yearly</strong>
-                            </h6>
-                            <div class="plan-price">
-                                <h4 class="price"><strong>£100</strong></p>
-                                </h4>
-                            </div>
+        <div class="col-md-5">
+            <div>
+                <div class="align-items-center">
+                    <h4> Account Details </h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label> Forename </label>
+                        <input type="text" class="form-control" name="forename" value="<?php echo $fname;?>"
+                               readonly>
                     </div>
-                    <div class="plan-body">
-                        <div class="plan-list">
-                            <ul class="list-group">
-                                <li class="list-group-item">Benefit 1
-                                </li>
-                                <li class="list-group-item">Benefit 2
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="plan-button">
-                            <a href="#" class="btn btn-primary">Subscribe to get started</a>
-                        </div>
+                    <div class="col-md-6">
+                        <label> Surname </label>
+                        <input type="text" class="form-control" name="surname" value="<?php echo $sname;?>"
+                               readonly>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 align-center col-lg-6">
-                <div class="plan">
-                    <div class="plan-header">
-                        <h3 class="plan-title">
-                            <strong>Monthly</strong>
-                            </h6>
-                            <div class="plan-price">
-                                <h4 class="price"><strong>£20</strong></p>
-                                </h4>
-                            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label> Email </label>
+                        <input type="email" class="form-control" name="email" value="<?php echo $email;?>" readonly>
                     </div>
-                    <div class="plan-body">
-                        <div class="plan-list">
-                            <ul class="list-group">
-                                <li class="list-group-item">Benefit 1
-                                </li>
-                                <li class="list-group-item">Benefit 2
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="text-center">
-                            <a href="#" class="btn btn-primary">Subscribe to get started</a>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label> Bio </label>
+                        <textarea class="form-control" name="bio" rows="3" readonly> </textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" id="edit" type="button"> Edit Profile </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</body>
-
-</html>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 align-center col-lg-6">
+            <div class="plan">
+                <div class="plan-header">
+                    <h3 class="plan-title">
+                        <strong>Yearly</strong>
+                        </h3>
+                        <div class="plan-price">
+                            <h4 class="price"><strong>£100</strong></p>
+                            </h4>
+                        </div>
+                </div>
+                <div class="plan-body">
+                    <div class="plan-list">
+                        <ul class="list-group">
+                            <li class="list-group-item">Benefit 1
+                            </li>
+                            <li class="list-group-item">Benefit 2
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="plan-button">
+                        <a href="#" class="btn btn-primary">Subscribe to get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 align-center col-lg-6">
+            <div class="plan">
+                <div class="plan-header">
+                    <h3 class="plan-title">
+                        <strong>Monthly</strong>
+                        </h3>
+                        <div class="plan-price">
+                            <h4 class="price"><strong>£20</strong></p>
+                            </h4>
+                        </div>
+                </div>
+                <div class="plan-body">
+                    <div class="plan-list">
+                        <ul class="list-group">
+                            <li class="list-group-item">Benefit 1
+                            </li>
+                            <li class="list-group-item">Benefit 2
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">Subscribe to get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+    include('footer.php');
+?>
