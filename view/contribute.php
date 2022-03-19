@@ -1,6 +1,6 @@
 <?php
     include('header.php');
-    if(!isset($_SESSION['userID'])) {
+    if(!isset($_SESSION['uID'])) {
         header("Location: ../view/index.php?");
     }
 ?>
