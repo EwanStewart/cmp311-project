@@ -43,8 +43,18 @@
 
 	function numberOfTransactions()
 	{
-		global $conn;
-		$sql = "SELECT * FROM keyTransactions";
+		$conn = getDatabaseConnection();
+		$sql = "SELECT * FROM subTransactions";
+		$result = mysqli_query($conn, $sql);
+		$rowcount = mysqli_num_rows( $result );
+		return $rowcount;
+	}
+
+	function getUserTransactions()
+	{
+		$conn = getDatabaseConnection();
+		$id = $_SESSION['userID'];
+		$sql = "SELECT id, userID,  FROM subTransactions WHERE userID = $id";
 		$result = mysqli_query($conn, $sql);
 		$rowcount = mysqli_num_rows( $result );
 		return $rowcount;
@@ -85,7 +95,7 @@
 				$sql = "UPDATE gameKeys SET purchasedBy = $id WHERE id = $keyid";
 				$result = mysqli_query($conn, $sql);
 				// Make note of transaction in log
-				$sql = "INSERT INTO keyTransactions (userID, keyID, cost) VALUES ($id, $keyid, $cost)";
+				$sql = "INSERT INTO subTransactions (userID, keyID, cost) VALUES ($id, $keyid, $cost)";
 			}
 			$sql = "UPDATE cmp311user SET credit = $newTotal WHERE id = $id";
 			$result = mysqli_query($conn, $sql);
