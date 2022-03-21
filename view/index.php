@@ -1,5 +1,7 @@
 <?php
     include('header.php');
+
+
 ?>
 <div>
     <script>
@@ -105,38 +107,13 @@
         </div>
 
         <?php
-            include('../model/getGames.php');
+            require_once('../model/getGames.php');
             $data = getAvaliableGames();
 
 
             for ($i=0;$i<count($data);$i++){
-                $cached = checkedGameCached($data[$i]["appID"]);
-                if (!$cached) {
-                    $steamData = getSteamData($data[$i]["appID"]);
-                    $param = array();
 
-
-                    if ($steamData[$data[$i]["appID"]]["success"]) {
-                        $appid = $data[$i]["appID"];
-                        $title = getGameTitle($data[$i]["appID"])[0]["name"];
-                        $s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
-                        $price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
-                        $img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
-                        $genre = $steamData[$data[$i]["appID"]]["data"]["genres"][0]["description"];
-                    } else {
-                        $appid = $data[$i]["appID"];
-                        $title = getGameTitle($appid)[0]["name"];
-                        $s_desc = "No data avaliable from Steam";
-                        $price = "No data avaliable from Steam";
-                        $img = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
-                        $genre = "No data avaliable from Steam";
-
-                    }
-
-
-                    array_push($param, $appid, $title, $s_desc, $price, $img, $genre);
-                    insertGameDataToCache($param);
-                }
+                cache($data[$i]);
 
                 $cached = checkedGameCached($data[$i]["appID"])[0];
 
