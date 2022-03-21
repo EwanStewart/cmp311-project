@@ -1,7 +1,14 @@
 <?php
-    include('header.php');
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+    require_once('header.php');
     if(!isset($_SESSION['uID'])) {
-        header("Location: ../view/index.php?");
+		?>
+		<script>
+			location.href = "index.php";
+		</script>
+		<?php
     }
 ?>
 

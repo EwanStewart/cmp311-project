@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once 'connection.php';
+	require_once('connection.php');
 	require_once('../view/config.php');
 	
 	$conn = getDatabaseConnection();
@@ -47,6 +47,15 @@
             $stmtInsert->bind_param("sss", $forename, $surname, $email); 
             $stmtInsert->execute(); 		
         }
+		
+		$sql = "SELECT `id` FROM cmp311user WHERE `email` = ?";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($r = mysqli_fetch_assoc($result)) {
+			$_SESSION['uID'] = $r["id"];
+		}
     }
 	
 	header("Location:../view/index.php");    

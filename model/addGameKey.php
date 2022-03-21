@@ -1,11 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
+require_once("../controller/connection.php");
 
-require("../controller/connection.php");
 $conn = getDatabaseConnection();
 
 $title = $_POST['title'];
@@ -36,6 +32,7 @@ if(isset($_POST['submit'])) {
 } else {
 	$status = 'failure';
 }
+
 
 header("Location: ../view/index.php?q=".$status);
 

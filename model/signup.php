@@ -61,7 +61,7 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 		while($r = mysqli_fetch_assoc($result)) {
-			$_SESSION['userID'] = $r["id"];
+			$_SESSION['uID'] = $r["id"];
 		}
 		$_SESSION['email'] = $email;
 		$_SESSION['admin'] = 0;
