@@ -1,6 +1,6 @@
 <?php
 	// Connect to database
-	include("../controller/connection.php");
+	include_once("../controller/connection.php");
 	
 	// function to return the details of the game in the user's basket
 	function getBasket()
@@ -53,7 +53,7 @@
 	{
 		$conn = getDatabaseConnection();
 		$id = $_SESSION['uID'];
-		$sql = "SELECT id, userID,  FROM subTransactions WHERE userID = $id";
+		$sql = "SELECT id, userID FROM subTransactions WHERE userID = $id";
 		$result = mysqli_query($conn, $sql);
 		$rowcount = mysqli_num_rows($result);
 		return $rowcount;
