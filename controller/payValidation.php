@@ -2,12 +2,17 @@
     // NEEDS WORK
     session_start();
 
-    include_once '../controller/connection.php';
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    include_once 'connection.php';
     $conn = getDatabaseConnection();
-    $id = $_SESSION['userID'];
+    $id = $_SESSION['uID'];
     $cardNum = $_POST['cardNum'];
-    $plan = $_GET['plan'];
-    
+    $plan = $_POST['plan'];
+
+    echo "ID: " . $id . ", CardNum: " . $cardNum . ", Plan Type: " . $plan;
            
     // Checks if card number fits requirements.
     if (!preg_match('/^[0-9]{16}$/', $cardNum)) {
@@ -24,6 +29,8 @@
             $price = 19;
         }
 
+        echo "\nPrice = " . $price;
+
         //Transaction ID string is created by incrementing number of existing transactions by one
         //and filling the rest with zeros to bring it to 8 characters
         $tID = numberOfTransactions();
@@ -32,12 +39,16 @@
             $transactionStr = "0" . $transactionStr;
         }
 
+        echo "\ntransactionStr = " . $transactionStr;
+
         // Set up the JSON first
         $data -> vendor = "2005670" ;  // student number
         $data -> transaction = $transactionStr ;  // string of length 8
         $data -> amount = $price ; // amount less than 100
         $data -> card = $cardNum ;  //  16 digit number 
         $request = json_encode($data) ;
+
+        echo "\nData packaged";
         
         //Interacts with AberPay API
         $url = "https://driesh.abertay.ac.uk/~g510572/aberpay/" ;
@@ -50,6 +61,8 @@
         curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
         $response = curl_exec($ch);
+
+        echo "\nAPI Contacted";
         
         //If the API returns a successful transaction
         if (strstr($response, '{"status":1,')){
@@ -60,10 +73,14 @@
             var_dump($result);
 
             //Success Message is shown to user
-            header('Location: ../view/account?msg=1');
+            //header('Location: ../view/account?msg=1');
+
+            echo "\nTransaction successful";
         }else{
             //Error message is shown to user
-            header('Location: ../view/details?error=2');
+            //header('Location: ../view/details?error=2');
+
+            echo "\nTransaction failed";
         }
     }
 ?>

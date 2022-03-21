@@ -47,7 +47,7 @@
                         <label for="cardNum">Card Number</label>
                         <input type="text" class="form-control" name="cardNum" aria-describedby="cardHelp" required="required" autocomplete="off">
                         <small id="cardHelp" class="form-text text-muted">Must be exactly 16 digits.</small>
-                        <input type="hidden" id="plan" name="plan" value=<?=$plan?>>
+                        <?php echo '<input type="hidden" id="plan" name="plan" value='.$plan.'>';?>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Confirm Payment</button>
                 </form>
