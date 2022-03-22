@@ -70,21 +70,49 @@
   background: #f3f3f3;
 }
 
-.top-app-bar-loginPopup{
+.top-app-bar-accountPopup{
   @include card.core-styles();
+  @include shape-radius(8px, false);
+  box-shadow: 0px 5px 8px #888888;
   position: absolute;
-  display: none;
+  display: block;
+  visibility: hidden;
   z-index: 50;
   padding: 16px;
-  min-width: 48px;
+  min-width: 15%;
   float: right;
   margin-top: 6px;
   margin-right: 16px;
   right: 0;
+  opacity: 0;
+  transition: all 0.175s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-.displayPopup {
+.top-app-bar-accountPopup.displayPopup {
+  visibility: visible;
   display: block;
+  transition: all 0.175s cubic-bezier(0.0, 0.0, 0.2, 1);
+  opacity: 1;
+  margin-top: 12px;
+}
+
+.top-app-bar-accountPopup_buttonContainer{
+  width: 100%;
+}
+
+.top-app-bar-accountPopup_loginButton{
+  margin: auto 8px;
+  width: 100%;
+}
+
+.top-app-bar-accountPopup_GoogleLoginButton{
+  margin: auto 8px;
+  width: 100%;
+  text-transform: none;
+}
+
+.center-in-parent{
+  margin:auto;
 }
 
 

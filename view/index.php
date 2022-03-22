@@ -20,43 +20,7 @@
         </h3>
         <div class="row">
             <div class="col-sm-10">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
-
-                    <div class="carousel-inner">
-
-                        <div class="item active">
-                            <b> The Witcher 3 - 1000 Credits - 99 Keys </b>
-                            <img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/witcher3.png">
-                        </div>
-
-                        <div class="item">
-                            <b> Skyrim Special Edition - 1000 Credits - 99 Keys </b>
-                            <img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/skyrim.png">
-                        </div>
-
-                        <div class="item">
-                            <b> Pokemon - 1000 Credits - 99 Keys </b>
-                            <img class="img-fluid" style="height:50%; width:100%; margin:auto;" src="../image/pokeball.png">
-                        </div>
-                    </div>
-
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-
-                </div>
+                <h3>Put a carousel here when you can pls</h3>
             </div>
             <br/>
 
@@ -68,8 +32,6 @@
 
                 <form action="#">
                     <input type="text" placeholder="Search for a friend" name="search">
-                    <br/>
-                    <br/>
                     <button class="mdc-button" type="submit">
                         <div class="mdc-button__ripple"></div>
                         <span class="mdc-button__label">Search</span>
