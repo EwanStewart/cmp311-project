@@ -18,8 +18,8 @@ session_start();
         </div>
         <a href="../account.php">Account</a>
         <a href="#">Games</a>
-        <a href="../friends.php">Friends</a>
-        <a href="../../model/logout.php">Sign Out</a>
+        <a href="../view/friends.php">Friends</a>
+        <a href="../model/logout.php">Sign Out</a>
         <?php
         if ($_SESSION['admin']){
             echo '<a href="#">Admin Panel</a>';
