@@ -16,7 +16,7 @@ session_start();
             <img width="64" height="64" src="../image/blank.png" />
             <h6><?php echo $_SESSION["email"] ?></h6>
         </div>
-        <a href="../account.php">Account</a>
+        <a href="../view/account.php">Account</a>
         <a href="#">Games</a>
         <a href="../view/friends.php">Friends</a>
         <a href="../model/logout.php">Sign Out</a>
