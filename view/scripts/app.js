@@ -14,9 +14,14 @@ $(document).ready(function (){
 
 $(document).scroll(function(){
     document.getElementById("loginPopup").classList.remove("displayPopup");
+    document.getElementById("accountPopup").classList.remove("displayPopup");
 });
 
 
 function showLoginBox(e) {
     document.getElementById("loginPopup").classList.toggle("displayPopup");
+}
+
+function showAccountBox(e) {
+    document.getElementById("accountPopup").classList.toggle("displayPopup");
 }

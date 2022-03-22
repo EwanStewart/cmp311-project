@@ -1,7 +1,7 @@
 <?php include('header.php');
     session_start();
     ?>
-<div class="container">
+<div class="container mdc-top-app-bar--prominent-fixed-adjust">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6">
             <div class="card-wrapper">
