@@ -1,10 +1,13 @@
 {
   "dependencies": {
     "@material/button": "^13.0.0",
+    "@material/card": "^13.0.0",
     "@material/drawer": "^13.0.0",
+    "@material/textfield": "^13.0.0",
     "@material/top-app-bar": "^13.0.0",
     "autoprefixer": "^10.4.3",
     "babel-preset-es2015": "^6.24.1",
+    "bootstrap": "^5.1.3",
     "material-components-web": "^13.0.0",
     "npm": "^8.5.4"
   },

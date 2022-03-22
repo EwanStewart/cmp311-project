@@ -14,7 +14,7 @@
             document.getElementById("log").click();
         }
     </script>
-    <div class="container mdc-top-app-bar--dense-fixed-adjust">
+    <div class="container mdc-top-app-bar--prominent-fixed-adjust">
         <h3>
             <strong> Hot Games </strong>
         </h3>

@@ -13,10 +13,17 @@
 @use "../../node_modules/material-components-web";
 @use "../../node_modules/@material/ripple";
 @use "../../node_modules/@material/icon-button";
+@use "../../node_modules/@material/floating-label/mdc-floating-label";
+@use "../../node_modules/@material/line-ripple/mdc-line-ripple";
+@use "../../node_modules/@material/notched-outline/mdc-notched-outline";
+@use "../../node_modules/@material/textfield";
+@use "../../node_modules/@material/card";
 
 //CSS for navigation drawer
 @use "../../node_modules/@material/drawer";
 @use "../../node_modules/@material/list";
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 @import "../../node_modules/@material/button";
 @import "../../node_modules/@material/button/mdc-button";
@@ -28,15 +35,19 @@
 @import "../../node_modules/@material/tab-indicator/mdc-tab-indicator";
 @import "../../node_modules/@material/tab/mdc-tab";
 
-
-
+@include textfield.core-styles;
 
 @include drawer.core-styles;
 @include drawer.dismissible-core-styles;
 @include drawer.modal-core-styles;
+@include card.core-styles;
+
+
+//-------
+//Mixins
 
 .mdc-top-app-bar {
-  @include mdc-top-app-bar-fill-color(#eeeeee);
+  @include mdc-top-app-bar-fill-color(#d7d7d7);
   @include mdc-top-app-bar-ink-color(#000);
   @include mdc-top-app-bar-icon-ink-color(#000);
 }
@@ -50,6 +61,36 @@
   @include mdc-button-shape-radius(6px);
 }
 
+.top-app-bar-searchField{
+  @include textfield.outlined-density(-4);
+  margin: 8px;
+}
+
+.top-app-bar-lowerSection{
+  background: #f3f3f3;
+}
+
+.top-app-bar-loginPopup{
+  @include card.core-styles();
+  position: absolute;
+  display: none;
+  z-index: 50;
+  padding: 16px;
+  min-width: 48px;
+  float: right;
+  margin-top: 6px;
+  margin-right: 16px;
+  right: 0;
+}
+
+.displayPopup {
+  display: block;
+}
+
+
+//------------
+//Custom Rules
+
 .brand_icon{
   width: 48px;
   height: 48px;
@@ -59,19 +100,27 @@
 .top-app-bar-mainLink{
   margin-left: 16px;
   color: #000;
-  font-size: larger;
+}
+
+.top-app-bar-secondaryLink-align{
+  margin: 2px 8px;
+}
+
+.margin-left-2{
+  margin-left: 2px;
+}
+
+.margin-left-4{
+  margin-left: 4px;
+}
+
+.margin-left-8{
+  margin-left: 8px;
 }
 
 
-//@include icon-button.core-styles;
 
-.my-surface {
-  @include ripple.surface;
-  @include ripple.radius-bounded;
-  @include ripple.states;
-}
-
-
+//-------------------------
 //Inherited from styles.css
 
 .plan {

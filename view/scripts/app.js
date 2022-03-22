@@ -6,4 +6,17 @@ $(document).ready(function (){
     }
     const topAppBarElement = document.querySelector('.mdc-top-app-bar');
     const topAppBar = new mdc.topAppBar.MDCTopAppBar(topAppBarElement);
+    var textFields = document.querySelectorAll('.mdc-text-field');
+    for (var i = 0, textField; textField = textFields[i]; i++) {
+        var _ = new mdc.textField.MDCTextField(textField);
+    }
 });
+
+$(document).scroll(function(){
+    document.getElementById("loginPopup").classList.remove("displayPopup");
+});
+
+
+function showLoginBox(e) {
+    document.getElementById("loginPopup").classList.toggle("displayPopup");
+}
