@@ -2,6 +2,25 @@
     include('header.php');
 ?>
 <div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+
+            $("[data-shopButton]").click(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/addToBasket.php",
+                    data: {gameID: $(this).attr("data-gameID")},
+                    success: function (text) {
+                        alert(text); // Function DOES reach here
+                    }
+                });
+            });
+
+        }); 
+    </script>
+
     <script>
         const query = window.location.search;
         const params = new URLSearchParams(query);
@@ -140,6 +159,7 @@
 
                 $cached = checkedGameCached($data[$i]["appID"])[0];
 
+                $gameid = $data[$i]["appID"];
                 $title = $cached["title"];
                 $img = $cached["img"];
                 $price = $cached["price"];
@@ -164,7 +184,7 @@
                                                         '.$price.'
                                                     </p>
                                                     <p> 															
-                                                        <input type="submit" name="submit" value="Add to Basket">
+                                                        <input type="submit" name="submit" data-shopbutton="true" data-gameid="'.$gameid.'" value="DEBUG: '.$gameid.'">
                                                     </p>
                                                 </div>
                                             </div>
