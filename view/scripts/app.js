@@ -1,5 +1,5 @@
 //import * as mdc from "material-components-web"
-$(document).ready(function (){
+$(document).ready(function () {
     var buttons = document.querySelectorAll('.mdc-button, .mdc-fab');
     for (var i = 0, button; button = buttons[i]; i++) {
         mdc.ripple.MDCRipple.attachTo(button);
@@ -12,7 +12,7 @@ $(document).ready(function (){
     }
 });
 
-$(document).scroll(function(){
+$(document).scroll(function () {
     document.getElementById("loginPopup").classList.remove("displayPopup");
     document.getElementById("accountPopup").classList.remove("displayPopup");
 });

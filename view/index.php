@@ -1,37 +1,41 @@
 <?php
     include('header.php');
+    session_start();
+    
 ?>
 <div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
-        $(function () {
+    $(function() {
 
-            $("[data-shopButton]").click(function() {
-                $.ajax({
-                    type: "POST",
-                    url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/addToBasket.php",
-                    data: {gameID: $(this).attr("data-gameID")},
-                    success: function (text) {
-                        alert(text); // Function DOES reach here
-                    }
-                });
+        $("[data-shopButton]").click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/addToBasket.php",
+                data: {
+                    gameID: $(this).attr("data-gameID")
+                },
+                success: function(text) {
+                    alert(text); // Function DOES reach here
+                }
             });
+        });
 
-        }); 
+    });
     </script>
 
     <script>
-        const query = window.location.search;
-        const params = new URLSearchParams(query);
-        const pop = params.get('pop');
-        console.log(pop);
+    const query = window.location.search;
+    const params = new URLSearchParams(query);
+    const pop = params.get('pop');
+    console.log(pop);
 
-        if (pop == 1) {
-            document.getElementById("reg").click();
-        } else if (pop == 2) {
-            document.getElementById("log").click();
-        }
+    if (pop == 1) {
+        document.getElementById("reg").click();
+    } else if (pop == 2) {
+        document.getElementById("log").click();
+    }
     </script>
     <div class="container mdc-top-app-bar--prominent-fixed-adjust">
         <h3>
@@ -41,13 +45,13 @@
             <div class="col-sm-10">
                 <h3>Put a carousel here when you can pls</h3>
             </div>
-            <br/>
+            <br />
 
             <div class="col-sm-2 text-right">
                 <h4>
                     Community
                 </h4>
-                <br/>
+                <br />
 
                 <form action="#">
                     <input type="text" placeholder="Search for a friend" name="search">
@@ -57,8 +61,8 @@
                     </button>
                 </form>
 
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <h4>
                     Friend List
                 </h4>
@@ -76,8 +80,8 @@
             </div>
         </div>
 
-        <br/>
-        <br/>
+        <br />
+        <br />
         <div class="title">
             <h3>
                 <strong> Hot Games Continued </strong>
@@ -88,7 +92,7 @@
         <?php
             include('../model/getGames.php');
             $data = getAvaliableGames();
-
+            
 
             for ($i=0;$i<count($data);$i++){
                 $cached = checkedGameCached($data[$i]["appID"]);

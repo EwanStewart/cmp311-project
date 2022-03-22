@@ -1,4 +1,9 @@
-<?php include('config.php') ?>
+<?php 
+
+include('config.php');
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +21,7 @@
 </head>
 
 <body>
-<!-- This is still under construction btw -->
+    <!-- This is still under construction btw -->
     <nav class="mdc-top-app-bar mdc-top-app-bar--prominent">
         <section class="d-flex container-fluid flex-row">
             <div class="d-flex float-start">
@@ -102,6 +107,3 @@
             </div>
         </section>
     </nav>
-
-
-
