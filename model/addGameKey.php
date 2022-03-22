@@ -1,11 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
+require_once("../controller/connection.php");
 
-require("../controller/connection.php");
 $conn = getDatabaseConnection();
 
 $title = $_POST['title'];
@@ -25,18 +21,15 @@ while($r = mysqli_fetch_assoc($result)) {
 	$appid = $r["appid"];
 }
 
-
-
 if(isset($_POST['submit'])) {
 	$sqlInsert = "INSERT INTO gameKeys (appID, gameKey, notes, public, store, userID) VALUES (?, ?, ?, ?, ?, ?)";	
 	$stmtInsert = $conn->prepare($sqlInsert);	
-	$stmtInsert->bind_param("issisi", $appid, $key, $notes, $public, $store, $_SESSION['userID']);						
+	$stmtInsert->bind_param("issisi", $appid, $key, $notes, $public, $store, $_SESSION['uID']);						
 	$stmtInsert->execute();
-	$status = 'success';
 } else {
-	$status = 'failure';
+	$success = 0;
 }
 
-header("Location: ../view/index.php?q=".$status);
+header("Location: ../view/index.php?q=".$success."&a=".$appid);
 
 ?>

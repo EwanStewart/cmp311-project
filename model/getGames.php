@@ -19,6 +19,7 @@ function getGameTitle($param) {
 }
 
 
+
 function getAvaliableGames() {
     global $conn;
 
@@ -99,5 +100,34 @@ function checkGenreCached($param) {
     }
 }
 
+function cache($game) {
+    $cached = checkedGameCached($game["appID"]);
+    if (!$cached) {
+        $steamData = getSteamData($game["appID"]);
+        $param = array();
+
+
+        if ($steamData[$game["appID"]]["success"]) {
+            $appid = $game["appID"];
+            $title = getGameTitle($game["appID"])[0]["name"];
+            $s_desc = strip_tags(min(100,$steamData[$game["appID"]]["data"]["short_description"]));
+            $price = $steamData[$game["appID"]]["data"]["price_overview"]["final_formatted"];
+            $img = $steamData[$game["appID"]]["data"]["header_image"];
+            $genre = $steamData[$game["appID"]]["data"]["genres"][0]["description"];
+        } else {
+            $appid = $game["appID"];
+            $title = getGameTitle($appid)[0]["name"];
+            $s_desc = "No data avaliable from Steam";
+            $price = "No data avaliable from Steam";
+            $img = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+            $genre = "No data avaliable from Steam";
+
+        }
+
+
+        array_push($param, $appid, $title, $s_desc, $price, $img, $genre);
+        insertGameDataToCache($param);
+    }
+}
 
 ?>

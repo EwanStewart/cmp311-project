@@ -1,6 +1,5 @@
 <?php
     include('header.php');
-    session_start();
 ?>
 <script>
     $(document).ready(function() {
@@ -123,59 +122,77 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-6 align-center col-lg-6">
-            <div class="plan">
-                <div class="plan-header">
-                    <h3 class="plan-title">
-                        <strong>Yearly</strong>
-                        </h3>
-                        <div class="plan-price">
-                            <h4 class="price"><strong>£100</strong></p>
-                            </h4>
+
+    <?php
+        include('../model/api-store.php');
+
+        $sub = getUserTransactions();
+        if ($sub < 1)
+        {
+            echo '
+                <div class="row justify-content-center">
+                <div class="col-12 col-md-6 align-center col-lg-6">
+                    <div class="plan">
+                        <div class="plan-header">
+                            <h3 class="plan-title">
+                                <strong>Yearly</strong>
+                                </h3>
+                                <div class="plan-price">
+                                    <h4 class="price"><strong>£99</strong></p>
+                                    </h4>
+                                </div>
                         </div>
-                </div>
-                <div class="plan-body">
-                    <div class="plan-list">
-                        <ul class="list-group">
-                            <li class="list-group-item">Benefit 1
-                            </li>
-                            <li class="list-group-item">Benefit 2
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="plan-button">
-                        <a href="#" class="btn btn-primary">Subscribe to get started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 align-center col-lg-6">
-            <div class="plan">
-                <div class="plan-header">
-                    <h3 class="plan-title">
-                        <strong>Monthly</strong>
-                        </h3>
-                        <div class="plan-price">
-                            <h4 class="price"><strong>£20</strong></p>
-                            </h4>
+                        <div class="plan-body">
+                            <div class="plan-list">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Benefit 1
+                                    </li>
+                                    <li class="list-group-item">Benefit 2
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="plan-button">
+                                <a href="details.php?plan=1" class="btn btn-primary">Subscribe to get started</a>
+                            </div>
                         </div>
-                </div>
-                <div class="plan-body">
-                    <div class="plan-list">
-                        <ul class="list-group">
-                            <li class="list-group-item">Benefit 1
-                            </li>
-                            <li class="list-group-item">Benefit 2
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="text-center">
-                        <a href="#" class="btn btn-primary">Subscribe to get started</a>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="col-12 col-md-6 align-center col-lg-6">
+                    <div class="plan">
+                        <div class="plan-header">
+                            <h3 class="plan-title">
+                                <strong>Monthly</strong>
+                                </h3>
+                                <div class="plan-price">
+                                    <h4 class="price"><strong>£19</strong></p>
+                                    </h4>
+                                </div>
+                        </div>
+                        <div class="plan-body">
+                            <div class="plan-list">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Benefit 1
+                                    </li>
+                                    <li class="list-group-item">Benefit 2
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="text-center">
+                                <a href="details.php?plan=2" class="btn btn-primary">Subscribe to get started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ';
+        }else
+        {
+            echo '
+                <div class="row justify-content-center">
+                    <h3>You are currently subscribed. Thank you for your support!</h3>
+                </div>
+            ';
+        }      
+    ?>
     </div>
 </div>
 <?php

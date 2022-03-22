@@ -1,7 +1,14 @@
 <?php
-    include('header.php');
-    if(!isset($_SESSION['userID'])) {
-        header("Location: ../view/index.php?");
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+    require_once('header.php');
+    if(!isset($_SESSION['uID'])) {
+		?>
+		<script>
+			location.href = "index.php";
+		</script>
+		<?php
     }
 ?>
 
@@ -74,7 +81,7 @@
                         </p>
 
                         <h6>Game Key</h6>
-                        <p> <input name="key"></p>
+                        <p> <input name="key" placeholder='XXXXX-XXXXX-XXXXX-XXXXX-XXXXX' pattern="^([A-Za-z0-9]{5}-){4}[A-Za-z0-9]{5}$" required> </p>    
                         <h6>Applicable Store</h6>
 
                         <p class="storeDrop">
@@ -91,16 +98,16 @@
                         <h4> Should the key be made public? </h4>
                         <p class="public">
                             <select name="public">
-                                <option value="0">Add to my account only</option>
-                                <option value="1">Public</option>
+                                <option value="1">Make this key available to the public</option>
+                                <option value="0">Add this key to my account only</option>
                             </select>
                         </p>
 
-                        <h4 style="display:inline;"> By checking this tickbox you agree that this a valid and legally obtained game key. </h4>
-                        <input type="checkbox" id="tick" name="tick1">
+                        <h4 style="display:inline;"> By checking this tickbox you agree that this a <span style="color:green; font-weight:bold;"> valid </span> and <span style="color:green; font-weight:bold;"> legally </span> obtained game key. </h4>
+                        <input type="checkbox" id="tick" onchange="document.getElementById('contributeSubmit').disabled = !this.checked;" name="tick1">
                         <br/>
                         <br/>
-                        <input type="submit" name="submit" id="contributeSubmit" value="Submit">
+                        <input type="submit" name="submit" id="contributeSubmit" value="Submit" disabled>
                         <br/>
                         <br/>
                 </div>
