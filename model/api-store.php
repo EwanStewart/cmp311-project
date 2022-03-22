@@ -14,18 +14,18 @@
     		$rows[] = $r;
 		}
 
-		for ($i=0;$i<sizeof($rows);$i++){
+		/*for ($i=0;$i<sizeof($rows);$i++){
 			$appID = $rows[$i]["appid"];
 			$url = "https://store.steampowered.com/api/appdetails?appids=" . $appID; // Get info for current game
 			$apidata = json_decode(file_get_contents($url), true);
 			$cost = ceil($apidata[$appID]["data"]["price_overview"]["final"] / 100 ) * 100;
 			$rows[$i]["cost"] = $cost; // Add cost field to array
-		}
+		}*/
 
 		return $rows;
 	}
 
-	function addToBasket($keyid)
+	/*function addToBasket($keyid)
 	{
 		$conn = getDatabaseConnection();
 		$userid = $_SESSION['uID'];
@@ -38,7 +38,7 @@
 			$sql = "INSERT INTO basket (userID, keyID) VALUES $userid, $keyid";
 			$result = mysqli_query($conn, $sql);
 		}		
-	}
+	}*/
 
 	function numberOfTransactions()
 	{

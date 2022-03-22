@@ -3,7 +3,26 @@
 
 
 ?>
+
 <div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+    $(function () {
+        $('input[type="submit"]').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/addToBasket.php",
+                data: {gameID: $(this).attr("appID")},
+                success: function (text) {
+
+                }
+            });
+        });
+
+    });
+    </script>
+
     <script>
         const query = window.location.search;
         const params = new URLSearchParams(query);
@@ -16,6 +35,7 @@
             document.getElementById("log").click();
         }
     </script>
+    
     <div class="container mdc-top-app-bar--dense-fixed-adjust">
         <h3>
             <strong> Hot Games </strong>
@@ -117,6 +137,7 @@
 
                 $cached = checkedGameCached($data[$i]["appID"])[0];
 
+                $appID = $cached["appID"];
                 $title = $cached["title"];
                 $img = $cached["img"];
                 $price = $cached["price"];
@@ -141,7 +162,7 @@
                                                         '.$price.'
                                                     </p>
                                                     <p> 															
-                                                        <input type="submit" name="submit" value="Add to Basket">
+                                                        <input type="submit" appID="'.$appID.'" value="Add to Basket">
                                                     </p>
                                                 </div>
                                             </div>
