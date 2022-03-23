@@ -1,5 +1,4 @@
 <?php
-	//include('header.php');
     session_start();
 	include("../model/api-store.php");
 	include("../model/getGames.php");
@@ -22,15 +21,11 @@
 </head>
 
 <body>
-	<!-- overall container for page -->
-	<div class="container">
-		<!--<div class="col-sm-12 mb-2">
-			<div class="card">
-				<div class="card-body">
-					<a href="index.php" class="btn btn-outline-success">Return to Store Page</a>
-				</div>
-			</div>
-		</div>-->
+		<?php
+			include('header.php');
+		?>
+
+	<div class="container mdc-top-app-bar--prominent-fixed-adjust">
 
 		<div class="card container justify-content-center p-4">
 					
@@ -38,7 +33,6 @@
 				
 				$basket = getBasket();
 
-				//var_dump($basket);
 
 				if (sizeof($basket) < 1){
 					switch ($msgType){
