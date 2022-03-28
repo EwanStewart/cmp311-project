@@ -136,8 +136,11 @@
                         <div class="card-wrapper">
                             <div class="row align-items-center">
                                 <div class="col-12 col-md-3">
-                                    <div class="image-wrapper">
+                                    <!--<div class="image-wrapper">
                                         <img src="'.$img.'" class="img-fluid" title="">
+                                    </div>-->
+                                    <div class="text-center">
+                                        <img class="shadow-sm w-75 rounded" src="'. $img .'"/>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-9">
@@ -155,7 +158,6 @@
                                                 </div>
                                             </div>
                                             </div>
-                                            <br/><br/>
                                             <div class="row align-items-center">
                                                 <div class="col-12">
                                                     <div class="bottom-line">
