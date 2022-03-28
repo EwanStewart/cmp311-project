@@ -31,7 +31,27 @@
     <script>
     $(function() {
 
-        $("[data-shopButton]").click(function() {
+        $("[data-remove]").click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/removeFromBasket.php",
+                data: {
+                    keyID: $(this).attr("data-keyID")
+                },
+                success: function(text) {
+                    alert(text);
+					window.location.reload()
+                }
+            });
+        });
+
+    });
+    </script>
+
+	<script>
+	$(function() {
+
+        $("[data-purchase]").click(function() {
             $.ajax({
                 type: "POST",
                 url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/removeFromBasket.php",
@@ -49,51 +69,77 @@
     </script>
 
 	<div class="container mdc-top-app-bar--prominent-fixed-adjust">
-
-		<div class="card container justify-content-center p-4">
-					
+				
 			<?php
 				
 				$basket = getBasket();
 
-
 				if (sizeof($basket) < 1){
 					switch ($msgType){
 						case 0:
-							echo '<h2 class="card-title text-center">Your basket is empty.</h2>';
+							echo '
+							<div class="card container justify-content-center p-4">
+								<h2 class="card-title text-center">Your basket is empty.</h2>
+							</div>
+							';
 							var_dump($basket);
 							break;
 						case 1:
-							echo '<h2 class="card-title text-center">Purchase was successful!</h2>'; 
+							echo '
+							<div class="card container justify-content-center p-4">
+								<h2 class="card-title text-center">Purchase was successful!</h2>
+							</div>
+							'; 
 							break;
 						default:
-							echo '<h2 class="card-title text-center">Unknown error.</h2>';
+							echo '
+							<div class="card container justify-content-center p-4">
+								<h2 class="card-title text-center">Unknown error.</h2>
+							</div>
+							';
 					}				
 				}else{
+
+					$total = totalBasketCost();
+					echo '
+					<div class="card container justify-content-center p-4 my-2">
+						<div class="row">
+							<div class="col">
+								<h1 class="card-title text-center">Basket Cost: '.$total.' Credits</h1>
+							</div>
+							<div class="col text-center">
+								<input type="submit" name="submit" data-purchase="true" class="btn-lg btn-outline-success" value="Purchase Basket">
+							</div>
+						</div>
+					</div>
+					';
+
 					for ($i=0;$i<sizeof($basket);$i++){
 
 						$cached = checkedGameCached($basket[$i]["appid"])[0];
 						$img = $cached["img"];
 
 						echo '
-						<div class="row">
-							<div class="col-4">
-								<div><img class="shadow-sm w-75 rounded" src="'. $img .'"/></div>
-							</div>
-							<div class="col-8">
-								<div class="row">
-									<div class="col-6">
-										<h1 class="font-weight-bold">'. $basket[$i]["name"] .'</h1>
-									</div>
-									<div class="col-6">
-										<input type="submit" name="submit" data-shopbutton="true" class="btn btn-outline-success" data-keyID="'.$basket[$i]["keyID"].'" value="Remove from Basket">
+						<div class="card container justify-content-center p-4">
+							<div class="row">
+								<div class="col-4">
+									<div><img class="shadow-sm w-75 rounded" src="'. $img .'"/></div>
+								</div>
+								<div class="col-8">
+									<div class="row">
+										<div class="col-6">
+											<h2 class="font-weight-bold">'. $basket[$i]["name"] .'</h2>
 										</div>
-									<div class="col-6">
-										<h3>'. $basket[$i]["cost"] .' Credits</h3>
+										<div class="col-6">
+											<input type="submit" name="submit" data-remove="true" class="btn btn-outline-success" data-keyID="'.$basket[$i]["keyID"].'" value="Remove from Basket">
+										</div>
+										<div class="col-6">
+											<h3>'. $basket[$i]["cost"] .' Credits</h3>
+										</div>
+										<!--<div class="col-6">
+											<a href="details.php" class="btn btn-lg btn-outline-success">Purchase</a>
+										</div>-->
 									</div>
-									<!--<div class="col-6">
-										<a href="details.php" class="btn btn-lg btn-outline-success">Purchase</a>
-									</div>-->
 								</div>
 							</div>
 						</div>
@@ -101,7 +147,6 @@
 					}
 				}
 			?>
-		</div>
 	</div>
 
 </body>

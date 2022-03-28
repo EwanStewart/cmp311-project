@@ -76,8 +76,7 @@
 
 	function totalBasketCost()
 	{
-		$id = $_SESSION['uID'];
-		$basket = getBasket($id);
+		$basket = getBasket();
 		$totalCost = 0;
 		
 		for ($i=0;$i<sizeof($basket);$i++){
