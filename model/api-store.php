@@ -50,21 +50,35 @@
 		return $rowcount;
 	}
 
-	function getUserTransactions()
+	/*function getUserTransactions()
 	{
 		$conn = getDatabaseConnection();
 		$id = $_SESSION['uID'];
 		$sql = "SELECT id, userID FROM subTransactions WHERE userID = $id";
 		$result = mysqli_query($conn, $sql);
-		$rowcount = mysqli_num_rows($result);
-		return $rowcount;
+		while($r = mysqli_fetch_assoc($result)) {
+    		$rows[] = $r;
+		}
+		return $rows;
+	}*/
+
+	function getUserTransactions()
+	{
+		$conn = getDatabaseConnection();
+		$id = $_SESSION['uID'];
+		$sql = "SELECT keyTransactions.userID, keyTransactions.keyID, keyTransactions.dateOfPurchase, keyTransactions.cost, gameKeys.store, gameKeys.gameKey, steam.name, steam.appid FROM ((keyTransactions INNER JOIN gameKeys ON gameKeys.id = keyTransactions.keyID) INNER JOIN steam ON steam.appid = gameKeys.appID) WHERE keyTransactions.userID = " . $id;
+		$result = mysqli_query($conn, $sql);
+		while($r = mysqli_fetch_assoc($result)) {
+    		$rows[] = $r;
+		}
+		return $rows;
 	}
 
 	function totalBasketCost()
 	{
 		$id = $_SESSION['uID'];
 		$basket = getBasket($id);
-		$totalCost = 0.0;
+		$totalCost = 0;
 		
 		for ($i=0;$i<sizeof($basket);$i++){
 			$totalCost += $basket[$i]["cost"];
@@ -95,16 +109,14 @@
 				$sql = "UPDATE gameKeys SET purchasedBy = $id WHERE id = $keyid";
 				$result = mysqli_query($conn, $sql);
 				// Make note of transaction in log
-				$sql = "INSERT INTO subTransactions (userID, keyID, cost) VALUES ($id, $keyid, $cost)";
+				$sql = "INSERT INTO keyTransactions (userID, keyID, cost) VALUES ($id, $keyid, $cost)";
 			}
+			// Empty basket
+			$sql = "DELETE FROM basket WHERE userID = $id";
+			$result = mysqli_query($conn, $sql);
+			// Take credits from user
 			$sql = "UPDATE cmp311user SET credit = $newTotal WHERE id = $id";
 			$result = mysqli_query($conn, $sql);
-		}
-		
-		$basket = getBasket($id);
-		for ($i=0;$i<sizeof($basket);$i++){
-			$keyid = $basket[$i]["keyID"];
-			$sql = "DELETE FROM gameKeys WHERE keyID = $keyid";
 		}
 	}
 ?>

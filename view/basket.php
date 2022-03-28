@@ -21,9 +21,32 @@
 </head>
 
 <body>
-		<?php
-			include('header.php');
-		?>
+	<?php
+		include('header.php');
+	?>
+
+	<div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+    $(function() {
+
+        $("[data-shopButton]").click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/removeFromBasket.php",
+                data: {
+                    keyID: $(this).attr("data-keyID")
+                },
+                success: function(text) {
+                    alert(text);
+					window.location.reload()
+                }
+            });
+        });
+
+    });
+    </script>
 
 	<div class="container mdc-top-app-bar--prominent-fixed-adjust">
 
@@ -63,14 +86,14 @@
 										<h1 class="font-weight-bold">'. $basket[$i]["name"] .'</h1>
 									</div>
 									<div class="col-6">
-										<a href="../controller/emptyBasket.php" class="btn btn-outline-success"><i class="bi-x"></i> Remove from Basket</a>
-									</div>
+										<input type="submit" name="submit" data-shopbutton="true" class="btn btn-outline-success" data-keyID="'.$basket[$i]["keyID"].'" value="Remove from Basket">
+										</div>
 									<div class="col-6">
 										<h3>'. $basket[$i]["cost"] .' Credits</h3>
 									</div>
-									<div class="col-6">
+									<!--<div class="col-6">
 										<a href="details.php" class="btn btn-lg btn-outline-success">Purchase</a>
-									</div>
+									</div>-->
 								</div>
 							</div>
 						</div>

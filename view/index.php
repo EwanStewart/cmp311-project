@@ -150,7 +150,7 @@
                                                         '.$price.'
                                                     </p>
                                                     <p> 															
-                                                        <input type="submit" name="submit" data-shopbutton="true" data-gameid="'.$gameid.'" value="DEBUG: '.$gameid.'">
+                                                        <input type="submit" name="submit" data-shopbutton="true" data-gameid="'.$gameid.'" value="Add to Basket">
                                                     </p>
                                                 </div>
                                             </div>
