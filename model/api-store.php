@@ -89,7 +89,7 @@
 	{
 		$conn = getDatabaseConnection();
 		$id = $_SESSION['uID'];
-		$totalCost = totalBasketCost($id);
+		$totalCost = totalBasketCost();
 
 		$sql = "SELECT credit FROM cmp311user WHERE id = $id";
 		$result = mysqli_query($conn, $sql);
@@ -98,7 +98,7 @@
 		$newTotal = $balance - $totalCost;
 		
 		if ($balance < $totalCost){
-			// give error message
+			return "You do not have enough Credits for this purchase.";
 		}else{	
 			$basket = getBasket($id);
 			for ($i=0;$i<sizeof($basket);$i++){
@@ -116,6 +116,9 @@
 			// Take credits from user
 			$sql = "UPDATE cmp311user SET credit = $newTotal WHERE id = $id";
 			$result = mysqli_query($conn, $sql);
+
+			$msg = "Keys purchased successfully.";
+			return $msg;
 		}
 	}
 ?>

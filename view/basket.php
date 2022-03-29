@@ -43,20 +43,14 @@
 					window.location.reload()
                 }
             });
-        });
+        })
 
-    });
-    </script>
-
-	<script>
-	$(function() {
-
-        $("[data-purchase]").click(function() {
+		$("[data-purchase]").click(function() {
             $.ajax({
                 type: "POST",
-                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/removeFromBasket.php",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/purchaseBasket.php",
                 data: {
-                    keyID: $(this).attr("data-keyID")
+                    pur: 1
                 },
                 success: function(text) {
                     alert(text);
@@ -64,7 +58,6 @@
                 }
             });
         });
-
     });
     </script>
 
@@ -108,10 +101,11 @@
 								<h1 class="card-title text-center">Basket Cost: '.$total.' Credits</h1>
 							</div>
 							<div class="col text-center">
-								<input type="submit" name="submit" data-purchase="true" class="btn-lg btn-outline-success" value="Purchase Basket">
+								<input type="submit" name="submit" data-remove="false" data-purchase="true" class="btn-lg btn-outline-success" value="Purchase Basket">
 							</div>
 						</div>
 					</div>
+					<div class="card container justify-content-center p-4 my-2">
 					';
 
 					for ($i=0;$i<sizeof($basket);$i++){
@@ -120,33 +114,31 @@
 						$img = $cached["img"];
 
 						echo '
-						<div class="card container justify-content-center p-4">
-							<div class="row">
+							<div class="row my-2">
 								<div class="col-4">
 									<div><img class="shadow-sm w-75 rounded" src="'. $img .'"/></div>
 								</div>
 								<div class="col-8">
 									<div class="row">
-										<div class="col-6">
+										<div class="col-8">
 											<h2 class="font-weight-bold">'. $basket[$i]["name"] .'</h2>
 										</div>
-										<div class="col-6">
-											<input type="submit" name="submit" data-remove="true" class="btn btn-outline-success" data-keyID="'.$basket[$i]["keyID"].'" value="Remove from Basket">
+										<div class="col-4 text-center">
+											<input type="submit" name="submit" data-remove="true" data-purchase="false" class="btn btn-outline-success m-auto" data-keyID="'.$basket[$i]["keyID"].'" value="Remove from Basket">
 										</div>
-										<div class="col-6">
+										<div class="col-8">
 											<h3>'. $basket[$i]["cost"] .' Credits</h3>
 										</div>
-										<!--<div class="col-6">
-											<a href="details.php" class="btn btn-lg btn-outline-success">Purchase</a>
-										</div>-->
+										<div class="col-4">
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						';
 					}
 				}
 			?>
+		</div>
 	</div>
 
 </body>
