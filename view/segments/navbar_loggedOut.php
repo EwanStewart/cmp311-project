@@ -1,8 +1,3 @@
-<?php
-
-session_start();
-
-?>
 <div>
     <button onclick="showLoginBox()" name="btn_login" id="btn_login"
         class="top-app-bar-mainLink mdc-button mdc-button--icon-leading top-app-bar-button">

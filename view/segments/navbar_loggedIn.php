@@ -1,9 +1,3 @@
-<?php
-session_start();
-
-?>
-
-
 <button onclick="showAccountBox()" name="btn_account" id="btn_account"
     class="top-app-bar-mainLink mdc-button mdc-button--icon-leading top-app-bar-button">
     <span class="mdc-button__ripple"></span>
