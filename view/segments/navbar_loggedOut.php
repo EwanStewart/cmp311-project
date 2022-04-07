@@ -67,4 +67,4 @@
     <span class="mdc-button__ripple"></span>
     <span class="mdc-button__label">Register</span>
 </a>
-<script type="text/javascript" src="../../view/scripts/app.js"></script>
+<script type="text/javascript" src="../view/scripts/app.js"></script>

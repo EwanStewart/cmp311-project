@@ -4,7 +4,7 @@ include("../controller/connection.php");
 $conn = getDatabaseConnection();
 
 function getFriends($id, $email){
-    
+    $email = $_SESSION['email'];
     global $conn;
     //SQL STATEMENT TO RETRIEVE FRIENDS
     $sqlSelect = "SELECT friends.sUserID, friends.fUserID, friends.status , cmp311user.forename, cmp311user.email FROM friends

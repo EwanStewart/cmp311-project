@@ -71,14 +71,16 @@ session_start();
             <div class="col-9">
                 <div class="d-flex flex-row justify-content-center">
                     <div class="mdc-touch-target-wrapper">
-                        <a class="mdc-button mdc-button--touch top-app-bar-button top-app-bar-secondaryLink-align" href="index.php">
+                        <a class="mdc-button mdc-button--touch top-app-bar-button top-app-bar-secondaryLink-align"
+                            href="index.php">
                             <span class="mdc-button__ripple"></span>
                             <span class="mdc-button__touch"></span>
                             <span class="mdc-button__label">Home</span>
                         </a>
                     </div>
                     <div class="mdc-touch-target-wrapper">
-                        <a class="mdc-button mdc-button--touch top-app-bar-button top-app-bar-secondaryLink-align" href="search.php">
+                        <a class="mdc-button mdc-button--touch top-app-bar-button top-app-bar-secondaryLink-align"
+                            href="search.php">
                             <span class="mdc-button__ripple"></span>
                             <span class="mdc-button__touch"></span>
                             <span class="mdc-button__label"> Categories </span>
