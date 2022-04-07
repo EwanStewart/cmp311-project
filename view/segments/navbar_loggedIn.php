@@ -22,5 +22,4 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../../view/scripts/app.js">
-</script>
+<script type="text/javascript" src="../../view/scripts/app.js"></script>
