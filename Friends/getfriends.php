@@ -9,7 +9,7 @@ function getFriends($id, $email){
     //SQL STATEMENT TO RETRIEVE FRIENDS
     $sqlSelect = "SELECT friends.sUserID, friends.fUserID, friends.status , cmp311user.forename, cmp311user.email FROM friends
     LEFT JOIN cmp311user ON friends.sUserID = cmp311user.id OR friends.fUserID = cmp311user.id 
-    WHERE (status=2) AND (fUserID='".$id."' OR sUserID='".$id."' AND NOT email='".$email."')";
+    WHERE (status=2) AND (fUserID='".$id."' OR sUserID='".$id."') AND NOT email='".$email."'";
    $result = mysqli_query($conn, $sqlSelect);
    while ($r = mysqli_fetch_assoc($result)) {
        $rows[] = $r;
