@@ -126,7 +126,7 @@
     <?php
         include('../model/api-store.php');
 
-        $sub = getUserTransactions();
+        $sub = numberOfTransactions();
         if ($sub < 1)
         {
             echo '
