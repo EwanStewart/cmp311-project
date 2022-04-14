@@ -1,6 +1,10 @@
 <?php
 	// Connect to database
 	include_once("../controller/connection.php");
+
+	ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
 	
 	// function to return the details of the game in the user's basket
 	function getBasket()
@@ -43,6 +47,8 @@
 
 	function numberOfTransactions()
 	{
+		//	possibly deprecated
+
 		$conn = getDatabaseConnection();
 		$sql = "SELECT * FROM subTransactions";
 		$result = mysqli_query($conn, $sql);
@@ -121,4 +127,71 @@
 			return $msg;
 		}
 	}
+
+	function checkValidSubscription(){
+		//	function to check for valid subscription
+		//	returns:
+		//	0 - invalid
+		//	1 - valid - monthly
+		//	2 - valid - yearly
+
+		//	establish DB connection and get user ID from session
+		$conn = getDatabaseConnection();
+		$id = $_SESSION['uID'];
+
+		//	get most recent monthly sub transaction
+		$sql = "SELECT `dateOfPurchase` FROM `subTransactions` WHERE `userID` = $id AND `cost` = 99 ORDER BY `dateOfPurchase` DESC LIMIT 1";
+		$yearlyResults = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+		//	get most recent yearly sub transaction
+		$sql = "SELECT `dateOfPurchase` FROM `subTransactions` WHERE `userID` = $id AND `cost` = 19 ORDER BY `dateOfPurchase` DESC LIMIT 1";
+		$monthlyResults = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+		//	close conn
+		$conn->close();
+		
+		//	if most recent monthly sub transaction is still valid
+		if ($monthlyResults != NULL){
+			//	get last yearly sub date in correct format
+			$dateOfPurchase = date("Y-m-d", strtotime($monthlyResults["dateOfPurchase"]));
+			$lastSubDate = date_create_from_format('Y-m-d', $dateOfPurchase);
+
+			//	get current date in correct format
+			$currentDate = date_create_from_format('Y-m-d', date('Y-m-d'));
+
+			//	get difference in days
+			$diff = date_diff($lastSubDate, $currentDate);
+			$days = $diff->format("%a");
+
+			//	return success if last yearly sub date is still in date
+			if($days <= 30){
+				//	return monthly success code
+				return 1;
+			}
+		}
+
+		//	if most recent yearly sub transaction is still valid
+		if ($yearlyResults != NULL){
+			//	get last yearly sub date in correct format
+			$dateOfPurchase = date("Y-m-d", strtotime($yearlyResults["dateOfPurchase"]));
+			$lastSubDate = date_create_from_format('Y-m-d', $dateOfPurchase);
+
+			//	get current date in correct format
+			$currentDate = date_create_from_format('Y-m-d', date('Y-m-d'));
+
+			//	get difference in days
+			$diff = date_diff($lastSubDate, $currentDate);
+			$days = $diff->format("%a");
+
+			//	return success if last yearly sub date is still in date
+			if($days <= 365){
+				//	return yearly success code
+				return 2;
+			}
+		}
+		
+		//	subscriptions do not exist or have expired, return fail code
+		return 0;
+	}
+
 ?>

@@ -1,5 +1,9 @@
 <?php
     include('header.php');
+
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
 ?>
 <script>
     $(document).ready(function() {
@@ -126,8 +130,9 @@
     <?php
         include('../model/api-store.php');
 
-        $sub = numberOfTransactions();
-        if ($sub < 1)
+        $subscriptionCode = checkValidSubscription();
+
+        if ($subscriptionCode == 0)
         {
             echo '
                 <div class="row justify-content-center">
@@ -184,14 +189,22 @@
                     </div>
                 </div>
             ';
-        }else
-        {
+        }else if ($subscriptionCode == 1){
             echo '
                 <div class="row justify-content-center">
+                    <h2>Monthly Subscription</h2>
                     <h3>You are currently subscribed. Thank you for your support!</h3>
                 </div>
             ';
-        }      
+        }else if ($subscriptionCode == 2){
+            echo '
+            <div class="row justify-content-center">
+                <h2>Yearly Subscription</h2>
+                <h3>You are currently subscribed. Thank you for your support!</h3>
+            </div>
+        ';
+        }
+
     ?>
     </div>
 </div>
