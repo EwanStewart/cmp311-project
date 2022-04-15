@@ -136,60 +136,71 @@
         if ($subscriptionCode == 0)
         {
             echo '
-                <div class="row justify-content-center">
-                <div class="col-12 col-md-6 align-center col-lg-6">
-                    <div class="plan">
-                        <div class="plan-header">
-                            <h3 class="plan-title">
-                                <strong>Yearly</strong>
-                                </h3>
-                                <div class="plan-price">
-                                    <h4 class="price"><strong>£99</strong></p>
-                                    </h4>
-                                </div>
-                        </div>
-                        <div class="plan-body">
-                            <div class="plan-list">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Benefit 1
-                                    </li>
-                                    <li class="list-group-item">Benefit 2
-                                    </li>
-                                </ul>
+                <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
+
+                    <div class="col-md-6 justify-content-center">
+
+                        <div class="card">
+                            <img class="card-img-top" src="../image/missingTexture.jpg">
+
+                            <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+                                <center>
+                                    <h3 class="card-title" style="margin-top: 10px;">Yearly</h3>
+                                    <h3 class="card-title" style="margin-bottom: 10px;">£99</h3>
+                                    
+
+                                    <div class="plan-list">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">Access for 365 days!
+                                            </li>
+                                                <li class="list-group-item">Saves over £100!
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="plan-button" style="margin-bottom: 10px; margin-top: 10px;">
+                                        <a href="details.php?plan=1" class="btn btn-primary">Subscribe to get started</a>
+                                    </div>
+                                </center>
                             </div>
-                            <div class="plan-button">
-                                <a href="details.php?plan=1" class="btn btn-primary">Subscribe to get started</a>
-                            </div>
                         </div>
+
                     </div>
-                </div>
-                <div class="col-12 col-md-6 align-center col-lg-6">
-                    <div class="plan">
-                        <div class="plan-header">
-                            <h3 class="plan-title">
-                                <strong>Monthly</strong>
-                                </h3>
-                                <div class="plan-price">
-                                    <h4 class="price"><strong>£19</strong></p>
-                                    </h4>
-                                </div>
-                        </div>
-                        <div class="plan-body">
-                            <div class="plan-list">
-                                <ul class="list-group">
-                                    <li class="list-group-item">Benefit 1
-                                    </li>
-                                    <li class="list-group-item">Benefit 2
-                                    </li>
-                                </ul>
+
+                    <div class="col-md-6 justify-content-center">
+
+                        <div class="card">
+                            <img class="card-img-top" src="../image/missingTexture.jpg">
+
+                            <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+                                <center>
+                                    <h3 class="card-title" style="margin-top: 10px;">Monthly</h3>
+                                    <h3 class="card-title" style="margin-bottom: 10px;">£19</h3>
+                                    
+
+                                    <div class="plan-list">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">Access for 30 days!
+                                            </li>
+                                                <li class="list-group-item">No commitment!
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="plan-button" style="margin-bottom: 10px; margin-top: 10px;">
+                                        <a href="details.php?plan=2" class="btn btn-primary">Subscribe to get started</a>
+                                    </div>
+                                </center>
                             </div>
-                            <div class="text-center">
-                                <a href="details.php?plan=2" class="btn btn-primary">Subscribe to get started</a>
-                            </div>
                         </div>
+
+
+
+
                     </div>
-                </div>
-            ';
+                
+                </div>';
+                
         }else if ($subscriptionCode == 1){
             echo '
                 <div class="row justify-content-center">
