@@ -7,6 +7,7 @@
 ?>
 <script>
     $(document).ready(function() {
+        $('.mdc-top-app-bar').css("top", "0");
 
         $('#editProfilePicture').click(function() {
             $('#popup').show();
@@ -44,7 +45,7 @@
         $email = $_SESSION['country'];
     }
 ?>
-<div class="container">
+<div class="container" style="margin-top: 150px; !important">
     <div class="row justify-content-center">
         <div id="popup" style="display:none;" class="row">
             <br>
