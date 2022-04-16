@@ -8,7 +8,7 @@
         <div class="col-lg-12 justify-content-center">
             <center>
 
-                <div class="card" style="display: flex; justify-content: center;">
+                <div class="card" style="display: flex; justify-content: center; padding-bottom: 16px;">
                     <img class="card-img" src="../image/TPCG_logo.png" style="max-height: 256px; max-width: 256px; margin-left: auto; margin-right: auto; margin-top: 15px;">
 
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
@@ -44,7 +44,7 @@
                     
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                         
-                        <h2 class="card-title">How to join?</h2>
+                        <h2 class="card-title" style="margin-top: 10px;">How to join?</h2>
 
                         <hr style="max-width: 70%;">
 
