@@ -210,25 +210,20 @@
 		//	close conn
 		$conn->close();
 
+		//	construct xml rss feed data from announcements
 		header( "Content-type: text/xml");
-
         $data =         "<?xml version='1.0' encoding='UTF-8'?>";
 
         $data = $data . "<rss version='2.0'>";
-
         $data = $data . "<channel>";
 
 		foreach($rows as $row){
-
             $data = $data . "<item>";
-
-            
 
             $data = $data . "<nid>"         . $row["announcementID"] . "</nid>";
             $data = $data . "<title>"       . $row["title"] . "</title>";
             $data = $data . "<description>" . $row["description"] . "</description>";
             $data = $data . "<imageFile>"   . $row["imageFile"] . "</imageFile>";
-
 
             $data = $data . "</item>";
         }
@@ -236,9 +231,8 @@
         $data = $data . "</channel>";
         $data = $data . "</rss>";
 
+		//return RSS feed
         return $data;
-
-
 	}
 
 ?>

@@ -51,8 +51,6 @@
 
 					</xsl:element>
 
-					
-
 				</xsl:element>
 
 			</xsl:element>
