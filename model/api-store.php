@@ -194,4 +194,51 @@
 		return 0;
 	}
 
+	function rss(){
+		//	function to return RSS feed of announcements
+
+		//	establish DB connection
+		$conn = getDatabaseConnection();
+
+		//get all announcements
+		$sql = "SELECT * FROM `announcements` ORDER BY `announcementID` DESC";
+		$result = mysqli_query($conn, $sql);
+		while($r = mysqli_fetch_assoc($result)) {
+    		$rows[] = $r;
+		}
+
+		//	close conn
+		$conn->close();
+
+		header( "Content-type: text/xml");
+
+        $data =         "<?xml version='1.0' encoding='UTF-8'?>";
+
+        $data = $data . "<rss version='2.0'>";
+
+        $data = $data . "<channel>";
+
+		foreach($rows as $row){
+
+            $data = $data . "<item>";
+
+            
+
+            $data = $data . "<nid>"         . $row["announcementID"] . "</nid>";
+            $data = $data . "<title>"       . $row["title"] . "</title>";
+            $data = $data . "<description>" . $row["description"] . "</description>";
+            $data = $data . "<imageFile>"   . $row["imageFile"] . "</imageFile>";
+
+
+            $data = $data . "</item>";
+        }
+
+        $data = $data . "</channel>";
+        $data = $data . "</rss>";
+
+        return $data;
+
+
+	}
+
 ?>
