@@ -13,9 +13,9 @@
 
                     <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                         
-                        <h2 class="card-title">Who are we?</h2>
+                        <h2 class="card-title" style="margin-bottom: 20px;">Who are we?</h2>
 
-                        <hr>
+                        
                         
                         <p class="card-text">TPCG, or Tayside PC Gamers, are a group of students from Abertay University.</p>
 
@@ -33,11 +33,53 @@
 
                         <p class="card-text">With measures in place to ensure a fair system.</p>
 
-                        <p class="card-text" style="margin-bottom: 15px;">Where members can easily trade their spare game keys with each.</p>
+                        <p class="card-text">Where members can easily trade their spare game keys with each.</p>
 
                     </div>
+                    
                 </div>
 
+
+                <div class="card" style="display: flex; justify-content: center; margin-top: 25px; margin-bottom: 25px; padding-bottom: 16px;">
+                    
+                    <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
+                        
+                        <h2 class="card-title">How to join?</h2>
+
+                        <hr style="max-width: 70%;">
+
+                        <h3 class="card-title">Step 1:</h3>
+                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <p class="card-text">Create an account or sign up with google.</p>
+
+                        <hr style="max-width: 70%;">
+
+                        <h3 class="card-title">Step 2:</h3>
+                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <p class="card-text">Subscribe either monthly or yearly.</p>
+                        <p class="card-text">Subscription fees ensure servers, databases, and hosting are paid for.</p>
+
+                        <hr style="max-width: 70%;">
+
+                        <h3 class="card-title">Step 3:</h3>
+                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <p class="card-text">Contribute keys for credit.</p>
+
+                        <hr style="max-width: 70%;">
+
+                        <h3 class="card-title">Step 4:</h3>
+                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <p class="card-text">Redeem credit for other game keys.</p>
+
+                        <hr style="max-width: 70%;">
+
+                        <h3 class="card-title">Step 5:</h3>
+                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <p class="card-text">Enjoy your new game!</p>
+
+                    </div>
+                    
+                </div>
             </center>
         </div>
 
