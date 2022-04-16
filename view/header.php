@@ -51,6 +51,10 @@ session_start();
                         <span class="mdc-button__ripple"></span>
                         <span class="mdc-button__label">About</span>
                     </a>
+                    <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="announcements.php">
+                        <span class="mdc-button__ripple"></span>
+                        <span class="mdc-button__label">Announcements</span>
+                    </a>
                 </div>
             </div>
             <div class="d-flex float-end ms-auto">
