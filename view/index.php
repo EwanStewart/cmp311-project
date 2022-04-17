@@ -86,10 +86,6 @@
             <strong> New Listings </strong>
         </h3>
 
-        
-        <!--align carousel center-->
-
-
         <div class="row">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -99,13 +95,13 @@
                 </ol>   
                 <div class="carousel-inner">
                     <div class="item active">
-                        <?php echo "<a href='listing.php?appid=".$a[0][0]['appid']."'> <img style='width:100%; src=".$a[0][0]['img']."></a>";?>
-                    </div>
-                    <div class="item" style="text-align:center;">
-                    <?php echo "<a href='listing.php?appid=".$a[1][0]['appid']."'> <img style='width:100%; src=".$a[1][0]['img']."> </a>";?>
+                        <?php echo "<a href='listing.php?appid=".$a[0][0]['appid']."'> <img class='img-fluid' style='width:100%;' src=".$a[0][0]['img']."></a>";?>
                     </div>
                     <div class="item">
-                    <?php echo "<a href='listing.php?appid=".$a[2][0]['appid']."'> <img style='width:100%;' src=".$a[2][0]['img']."> </a>";?>
+                    <?php echo "<a href='listing.php?appid=".$a[1][0]['appid']."'> <img class='img-fluid' style='width:100%;' src=".$a[1][0]['img']."></a>";?>
+                    </div>
+                    <div class="item">
+                    <?php echo "<a href='listing.php?appid=".$a[2][0]['appid']."'> <img class='img-fluid' style='width:100%;' src=".$a[2][0]['img']."></a>";?>
                     </div>
                 </div>
             </div>
