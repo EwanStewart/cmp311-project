@@ -1,9 +1,22 @@
 <?php
     include('header.php');
+    include('../model/getGames.php');
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    $data = getAvaliableGames();
+    $carouselData = getNewGames();
+    
 ?>
 
 <div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script>
     $(function() {
@@ -37,62 +50,79 @@
     }
     </script>
     <div class="container mdc-top-app-bar--prominent-fixed-adjust">
+
+        <?PHP
+        $a = array();
+
+        foreach ($carouselData as $game) {
+            $cached = checkedGameCached($game["appID"]);
+            if (!$cached) {
+                $steamData = getSteamData($game["appID"]);
+                $param = array();
+
+                if ($steamData[$game["appID"]]["success"]) {
+                    $title = getGameTitle($game["appID"])[0]["name"];
+                    $price = $steamData[$game["appID"]]["data"]["price_overview"]["final_formatted"];
+                    $img = $steamData[$game["appID"]]["data"]["header_image"];
+                } else {
+                    $appid = $game["appID"];
+                    $title = getGameTitle($appid)[0]["name"];
+                    $s_desc = "No data avaliable from Steam";
+                    $price = "No data avaliable from Steam";
+                    $img = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+                    $genre = "No data avaliable from Steam";
+
+                }
+                $param = array($appid, $title, $s_desc, $price, $img, $genre);
+                $result = insertCachedGameData($param);
+            }
+            array_push($a, $cached);
+        }
+
+        ?>
+
+
         <h3>
-            <strong> Hot Games </strong>
+            <strong> New Listings </strong>
         </h3>
+
+        
+        <!--align carousel center-->
+
+
         <div class="row">
-            <div class="col-sm-10">
-                <h3>Put a carousel here when you can pls</h3>
-            </div>
-            <br />
-
-            <div class="col-sm-2 text-right">
-                <h4>
-                    Community
-                </h4>
-                <br />
-
-                <form action="#">
-                    <input type="text" placeholder="Search for a friend" name="search">
-                    <button class="mdc-button" type="submit">
-                        <div class="mdc-button__ripple"></div>
-                        <span class="mdc-button__label">Search</span>
-                    </button>
-                </form>
-
-                <br />
-                <br />
-                <h4>
-                    Friend List
-                </h4>
-                <?php
-                    for ($i=0;$i<4;$i++){
-                        echo '
-                                <div class="row border-bottom text-right" style="padding-right:20px; border-bottom: 1px solid #ccc;">
-                                    Friend
-                                </div>
-                                
-                                <br/>
-                            ';
-                    }
-                ?>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>   
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <?php echo "<a href='listing.php?appid=".$a[0][0]['appid']."'> <img style='width:100%; src=".$a[0][0]['img']."></a>";?>
+                    </div>
+                    <div class="item" style="text-align:center;">
+                    <?php echo "<a href='listing.php?appid=".$a[1][0]['appid']."'> <img style='width:100%; src=".$a[1][0]['img']."> </a>";?>
+                    </div>
+                    <div class="item">
+                    <?php echo "<a href='listing.php?appid=".$a[2][0]['appid']."'> <img style='width:100%;' src=".$a[2][0]['img']."> </a>";?>
+                    </div>
+                </div>
             </div>
         </div>
+
+        
 
         <br />
         <br />
         <div class="title">
             <h3>
-                <strong> Hot Games Continued </strong>
+                <strong> Hot Games </strong>
                 </br></br>
             </h3>
         </div>
 
         <?php
-            include('../model/getGames.php');
-            $data = getAvaliableGames();
-            
-
             for ($i=0;$i<count($data);$i++){
                 $cached = checkedGameCached($data[$i]["appID"]);
                 if (!$cached) {

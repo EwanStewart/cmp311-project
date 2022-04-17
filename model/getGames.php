@@ -42,6 +42,21 @@ function getSteamData($param) {
     return $games;
 }
 
+function getNewGames() {
+    global $conn;
+
+    $sqlSelect = "SELECT * FROM gameKeys WHERE public = 1 AND purchasedBy IS NULL ORDER BY dateAdded DESC LIMIT 3";							
+    $stmtSelect = $conn->prepare($sqlSelect);
+    $stmtSelect->execute();										
+    $result = $stmtSelect->get_result();		
+
+    if ($result->num_rows > 0) { 
+        while($row = $result->fetch_assoc()) { 					
+            $rows[] = $row;
+        }
+    } 
+    return $rows;
+}
 
 function checkedGameCached($param) {
     global $conn;
