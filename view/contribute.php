@@ -56,12 +56,6 @@
                         <br/>
                         <h6>Search for your game</h6>
                         <p class="gameDrop">
-                            <?php
-                                ini_set('display_errors', 1);
-                                ini_set('display_startup_errors', 1);
-                                error_reporting(E_ALL);
-
-                            ?>
                             <input type="text" oninput="updatetitles(this.value);"/>
                             <br/>
                             <br/>
