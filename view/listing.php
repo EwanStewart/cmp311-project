@@ -58,7 +58,7 @@
                                     <div class="top-line">
                                         <h4 class="card-title"><strong>'.$title.'</strong></h4>
                                         <p class="cost">
-                                            '.$price.'
+                                            '.$price.' Credits
                                         </p>
                                         <p> 															
                                             <input type="submit" name="submit" data-shopbutton="true" data-gameid="'.$appid.'" value="Add to Basket">
