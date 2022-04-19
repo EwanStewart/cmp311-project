@@ -74,7 +74,7 @@
 
                 }
                 $param = array($appid, $title, $s_desc, $price, $img, $genre);
-                $result = insertCachedGameData($param);
+                $result = insertGameDataToCache($param);
             }
             array_push($a, $cached);
         }
