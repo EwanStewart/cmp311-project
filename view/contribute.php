@@ -3,10 +3,11 @@
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
     require_once('header.php');
+    
     if(!isset($_SESSION['uID'])) {
 		?>
 		<script>
-			location.href = "index.php";
+            window.location.href = "../view/index.php?pop=3";
 		</script>
 		<?php
     }
@@ -18,6 +19,12 @@
         $("#prevBtn").toggle();
         $("#contributeConfirmation").toggle();
     });
+
+    function alertKeyFormat() {
+        $("#prevBtn").click();
+    }
+
+
     function tabs() {
         var x = document.querySelectorAll("[id='tab']");
         for(var i = 0; i < x.length; i++) {
@@ -45,8 +52,9 @@
             xmlhttp.send();
         }
     }
+
 </script>
-<div class="container">
+<div class="container mdc-top-app-bar--prominent-fixed-adjust">
     <div class="row">
         <div class="col-md-12">
             <form action="../model/addGameKey.php" method="POST" class="contributeCard">
@@ -60,7 +68,7 @@
                             <br/>
                             <br/>
 
-                            <select id="titles" name="title">
+                            <select id="titles" name="title" required>
                                 <h6>Select from our choices</h6>
                                 <?php
                                     $data = NULL;
@@ -75,7 +83,10 @@
                         </p>
 
                         <h6>Game Key</h6>
-                        <p> <input name="key" placeholder='XXXXX-XXXXX-XXXXX-XXXXX-XXXXX' pattern="^([A-Za-z0-9]{5}-){4}[A-Za-z0-9]{5}$" required> </p>    
+                        <!-- pattern for five blocks of five characters seperated by a dash> -->
+                        <p> <input type="text" name="key" pattern="[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}"  
+                        oninvalid="setCustomValidity('The correct format is XXXXX-XXXXX-XXXXX-XXXXX-XXXXX')"placeholder="Steam Key" required/> </p>
+
                         <h6>Applicable Store</h6>
 
                         <p class="storeDrop">
@@ -101,7 +112,7 @@
                         <input type="checkbox" id="tick" onchange="document.getElementById('contributeSubmit').disabled = !this.checked;" name="tick1">
                         <br/>
                         <br/>
-                        <input type="submit" name="submit" id="contributeSubmit" value="Submit" disabled>
+                        <input type="submit" onclick="return alertKeyFormat()" name="submit" id="contributeSubmit" value="Submit" disabled>
                         <br/>
                         <br/>
                 </div>
