@@ -13,6 +13,25 @@
 	echo "<br/><br/><br/><br/>";
 ?>
 
+<script>
+    $(function() {
+
+        $("[data-shopButton]").click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/addToBasket.php",
+                data: {
+                    gameID: $(this).attr("data-gameID")
+                },
+                success: function(text) {
+                    alert(text); // Function DOES reach here
+                }
+            });
+        });
+
+    });
+    </script>
+
 <div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
