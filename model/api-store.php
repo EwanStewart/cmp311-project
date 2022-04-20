@@ -80,6 +80,18 @@
 		return $rows;
 	}
 
+	function getUserPubKeys()
+	{
+		$conn = getDatabaseConnection();
+		$id = $_SESSION['uID'];
+		$sql = "SELECT * FROM gameKeys WHERE gameKeys.userID = " . $id;
+		$result = mysqli_query($conn, $sql);
+		while($r = mysqli_fetch_assoc($result)) {
+    		$rows[] = $r;
+		}
+		return $rows;
+	}
+
 	function totalBasketCost()
 	{
 		$basket = getBasket();
