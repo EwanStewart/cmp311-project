@@ -58,6 +58,7 @@
 
         foreach ($carouselData as $game) {
             $cached = checkedGameCached($game["appID"]);
+            
             if (!$cached) {
                 $steamData = getSteamData($game["appID"]);
                 $param = array();
@@ -67,7 +68,11 @@
                     $title = getGameTitle($game["appID"])[0]["name"];
                     $s_desc = strip_tags(min(100,$steamData[$game["appID"]]["data"]["short_description"]));
                     //$price = $steamData[$game["appID"]]["data"]["price_overview"]["final_formatted"];
-                    $price = (ceil($steamData[$game["appID"]]["data"]["price_overview"]["final"] / 100 )) * 100;
+                    if (isset($steamData[$game["appID"]]["data"]["price_overview"])) {
+                        $price = (ceil($steamData[$game["appID"]]["data"]["price_overview"]["final"] / 100 )) * 100;
+                    } else {
+                        $price = "0";
+                    }
                     $img = $steamData[$game["appID"]]["data"]["header_image"];
                     $genre = $steamData[$game["appID"]]["data"]["genres"][0]["description"];
                 } else {
@@ -81,6 +86,7 @@
                 $param = array($appid, $title, $s_desc, $price, $img, $genre);
                 $result = insertGameDataToCache($param);
             }
+            $cached = checkedGameCached($game["appID"]);
             array_push($a, $cached);
         }
 
@@ -90,6 +96,7 @@
         <h3>
             <strong> New Listings </strong>
         </h3>
+
 
         <div class="row">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -136,7 +143,11 @@
                         $title = getGameTitle($data[$i]["appID"])[0]["name"];
                         $s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
                         //$price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
-                        $price = (ceil($steamData[$game["appID"]]["data"]["price_overview"]["final"] / 100 )) * 100;
+                        if (isset($steamData[$data[$i]["appID"]]["data"]["price_overview"]["final"])) {
+                            $price = (ceil($steamData[$data[$i]["appID"]]["data"]["price_overview"]["final"] / 100 )) * 100;
+                        } else {
+                            $price = "0";
+                        }                        
                         $img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
                         $genre = $steamData[$data[$i]["appID"]]["data"]["genres"][0]["description"];
                     } else {
