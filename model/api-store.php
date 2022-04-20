@@ -235,4 +235,25 @@
         return $data;
 	}
 
+	function getProfilePictureID(){
+		//	function to return ID of users profile picture
+
+		//	establish connection to database
+		$conn = getDatabaseConnection();
+
+		//	get user id
+		$userID = $_SESSION['uID'];
+
+		//	get profile picture id
+		$sql = "SELECT profilePictureID FROM cmp311user WHERE id = $userID";
+		$result = mysqli_query($conn, $sql);
+		$data = mysqli_fetch_assoc($result);
+
+		//	close conn
+		$conn->close();
+
+		//return profile picture ID
+        return $data["profilePictureID"];
+	}
+
 ?>

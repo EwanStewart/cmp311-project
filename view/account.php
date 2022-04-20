@@ -1,5 +1,8 @@
 <?php
     include('header.php');
+    include('../model/api-store.php');
+
+    session_start();
 
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
@@ -13,9 +16,115 @@
             $('#popup').show();
         });
 
-        $('.img-fluid').click(function() {
+        $('.profile-picture').click(function() {
             $('#popup').hide();
         });
+
+        //  updates profile picture
+        $('#1').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateProfilePic.php",
+                data: {
+                    profilePictureID: 1
+                },
+                success: function(text) {
+					window.location.reload()
+                }
+            });
+        });
+
+        $('#2').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateProfilePic.php",
+                data: {
+                    profilePictureID: 2
+                },
+                success: function(text) {
+					window.location.reload()
+                }
+            });
+        });
+
+        $('#3').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateProfilePic.php",
+                data: {
+                    profilePictureID: 3
+                },
+                success: function(text) {
+					window.location.reload()
+                }
+            });
+        });
+
+        $('#4').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateProfilePic.php",
+                data: {
+                    profilePictureID: 4
+                },
+                success: function(text) {
+					window.location.reload()
+                }
+            });
+        });
+
+        $('#5').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateProfilePic.php",
+                data: {
+                    profilePictureID: 5
+                },
+                success: function(text) {
+					window.location.reload()
+                }
+            });
+        });
+
+        $('#6').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateProfilePic.php",
+                data: {
+                    profilePictureID: 6
+                },
+                success: function(text) {
+					window.location.reload()
+                }
+            });
+        });
+
+        $('#7').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateProfilePic.php",
+                data: {
+                    profilePictureID: 7
+                },
+                success: function(text) {
+					window.location.reload()
+                }
+            });
+        });
+
+        $('#8').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateProfilePic.php",
+                data: {
+                    profilePictureID: 8
+                },
+                success: function(text) {
+					window.location.reload()
+                }
+            });
+        });
+
 
         $('#edit').click(function() {
             $("input[name='forename']").removeAttr("readonly");
@@ -51,31 +160,31 @@
             <br>
             <div class="row">
                 <div class="col-md-3 text-center">
-                    <img class="img-fluid" src="../image/witcher3.png">
+                    <img class="img-fluid profile-picture" id="1" src="../image/witcher3.png">
                 </div>
                 <div class="col-md-3 text-center">
-                    <img class="img-fluid" src="../image/gta5trevor.png">
+                    <img class="img-fluid profile-picture" id="2" src="../image/gta5trevor.png">
                 </div>
                 <div class="col-md-3 text-center">
-                    <img class="img-fluid" src="../image/owgenji.png">
+                    <img class="img-fluid profile-picture" id="3" src="../image/owgenji.png">
                 </div>
                 <div class="col-md-3 text-center">
-                    <img class="img-fluid" src="../image/mario.png">
+                    <img class="img-fluid profile-picture" id="4" src="../image/mario.png">
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-3 text-center">
-                    <img class="img-fluid" src="../image/pokeball.png">
+                    <img class="img-fluid profile-picture" id="5" src="../image/pokeball.png">
                 </div>
                 <div class="col-md-3 text-center">
-                    <img class="img-fluid" src="../image/falloutboy.png">
+                    <img class="img-fluid profile-picture" id="6" src="../image/falloutboy.png">
                 </div>
                 <div class="col-md-3 text-center">
-                    <img class="img-fluid" src="../image/skyrim.png">
+                    <img class="img-fluid profile-picture" id="7" src="../image/skyrim.png">
                 </div>
                 <div class="col-md-3 text-center">
-                    <img class="img-fluid" src="../image/zombie.png">
+                    <img class="img-fluid profile-picture" id="8" src="../image/zombie.png">
                 </div>
             </div>
             <br>
@@ -86,7 +195,57 @@
                 <i style="font-size:24px;" class="fa fa-align-right fa-pull-right fa-3x"> &#xf040; </i>
             </div>
             <div class="row text-center">
-                <img class="rounded-circle" width="150px" src="../image/blank.png">
+
+                <?php
+
+                    $profilePictureID = getProfilePictureID();
+
+                    switch($profilePictureID){
+                        case 0:
+                            echo'<img class="rounded-circle" width="150px" src="../image/blank.png">';
+                            break;
+                
+                        case 1:
+                            echo'<img class="rounded-circle" width="150px" src="../image/witcher3.png">';
+                            break;
+                
+                        case 2:
+                            echo'<img class="rounded-circle" width="150px" src="../image/gta5trevor.png">';
+                            break;
+                
+                        case 3:
+                            echo'<img class="rounded-circle" width="150px" src="../image/owgenji.png">';
+                            break;
+
+                        case 4:
+                            echo'<img class="rounded-circle" width="150px" src="../image/mario.png">';
+                            break;
+
+                        case 5:
+                            echo'<img class="rounded-circle" width="150px" src="../image/pokeball.png">';
+                            break;
+
+                        case 6:
+                            echo'<img class="rounded-circle" width="150px" src="../image/falloutboy.png">';
+                            break;
+
+                        case 7:
+                            echo'<img class="rounded-circle" width="150px" src="../image/skyrim.png">';
+                            break;
+
+                        case 8:
+                            echo'<img class="rounded-circle" width="150px" src="../image/zombie.png">';
+                            break;
+
+                        default:
+                            echo'<img class="rounded-circle" width="150px" src="../image/blank.png">';
+                            break;
+                    }
+
+                ?>
+
+
+                
             </div>
         </div>
         <div class="col-md-5">
@@ -129,7 +288,7 @@
     </div>
 
     <?php
-        include('../model/api-store.php');
+        
 
         $subscriptionCode = checkValidSubscription();
 
