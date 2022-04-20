@@ -7,11 +7,20 @@ function getFriends($id, $email){
     $email = $_SESSION['email'];
     global $conn;
     //SQL STATEMENT TO RETRIEVE FRIENDS
-    $sqlSelect = "SELECT friends.sUserID, friends.fUserID, friends.status , cmp311user.forename, cmp311user.email FROM friends
-    LEFT JOIN cmp311user ON friends.sUserID = cmp311user.id OR friends.fUserID = cmp311user.id 
+    $sqlSelect = "SELECT friends.sUserID, friends.fUserID, friends.status , login_details.last_activity, cmp311user.forename, cmp311user.email FROM friends
+    LEFT JOIN cmp311user ON friends.sUserID = cmp311user.id OR friends.fUserID = cmp311user.id
+    LEFT JOIN login_details ON login_details.user_id = friends.sUserID
     WHERE (status=2) AND (fUserID='".$id."' OR sUserID='".$id."') AND NOT email='".$email."'";
-   $result = mysqli_query($conn, $sqlSelect);
+    $result = mysqli_query($conn, $sqlSelect);
+    $current_timestamp = strtotime(date("Y-m-d H:i:s") . '- 10 second');
+    $current_timestamp = date('Y-m-d H:i:s', $current_timestamp);
    while ($r = mysqli_fetch_assoc($result)) {
+    if($current_timestamp < $r['last_activity'])
+    {
+        $r['last_activity'] = 'Online';
+    }
+    else{
+    }
        $rows[] = $r;
    }
    $result = json_encode($rows);

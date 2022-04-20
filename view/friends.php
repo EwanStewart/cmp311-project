@@ -25,7 +25,7 @@
     $selectSql = "SELECT * FROM login_details WHERE user_id='".$userID."'";
     $result = mysqli_query($conn, $selectSql);
     if (mysqli_num_rows($result) != 0){
-        echo "This key is already in your basket";
+        echo "User already registered";
     }else{
         $chatInsert = "INSERT INTO login_details (user_id) VALUES ('".$userID."')";
         mysqli_query($conn ,$chatInsert);
@@ -33,10 +33,11 @@
     }
     
 ?>
-<div class="container mdc-top-app-bar--prominent-fixed-adjust">
-</div>
-<div>
-    <div class="col-12 col-md-6 align-center col-lg-6">
+
+<body>
+    <div class="container mdc-top-app-bar--prominent-fixed-adjust">
+    </div>
+    <div class="friends_container">
 
 
         <h3>Friends</h3>
@@ -73,8 +74,17 @@
                             echo '<div class="card-body">' ;
                             echo '<p>'.$item[$i]->email.'</p>' ;
                             echo '</div>' ;
+                            if($item[$i]->last_activity == "Online")
+                            {
+                                echo '<span style="color:green;">'.$item[$i]->last_activity.'</span>';
+                            }
+                            else
+                            {
+                                echo '<span style="color:crimson;">Last active: '.$item[$i]->last_activity.'</span>';
+                            }
                             echo '<div class="card-footer">' ;
-                            echo '<a href="../Friends/deleteFriend.php?fid='.$item[$i]->sUserID.'&uid='.$userID.'&rid='.$item[$i]->fUserID.'">Delete Friend</a>' ;
+                            echo '<button type="button" class="btn btn-info btn-xs"><a href="../Friends/deleteFriend.php?fid='.$item[$i]->sUserID.'&uid='.$userID.'&rid='.$item[$i]->fUserID.'">Delete Friend</a></button>' ;
+                            echo '<button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$item[$i]->sUserID.'" data-tousername="'.$item[$i]->forename.'">Start Chat</button>';
                             echo '</div>' ;
                             echo '</div>' ;
                             echo '</div>' ;
@@ -145,353 +155,362 @@
         <button type="button" name="group_chat" id="group_chat" class="btn btn-warning btn-xs">Group
             Chat</button>
     </div>
-</div>
 
-<style>
-.chat_message_area {
-    position: relative;
-    width: 100%;
-    height: auto;
-    background-color: #FFF;
-    border: 1px solid #CCC;
-    border-radius: 3px;
-}
 
-#group_chat_message {
-    width: 100%;
-    height: auto;
-    min-height: 80px;
-    overflow: auto;
-    padding: 6px 24px 6px 12px;
-}
 
-.image_upload {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-}
+    <style>
+    .chat_message_area {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #FFF;
+        border: 1px solid #CCC;
+        border-radius: 3px;
+    }
 
-.image_upload>form>input {
-    display: none;
-}
+    #group_chat_message {
+        width: 100%;
+        height: auto;
+        min-height: 80px;
+        overflow: auto;
+        padding: 6px 24px 6px 12px;
+    }
 
-.image_upload img {
-    width: 24px;
-    cursor: pointer;
-}
-</style>
+    .image_upload {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+    }
 
-<div id="group_chat_dialog" title="Group Chat Window">
-    <div id="group_chat_history"
-        style="height:400px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;">
+    .image_upload>form>input {
+        display: none;
+    }
 
-    </div>
-    <div class="form-group">
-        <!--<textarea name="group_chat_message" id="group_chat_message" class="form-control"></textarea>!-->
-        <div class="chat_message_area">
-            <div id="group_chat_message" contenteditable class="form-control">
+    .image_upload img {
+        width: 24px;
+        cursor: pointer;
+    }
 
-            </div>
-            <div class="image_upload">
-                <form id="uploadImage" method="post" action="../chat/upload.php">
-                    <label for="uploadFile"><img src="../chat/upload.png" /></label>
-                    <input type="file" name="uploadFile" id="uploadFile" accept=".jpg, .png" />
-                </form>
+    #user_details {
+        width: 50%;
+        height: auto;
+        min-height: 80px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .friends_container {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+
+    <div id="group_chat_dialog" title="Group Chat Window">
+        <div id="group_chat_history"
+            style="height:400px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;">
+
+        </div>
+        <div class="form-group">
+            <!--<textarea name="group_chat_message" id="group_chat_message" class="form-control"></textarea>!-->
+            <div class="chat_message_area">
+                <div id="group_chat_message" contenteditable class="form-control">
+
+                </div>
+                <div class="image_upload">
+                    <form id="uploadImage" method="post" action="../chat/upload.php">
+                        <label for="uploadFile"><img src="../chat/upload.png" /></label>
+                        <input type="file" name="uploadFile" id="uploadFile" accept=".jpg, .png" />
+                    </form>
+                </div>
             </div>
         </div>
+        <div class="form-group" align="right">
+            <button type="button" name="send_group_chat" id="send_group_chat" class="btn btn-info">Send</button>
+        </div>
     </div>
-    <div class="form-group" align="right">
-        <button type="button" name="send_group_chat" id="send_group_chat" class="btn btn-info">Send</button>
-    </div>
-</div>
 
-<div class="table-responsive">
+    <body>
 
-    <div id="user_details"></div>
-    <div id="user_model_details"></div>
-</div>
-<br />
-<br />
+        <script>
+        $(document).ready(function() {
+            $('#getUser').on('click', function() {
+                var email = $('#email').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '../Friends/searchresults.php',
+                    dataType: "json",
+                    data: {
+                        email: email
+                    },
+                    success: function(data) {
+                        if (data.status == 'ok') {
+                            $('#userName').text(data.result.forename);
+                            $('#userEmail').text(data.result.email);
+                            $('#userCreated').text(data.result.created);
+                            $('.user-content').slideDown();
+                            $('#addBttn').css("display", "block");
+                        } else if (data.status == null) {
+                            $('#addBttn').css("display", "block");
+                            $('#status').css("display", "none");
+                        } else if (data.status == 'requested') {
+                            $('#info').text("Requested");
+                            $('#info').css("display", "block");
+                            $('.informative').slideDown();
+                        } else if (data.status == 'friends') {
+                            $('#info').text("Friends");
+                            $('#info').css("display", "block");
+                            $('.informative').slideDown();
+                        } else {
+                            $('.user-content').slideUp();
+                            alert("User not found.");
+                        }
+                    }
+                });
+            });
 
 
-<script>
-$(document).ready(function() {
-    $('#getUser').on('click', function() {
-        var email = $('#email').val();
-        $.ajax({
-            type: 'POST',
-            url: '../Friends/searchresults.php',
-            dataType: "json",
-            data: {
-                email: email
-            },
-            success: function(data) {
-                if (data.status == 'ok') {
-                    $('#userName').text(data.result.forename);
-                    $('#userEmail').text(data.result.email);
-                    $('#userCreated').text(data.result.created);
-                    $('.user-content').slideDown();
-                    $('#addBttn').css("display", "block");
-                } else if (data.status == null) {
-                    $('#addBttn').css("display", "block");
-                    $('#status').css("display", "none");
-                } else if (data.status == 'requested') {
-                    $('#info').text("Requested");
-                    $('#info').css("display", "block");
-                    $('.informative').slideDown();
-                } else if (data.status == 'friends') {
-                    $('#info').text("Friends");
-                    $('#info').css("display", "block");
-                    $('.informative').slideDown();
+            setInterval(function() {
+                update_last_activity();
+                update_chat_history_data();
+                fetch_group_chat_history();
+            }, 1000);
+
+            function fetch_user() {
+                $.ajax({
+                    url: "../chat/fetch_user.php",
+                    method: "POST",
+                    success: function(data) {
+                        $('#user_details').html(data);
+                    }
+                })
+            }
+
+            function update_last_activity() {
+                $.ajax({
+                    url: "../chat/update_last_activity.php",
+                    success: function() {
+
+                    }
+                })
+            }
+
+            function make_chat_dialog_box(to_user_id, to_user_name) {
+                var modal_content = '<div id="user_dialog_' + to_user_id +
+                    '" class="user_dialog" title="You have chat with ' + to_user_name + '">';
+                modal_content +=
+                    '<div style="height:400px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;" class="chat_history" data-touserid="' +
+                    to_user_id + '" id="chat_history_' + to_user_id + '">';
+                modal_content += fetch_user_chat_history(to_user_id);
+                modal_content += '</div>';
+                modal_content += '<div class="form-group">';
+                modal_content += '<textarea name="chat_message_' + to_user_id + '" id="chat_message_' +
+                    to_user_id +
+                    '" class="form-control chat_message"></textarea>';
+                modal_content += '</div><div class="form-group" align="right">';
+                modal_content += '<button type="button" name="send_chat" id="' + to_user_id +
+                    '" class="btn btn-info send_chat">Send</button></div></div>';
+                $('#user_model_details').html(modal_content);
+            }
+
+            $(document).on('click', '.start_chat', function() {
+                var to_user_id = $(this).data('touserid');
+                var to_user_name = $(this).data('tousername');
+                make_chat_dialog_box(to_user_id, to_user_name);
+                $("#user_dialog_" + to_user_id).dialog({
+                    autoOpen: false,
+                    width: 400
+                });
+                $('#user_dialog_' + to_user_id).dialog('open');
+                $('#chat_message_' + to_user_id).emojioneArea({
+                    pickerPosition: "top",
+                    toneStyle: "bullet"
+                });
+            });
+
+            $(document).on('click', '.send_chat', function() {
+                var to_user_id = $(this).attr('id');
+                var chat_message = $.trim($('#chat_message_' + to_user_id).val());
+                if (chat_message != '') {
+                    $.ajax({
+                        url: "../chat/insert_chat.php",
+                        method: "POST",
+                        data: {
+                            to_user_id: to_user_id,
+                            chat_message: chat_message
+                        },
+                        success: function(data) {
+                            //$('#chat_message_'+to_user_id).val('');
+                            var element = $('#chat_message_' + to_user_id).emojioneArea();
+                            element[0].emojioneArea.setText('');
+                            $('#chat_history_' + to_user_id).html(data);
+                        }
+                    })
                 } else {
-                    $('.user-content').slideUp();
-                    alert("User not found.");
+                    alert('Type something');
+                }
+            });
+
+            function fetch_user_chat_history(to_user_id) {
+                $.ajax({
+                    url: "../chat/fetch_user_chat_history.php",
+                    method: "POST",
+                    data: {
+                        to_user_id: to_user_id
+                    },
+                    success: function(data) {
+                        $('#chat_history_' + to_user_id).html(data);
+                    }
+                })
+            }
+
+            function update_chat_history_data() {
+                $('.chat_history').each(function() {
+                    var to_user_id = $(this).data('touserid');
+                    fetch_user_chat_history(to_user_id);
+                });
+            }
+
+            $(document).on('click', '.ui-button-icon', function() {
+                $('.user_dialog').dialog('destroy').remove();
+                $('#is_active_group_chat_window').val('no');
+            });
+
+            $(document).on('focus', '.chat_message', function() {
+                var is_type = 'yes';
+                $.ajax({
+                    url: "../chat/update_is_type_status.php",
+                    method: "POST",
+                    data: {
+                        is_type: is_type
+                    },
+                    success: function() {
+
+                    }
+                })
+            });
+
+            $(document).on('blur', '.chat_message', function() {
+                var is_type = 'no';
+                $.ajax({
+                    url: "../chat/update_is_type_status.php",
+                    method: "POST",
+                    data: {
+                        is_type: is_type
+                    },
+                    success: function() {
+
+                    }
+                })
+            });
+
+            $('#group_chat_dialog').dialog({
+                autoOpen: false,
+                width: 400
+            });
+
+            $('#group_chat').click(function() {
+                $('#group_chat_dialog').dialog('open');
+                $('#is_active_group_chat_window').val('yes');
+                fetch_group_chat_history();
+            });
+
+            $('#send_group_chat').click(function() {
+                var chat_message = $.trim($('#group_chat_message').html());
+                var action = 'insert_data';
+                if (chat_message != '') {
+                    $.ajax({
+                        url: "../chat/group_chat.php",
+                        method: "POST",
+                        data: {
+                            chat_message: chat_message,
+                            action: action
+                        },
+                        success: function(data) {
+                            $('#group_chat_message').html('');
+                            $('#group_chat_history').html(data);
+                        }
+                    })
+                } else {
+                    alert('Type something');
+                }
+            });
+
+            function fetch_group_chat_history() {
+                var group_chat_dialog_active = $('#is_active_group_chat_window').val();
+                var action = "fetch_data";
+                if (group_chat_dialog_active == 'yes') {
+                    $.ajax({
+                        url: "../chat/group_chat.php",
+                        method: "POST",
+                        data: {
+                            action: action
+                        },
+                        success: function(data) {
+                            $('#group_chat_history').html(data);
+                        }
+                    })
                 }
             }
+
+            $('#uploadFile').on('change', function() {
+                $('#uploadImage').ajaxSubmit({
+                    target: "#group_chat_message",
+                    resetForm: true
+                });
+            });
+
+            $(document).on('click', '.remove_chat', function() {
+                var chat_message_id = $(this).attr('id');
+                if (confirm("Are you sure you want to remove this chat?")) {
+                    $.ajax({
+                        url: "../chat/remove_chat.php",
+                        method: "POST",
+                        data: {
+                            chat_message_id: chat_message_id
+                        },
+                        success: function(data) {
+                            update_chat_history_data();
+                        }
+                    })
+                }
+            });
         });
-    });
 
-    fetch_user();
-
-    setInterval(function() {
-        update_last_activity();
-        fetch_user();
-        update_chat_history_data();
-        fetch_group_chat_history();
-    }, 1000);
-
-    function fetch_user() {
-        $.ajax({
-            url: "../chat/fetch_user.php",
-            method: "POST",
-            success: function(data) {
-                $('#user_details').html(data);
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
             }
-        })
-    }
-
-    function update_last_activity() {
-        $.ajax({
-            url: "../chat/update_last_activity.php",
-            success: function() {
-
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-        })
-    }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
 
-    function make_chat_dialog_box(to_user_id, to_user_name) {
-        var modal_content = '<div id="user_dialog_' + to_user_id +
-            '" class="user_dialog" title="You have chat with ' + to_user_name + '">';
-        modal_content +=
-            '<div style="height:400px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;" class="chat_history" data-touserid="' +
-            to_user_id + '" id="chat_history_' + to_user_id + '">';
-        modal_content += fetch_user_chat_history(to_user_id);
-        modal_content += '</div>';
-        modal_content += '<div class="form-group">';
-        modal_content += '<textarea name="chat_message_' + to_user_id + '" id="chat_message_' + to_user_id +
-            '" class="form-control chat_message"></textarea>';
-        modal_content += '</div><div class="form-group" align="right">';
-        modal_content += '<button type="button" name="send_chat" id="' + to_user_id +
-            '" class="btn btn-info send_chat">Send</button></div></div>';
-        $('#user_model_details').html(modal_content);
-    }
-
-    $(document).on('click', '.start_chat', function() {
-        var to_user_id = $(this).data('touserid');
-        var to_user_name = $(this).data('tousername');
-        make_chat_dialog_box(to_user_id, to_user_name);
-        $("#user_dialog_" + to_user_id).dialog({
-            autoOpen: false,
-            width: 400
-        });
-        $('#user_dialog_' + to_user_id).dialog('open');
-        $('#chat_message_' + to_user_id).emojioneArea({
-            pickerPosition: "top",
-            toneStyle: "bullet"
-        });
-    });
-
-    $(document).on('click', '.send_chat', function() {
-        var to_user_id = $(this).attr('id');
-        var chat_message = $.trim($('#chat_message_' + to_user_id).val());
-        if (chat_message != '') {
+        $('#addBttn').on('click', function() {
+            var email = $('#email').val();
+            console.log(email);
             $.ajax({
-                url: "../chat/insert_chat.php",
-                method: "POST",
+                type: 'POST',
+                url: '../Friends/sendrequest.php',
+                dataType: "json",
                 data: {
-                    to_user_id: to_user_id,
-                    chat_message: chat_message
+                    email: email
                 },
                 success: function(data) {
-                    //$('#chat_message_'+to_user_id).val('');
-                    var element = $('#chat_message_' + to_user_id).emojioneArea();
-                    element[0].emojioneArea.setText('');
-                    $('#chat_history_' + to_user_id).html(data);
+                    alert("User request sent");
+                    $('#email').text('');
+                    window.location.reload();
                 }
-            })
-        } else {
-            alert('Type something');
-        }
-    });
-
-    function fetch_user_chat_history(to_user_id) {
-        $.ajax({
-            url: "../chat/fetch_user_chat_history.php",
-            method: "POST",
-            data: {
-                to_user_id: to_user_id
-            },
-            success: function(data) {
-                $('#chat_history_' + to_user_id).html(data);
-            }
-        })
-    }
-
-    function update_chat_history_data() {
-        $('.chat_history').each(function() {
-            var to_user_id = $(this).data('touserid');
-            fetch_user_chat_history(to_user_id);
+            });
         });
-    }
-
-    $(document).on('click', '.ui-button-icon', function() {
-        $('.user_dialog').dialog('destroy').remove();
-        $('#is_active_group_chat_window').val('no');
-    });
-
-    $(document).on('focus', '.chat_message', function() {
-        var is_type = 'yes';
-        $.ajax({
-            url: "../chat/update_is_type_status.php",
-            method: "POST",
-            data: {
-                is_type: is_type
-            },
-            success: function() {
-
-            }
-        })
-    });
-
-    $(document).on('blur', '.chat_message', function() {
-        var is_type = 'no';
-        $.ajax({
-            url: "../chat/update_is_type_status.php",
-            method: "POST",
-            data: {
-                is_type: is_type
-            },
-            success: function() {
-
-            }
-        })
-    });
-
-    $('#group_chat_dialog').dialog({
-        autoOpen: false,
-        width: 400
-    });
-
-    $('#group_chat').click(function() {
-        $('#group_chat_dialog').dialog('open');
-        $('#is_active_group_chat_window').val('yes');
-        fetch_group_chat_history();
-    });
-
-    $('#send_group_chat').click(function() {
-        var chat_message = $.trim($('#group_chat_message').html());
-        var action = 'insert_data';
-        if (chat_message != '') {
-            $.ajax({
-                url: "../chat/group_chat.php",
-                method: "POST",
-                data: {
-                    chat_message: chat_message,
-                    action: action
-                },
-                success: function(data) {
-                    $('#group_chat_message').html('');
-                    $('#group_chat_history').html(data);
-                }
-            })
-        } else {
-            alert('Type something');
-        }
-    });
-
-    function fetch_group_chat_history() {
-        var group_chat_dialog_active = $('#is_active_group_chat_window').val();
-        var action = "fetch_data";
-        if (group_chat_dialog_active == 'yes') {
-            $.ajax({
-                url: "../chat/group_chat.php",
-                method: "POST",
-                data: {
-                    action: action
-                },
-                success: function(data) {
-                    $('#group_chat_history').html(data);
-                }
-            })
-        }
-    }
-
-    $('#uploadFile').on('change', function() {
-        $('#uploadImage').ajaxSubmit({
-            target: "#group_chat_message",
-            resetForm: true
-        });
-    });
-
-    $(document).on('click', '.remove_chat', function() {
-        var chat_message_id = $(this).attr('id');
-        if (confirm("Are you sure you want to remove this chat?")) {
-            $.ajax({
-                url: "../chat/remove_chat.php",
-                method: "POST",
-                data: {
-                    chat_message_id: chat_message_id
-                },
-                success: function(data) {
-                    update_chat_history_data();
-                }
-            })
-        }
-    });
-});
-
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-$('#addBttn').on('click', function() {
-    var email = $('#email').val();
-    console.log(email);
-    $.ajax({
-        type: 'POST',
-        url: '../Friends/sendrequest.php',
-        dataType: "json",
-        data: {
-            email: email
-        },
-        success: function(data) {
-            alert("User request sent");
-            $('#email').text('');
-            window.location.reload();
-        }
-    });
-});
-</script>
-<?php
+        </script>
+        <?php
     include('footer.php');
 ?>

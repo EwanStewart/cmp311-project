@@ -92,18 +92,6 @@ function fetch_user_chat_history($from_user_id, $to_user_id, $connect)
 	return $output;
 }
 
-function get_user_name($user_id, $connect)
-{
-	$query = "SELECT forename FROM cmp311user WHERE id = '$user_id'";
-	$statement = $connect->prepare($query);
-	$statement->execute();
-	$result = $statement->fetchAll();
-	foreach($result as $row)
-	{
-		return $row['forename'];
-	}
-}
-
 function count_unseen_message($from_user_id, $to_user_id, $connect)
 {
 	$query = "
