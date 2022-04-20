@@ -141,7 +141,7 @@
                     <div class="col-md-6 justify-content-center">
 
                         <div class="card">
-                            <img class="card-img-top" src="../image/missingTexture.jpg">
+                            <img class="card-img-top" src="../image/yearly.jpg">
 
                             <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                                 <center>
@@ -170,7 +170,7 @@
                     <div class="col-md-6 justify-content-center">
 
                         <div class="card">
-                            <img class="card-img-top" src="../image/missingTexture.jpg">
+                            <img class="card-img-top" src="../image/monthly.jpg">
 
                             <div class="card-body" style="padding-top: 0px; padding-bottom: 0px;">
                                 <center>

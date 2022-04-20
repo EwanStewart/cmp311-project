@@ -49,32 +49,32 @@
                         <hr style="max-width: 70%;">
 
                         <h3 class="card-title">Step 1:</h3>
-                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <img class="card-img" src="../image/how1.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
                         <p class="card-text">Create an account or sign up with google.</p>
 
                         <hr style="max-width: 70%;">
 
                         <h3 class="card-title">Step 2:</h3>
-                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <img class="card-img" src="../image/how2.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
                         <p class="card-text">Subscribe either monthly or yearly.</p>
                         <p class="card-text">Subscription fees ensure servers, databases, and hosting are paid for.</p>
 
                         <hr style="max-width: 70%;">
 
                         <h3 class="card-title">Step 3:</h3>
-                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <img class="card-img" src="../image/how3.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
                         <p class="card-text">Contribute keys for credit.</p>
 
                         <hr style="max-width: 70%;">
 
                         <h3 class="card-title">Step 4:</h3>
-                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <img class="card-img" src="../image/how4.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
                         <p class="card-text">Redeem credit for other game keys.</p>
 
                         <hr style="max-width: 70%;">
 
                         <h3 class="card-title">Step 5:</h3>
-                        <img class="card-img" src="../image/missingTexture.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
+                        <img class="card-img" src="../image/how5.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
                         <p class="card-text">Enjoy your new game!</p>
 
                     </div>
