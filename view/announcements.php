@@ -8,6 +8,8 @@
     $(document).ready(function() {
         $('.card-img-top').css("max-height", "250px");
         $('.card-img-top').css("max-width", "250px");
+
+        $('.card').css("margin-top", "25px");
         
         $('.card-img-top').css("margin-left", "auto");
         $('.card-img-top').css("margin-right", "auto");

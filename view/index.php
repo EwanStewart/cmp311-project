@@ -66,7 +66,8 @@
                     $appid = $game["appID"];
                     $title = getGameTitle($game["appID"])[0]["name"];
                     $s_desc = strip_tags(min(100,$steamData[$game["appID"]]["data"]["short_description"]));
-                    $price = $steamData[$game["appID"]]["data"]["price_overview"]["final_formatted"];
+                    //$price = $steamData[$game["appID"]]["data"]["price_overview"]["final_formatted"];
+                    $price = (ceil($steamData[$game["appID"]]["data"]["price_overview"]["final"] / 100 )) * 100;
                     $img = $steamData[$game["appID"]]["data"]["header_image"];
                     $genre = $steamData[$game["appID"]]["data"]["genres"][0]["description"];
                 } else {
@@ -134,7 +135,8 @@
                         $appid = $data[$i]["appID"];
                         $title = getGameTitle($data[$i]["appID"])[0]["name"];
                         $s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
-                        $price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
+                        //$price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
+                        $price = (ceil($steamData[$game["appID"]]["data"]["price_overview"]["final"] / 100 )) * 100;
                         $img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
                         $genre = $steamData[$data[$i]["appID"]]["data"]["genres"][0]["description"];
                     } else {
@@ -179,7 +181,7 @@
                                                 <div class="top-line">
                                                     <h4 class="card-title"><strong>'.$title.'</strong></h4>
                                                     <p class="cost">
-                                                        '.$price.'
+                                                        '.$price.' Credits
                                                     </p>
                                                     <p> 															
                                                         <input type="submit" name="submit" data-shopbutton="true" data-gameid="'.$gameid.'" value="Add to Basket">
