@@ -256,4 +256,72 @@
         return $data["profilePictureID"];
 	}
 
+	function getBio(){
+		//	function to return bio of user
+
+		//	establish connection to database
+		$conn = getDatabaseConnection();
+
+		//	get user id
+		$userID = $_SESSION['uID'];
+
+		//	get bio
+		$sql = "SELECT bio FROM cmp311user WHERE id = $userID";
+		$result = mysqli_query($conn, $sql);
+		$data = mysqli_fetch_assoc($result);
+
+		//	close conn
+		$conn->close();
+
+		//return bio
+        return $data["bio"];
+	}
+
+	function getForename(){
+		//	function to return firstname of user
+
+		//	establish connection to database
+		$conn = getDatabaseConnection();
+
+		//	get user id
+		$userID = $_SESSION['uID'];
+
+		//	get forename
+		$sql = "SELECT forename FROM cmp311user WHERE id = $userID";
+		$result = mysqli_query($conn, $sql);
+		$data = mysqli_fetch_assoc($result);
+
+		//	close conn
+		$conn->close();
+
+		//return forename
+        return $data["forename"];
+	}
+
+	function getSurname(){
+		//	function to return surname of user
+
+		//	establish connection to database
+		$conn = getDatabaseConnection();
+
+		//	get user id
+		$userID = $_SESSION['uID'];
+
+		//	get surname
+		$sql = "SELECT surname FROM cmp311user WHERE id = $userID";
+		$result = mysqli_query($conn, $sql);
+		$data = mysqli_fetch_assoc($result);
+
+		//	close conn
+		$conn->close();
+
+		//return forename
+        return $data["surname"];
+	}
+
+
+
+
+
+
 ?>
