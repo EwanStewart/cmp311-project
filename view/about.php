@@ -63,13 +63,13 @@
 
                         <h3 class="card-title">Step 3:</h3>
                         <img class="card-img" src="../image/how3.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
-                        <p class="card-text">Contribute keys for credit.</p>
+                        <p class="card-text">Contribute keys and wait for them to sell for credits.</p>
 
                         <hr style="max-width: 70%;">
 
                         <h3 class="card-title">Step 4:</h3>
                         <img class="card-img" src="../image/how4.jpg" style="max-height: 500px; max-width: 626px; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
-                        <p class="card-text">Redeem credit for other game keys.</p>
+                        <p class="card-text">Redeem credits for other game keys.</p>
 
                         <hr style="max-width: 70%;">
 

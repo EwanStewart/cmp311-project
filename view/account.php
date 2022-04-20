@@ -20,7 +20,7 @@
             $('#popup').hide();
         });
 
-        //  updates profile picture
+        //  updates profile picture, janky but works
         $('#1').click(function() {
             $.ajax({
                 type: "POST",
@@ -125,28 +125,54 @@
             });
         });
 
+        //  hide save button initially;
+        $('#save').hide();
 
+        //  controls edit details button
         $('#edit').click(function() {
-            $("input[name='forename']").removeAttr("readonly");
-            $("input[name='surname']").removeAttr("readonly");
-            $("input[name='email']").removeAttr("readonly");
+            //  remove read only
+            $("textarea[name='forename']").removeAttr("readonly");
+            $("textarea[name='surname']").removeAttr("readonly");
             $("textarea[name='bio']").removeAttr("readonly");
-            $("#edit").text("Save Changes");
+
+            //  hide edit button
+            $('#edit').hide();
+
+            //  show save button
+            $('#save').show();
+        });
+
+        //  controls save changes button
+        $('#save').click(function() {
+            alert($("textarea[name='forename']").val());
+            alert($("textarea[name='surname']").val());
+            alert($("textarea[name='bio']").val());
+
+            $.ajax({
+                type: "POST",
+                url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/updateAccountDetails.php",
+                data: {
+                    forename: $("textarea[name='forename']").val(),
+                    surname: $("textarea[name='surname']").val(),
+                    bio: $("textarea[name='bio']").val()
+                },
+                success: function(text) {
+                    alert(text);
+					window.location.reload()
+                }
+            });
+
         });
     });
 </script>
 <?php
-    $fname = '';
-    $sname = '';
+    $fname = getForename();
+    $sname = getSurname();
     $email = '';
     $country = '';
+    $bio = getBio();
 
-    if (isset($_SESSION['forename'])) {
-        $fname = $_SESSION['forename'];
-    }
-    if (isset($_SESSION['surname'])) {
-        $sname = $_SESSION['surname'];
-    }
+
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
     }
@@ -256,31 +282,31 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label> Forename </label>
-                        <input type="text" class="form-control" name="forename" value="<?php echo $fname;?>"
-                               readonly>
+                        <textarea class="form-control" name="forename" rows="1" readonly><?php echo $fname;?></textarea>
                     </div>
                     <div class="col-md-6">
                         <label> Surname </label>
-                        <input type="text" class="form-control" name="surname" value="<?php echo $sname;?>"
-                               readonly>
+                        <textarea class="form-control" name="surname" rows="1" readonly><?php echo $sname;?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <label> Email </label>
-                        <input type="email" class="form-control" name="email" value="<?php echo $email;?>" readonly>
+                        <!--<input type="email" class="form-control" name="email" value="<?php echo $email;?>" readonly>-->
+                        <textarea class="form-control" name="email" rows="1" readonly><?php echo $email;?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <label> Bio </label>
-                        <textarea class="form-control" name="bio" rows="3" readonly> </textarea>
+                        <textarea class="form-control" name="bio" rows="3" readonly><?php echo $bio;?></textarea>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-primary" id="edit" type="button"> Edit Profile </button>
+                        <button class="btn btn-primary" id="save" type="button"> Save Changes </button>
                     </div>
                 </div>
             </div>
