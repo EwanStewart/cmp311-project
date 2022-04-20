@@ -278,15 +278,6 @@
                 fetch_group_chat_history();
             }, 1000);
 
-            function fetch_user() {
-                $.ajax({
-                    url: "../chat/fetch_user.php",
-                    method: "POST",
-                    success: function(data) {
-                        $('#user_details').html(data);
-                    }
-                })
-            }
 
             function update_last_activity() {
                 $.ajax({
@@ -342,7 +333,7 @@
                             chat_message: chat_message
                         },
                         success: function(data) {
-                            //$('#chat_message_'+to_user_id).val('');
+                            $('#chat_message_' + to_user_id).val('');
                             var element = $('#chat_message_' + to_user_id).emojioneArea();
                             element[0].emojioneArea.setText('');
                             $('#chat_history_' + to_user_id).html(data);
