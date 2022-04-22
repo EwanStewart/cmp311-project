@@ -60,6 +60,7 @@
         <a href="../view/account.php">Account</a>
         <a href="#">Games</a>
         <a href="../view/friends.php">Friends</a>
+        <a href="../view/refer.php">Refer a friend</a>
         <a href="../model/logout.php">Sign Out</a>
         <?php
         if ($_SESSION['admin']){

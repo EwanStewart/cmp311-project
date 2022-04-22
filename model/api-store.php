@@ -2,9 +2,9 @@
 	// Connect to database
 	include_once("../controller/connection.php");
 
-	// ini_set('display_errors', '1');
-    // ini_set('display_startup_errors', '1');
-    // error_reporting(E_ALL);
+	ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
 	
 	// function to return the details of the game in the user's basket
 	function getBasket()
@@ -332,7 +332,43 @@
         return $data["surname"];
 	}
 
+	function getReferralCode(){
+		//function to get referral code of user
 
+		//	establish connection to database
+		$conn = getDatabaseConnection();
+
+		//	get user id
+		$userID = $_SESSION['uID'];
+
+		//	get referral code
+		$sql = "SELECT referralCode FROM cmp311user WHERE id = $userID";
+		$result = mysqli_query($conn, $sql);
+		$data = mysqli_fetch_assoc($result);
+
+		if ($data["referralCode"] == NULL){
+			//	get email
+			$sql = "SELECT email FROM cmp311user WHERE id = $userID";
+			$result = mysqli_query($conn, $sql);
+			$dataEmail = mysqli_fetch_assoc($result);
+			$email = $dataEmail["email"];
+
+			//	create unique referral code
+			$referralCode = hash("md5", $email);
+
+			//  insert referral code
+            $stmt = $conn->prepare("UPDATE `cmp311user` SET `referralCode` = ? WHERE `id` = ?");
+            $stmt->bind_param("si", $referralCode, $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+			//	return referral code
+			return $referralCode;
+		}else{
+			//	return referral code
+			return $data["referralCode"];
+		}
+	}
 
 
 
