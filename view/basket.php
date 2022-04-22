@@ -29,8 +29,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
-    $(function() {
-
+    $(document).ready(function(){
         $("[data-remove]").click(function() {
             $.ajax({
                 type: "POST",
@@ -43,15 +42,14 @@
 					window.location.reload()
                 }
             });
-        })
+        });
+	});
 
+	$(document).ready(function(){
 		$("[data-purchase]").click(function() {
             $.ajax({
                 type: "POST",
                 url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/purchaseBasket.php",
-                data: {
-                    pur: 1
-                },
                 success: function(text) {
                     alert(text);
 					window.location.reload()
@@ -75,14 +73,6 @@
 								<h2 class="card-title text-center">Your basket is empty.</h2>
 							</div>
 							';
-							var_dump($basket);
-							break;
-						case 1:
-							echo '
-							<div class="card container justify-content-center p-4">
-								<h2 class="card-title text-center">Purchase was successful!</h2>
-							</div>
-							'; 
 							break;
 						default:
 							echo '
@@ -95,17 +85,17 @@
 
 					$total = totalBasketCost();
 					echo '
-					<div class="card container justify-content-center p-4 my-2">
-						<div class="row">
-							<div class="col">
-								<h1 class="card-title text-center">Basket Cost: '.$total.' Credits</h1>
-							</div>
-							<div class="col text-center">
-								<input type="submit" name="submit" data-remove="false" data-purchase="true" class="btn-lg btn-outline-success" value="Purchase Basket">
+						<div class="card container justify-content-center p-4 my-2">
+							<div class="row">
+								<div class="col">
+									<h1 class="card-title text-center">Basket Cost: '.$total.' Credits</h1>
+								</div>
+								<div class="col text-center">
+									<input type="submit" name="purchase" data-purchase="true" class="btn-lg btn-outline-success" value="Purchase Basket">
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="card container justify-content-center p-4 my-2">
+						<div class="card container justify-content-center p-4 my-2">
 					';
 
 					for ($i=0;$i<sizeof($basket);$i++){
@@ -124,7 +114,7 @@
 											<h2 class="font-weight-bold">'. $basket[$i]["name"] .'</h2>
 										</div>
 										<div class="col-4 text-center">
-											<input type="submit" name="submit" data-remove="true" data-purchase="false" class="btn btn-outline-success m-auto" data-keyID="'.$basket[$i]["keyID"].'" value="Remove from Basket">
+											<input type="submit" name="remove" data-remove="true" class="btn btn-outline-success m-auto" data-keyID="'.$basket[$i]["keyID"].'" value="Remove from Basket">
 										</div>
 										<div class="col-8">
 											<h3>'. $basket[$i]["cost"] .' Credits</h3>

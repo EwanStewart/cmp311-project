@@ -2,9 +2,9 @@
 	// Connect to database
 	include_once("../controller/connection.php");
 
-	// ini_set('display_errors', '1');
-    // ini_set('display_startup_errors', '1');
-    // error_reporting(E_ALL);
+	ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
 	
 	// function to return the details of the game in the user's basket
 	function getBasket()
@@ -80,6 +80,18 @@
 		return $rows;
 	}
 
+	function getUserPubKeys()
+	{
+		$conn = getDatabaseConnection();
+		$id = $_SESSION['uID'];
+		$sql = "SELECT * FROM gameKeys WHERE gameKeys.userID = " . $id;
+		$result = mysqli_query($conn, $sql);
+		while($r = mysqli_fetch_assoc($result)) {
+    		$rows[] = $r;
+		}
+		return $rows;
+	}
+
 	function totalBasketCost()
 	{
 		$basket = getBasket();
@@ -91,42 +103,43 @@
 		return $totalCost;
 	}
 
-	function purchaseBasket()
-	{
-		$conn = getDatabaseConnection();
-		$id = $_SESSION['uID'];
-		$totalCost = totalBasketCost();
+	// function purchaseBasket()
+	// {
+	// 	$conn = getDatabaseConnection();
+	// 	$id = $_SESSION['uID'];
+	// 	$totalCost = totalBasketCost();
 
-		$sql = "SELECT credit FROM cmp311user WHERE id = $id";
-		$result = mysqli_query($conn, $sql);
-		$balance = $result[0]["credit"];
+	// 	$sql = "SELECT credit FROM cmp311user WHERE id = $id";
+	// 	$result = mysqli_query($conn, $sql);
+	// 	$balance = $result[0]["credit"];
 
-		$newTotal = $balance - $totalCost;
+	// 	$newTotal = $balance - $totalCost;
 		
-		if ($balance < $totalCost){
-			return "You do not have enough Credits for this purchase.";
-		}else{	
-			$basket = getBasket($id);
-			for ($i=0;$i<sizeof($basket);$i++){
-				$keyid = $basket[$i]["keyID"];
-				$cost = $basket[$i]["cost"];
-				// Mark Keys as owned by user who purchased
-				$sql = "UPDATE gameKeys SET purchasedBy = $id WHERE id = $keyid";
-				$result = mysqli_query($conn, $sql);
-				// Make note of transaction in log
-				$sql = "INSERT INTO keyTransactions (userID, keyID, cost) VALUES ($id, $keyid, $cost)";
-			}
-			// Empty basket
-			$sql = "DELETE FROM basket WHERE userID = $id";
-			$result = mysqli_query($conn, $sql);
-			// Take credits from user
-			$sql = "UPDATE cmp311user SET credit = $newTotal WHERE id = $id";
-			$result = mysqli_query($conn, $sql);
+	// 	if ($balance < $totalCost){
+	// 		return "You do not have enough Credits for this purchase.";
+	// 	}else{	
+	// 		$basket = getBasket($id);
+	// 		for ($i=0;$i<sizeof($basket);$i++){
+	// 			$keyid = $basket[$i]["keyID"];
+	// 			$cost = $basket[$i]["cost"];
+	// 			// Mark Keys as owned by user who purchased
+	// 			$sql = "UPDATE gameKeys SET purchasedBy = $id WHERE id = $keyid";
+	// 			$result = mysqli_query($conn, $sql);
+	// 			// Make note of transaction in log
+	// 			$sql = "INSERT INTO keyTransactions (userID, keyID, cost) VALUES ($id, $keyid, $cost)";
+	// 			$result = mysqli_query($conn, $sql);
+	// 		}
+	// 		// Empty basket
+	// 		$sql = "DELETE FROM basket WHERE userID = $id";
+	// 		$result = mysqli_query($conn, $sql);
+	// 		// Take credits from user
+	// 		$sql = "UPDATE cmp311user SET credit = $newTotal WHERE id = $id";
+	// 		$result = mysqli_query($conn, $sql);
 
-			$msg = "Keys purchased successfully.";
-			return $msg;
-		}
-	}
+	// 		$msg = "Keys purchased successfully.";
+	// 		return $msg;
+	// 	}
+	// }
 
 	function checkValidSubscription(){
 		//	function to check for valid subscription
@@ -319,7 +332,43 @@
         return $data["surname"];
 	}
 
+	function getReferralCode(){
+		//function to get referral code of user
 
+		//	establish connection to database
+		$conn = getDatabaseConnection();
+
+		//	get user id
+		$userID = $_SESSION['uID'];
+
+		//	get referral code
+		$sql = "SELECT referralCode FROM cmp311user WHERE id = $userID";
+		$result = mysqli_query($conn, $sql);
+		$data = mysqli_fetch_assoc($result);
+
+		if ($data["referralCode"] == NULL){
+			//	get email
+			$sql = "SELECT email FROM cmp311user WHERE id = $userID";
+			$result = mysqli_query($conn, $sql);
+			$dataEmail = mysqli_fetch_assoc($result);
+			$email = $dataEmail["email"];
+
+			//	create unique referral code
+			$referralCode = hash("md5", $email);
+
+			//  insert referral code
+            $stmt = $conn->prepare("UPDATE `cmp311user` SET `referralCode` = ? WHERE `id` = ?");
+            $stmt->bind_param("si", $referralCode, $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+			//	return referral code
+			return $referralCode;
+		}else{
+			//	return referral code
+			return $data["referralCode"];
+		}
+	}
 
 
 
