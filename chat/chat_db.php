@@ -4,6 +4,18 @@
 
 $connect = new PDO("mysql:host=lochnagar.abertay.ac.uk;dbname=sqlcmp311g21c02;charset=utf8mb4", "sqlcmp311g21c02", "6XYSo4gbvVFy");
 
+function get_user_name($user_id, $connect)
+{
+	$query = "SELECT forename FROM cmp311user WHERE id = '$user_id'";
+	$statement = $connect->prepare($query);
+	$statement->execute();
+	$result = $statement->fetchAll();
+	foreach($result as $row)
+	{
+		return $row['forename'];
+	}
+}
+
 function fetch_user_last_activity($user_id, $connect)
 {
 	$query = "

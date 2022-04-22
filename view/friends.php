@@ -65,6 +65,8 @@
                         $email = $_SESSION['email'];
                         $itemtxt = getFriends($userID, $email) ;
                         $item = json_decode($itemtxt) ;
+                        echo '<div class="col-12" id="items">' ;
+                        echo '<div class="row align-items-center">' ;
                         for($i = 0; $i < sizeof($item); $i++){
                             echo '<div class="col-sm-4" id="items">' ;
                             echo '<div class="card">' ;
@@ -89,6 +91,8 @@
                             echo '</div>' ;
                             echo '</div>' ;
                         }
+                        echo '</div>' ;
+                        echo '</div>' ;
                     ?>
                 </div>
             </div>
@@ -98,7 +102,8 @@
             <div class="friends-body">
                 <div class="friends-list">
                     <?php
-
+                            echo '<div class="col-12" id="items">' ;
+                            echo '<div class="row align-items-center">' ;
                         $itemReq = getRequests($userID);
                         $items = json_decode($itemReq);
                         for($y = 0; $y < sizeof($items); $y++){
@@ -117,6 +122,8 @@
                             echo '</div>' ;
                             echo '</div>' ;
                         }
+                        echo '</div>' ;
+                        echo '</div>' ;
                     ?>
                 </div>
             </div>
@@ -128,7 +135,8 @@
 
                         $itm = getSent($userID);
                         $items = json_decode($itm);
-
+                        echo '<div class="col-12" id="items">' ;
+                        echo '<div class="row align-items-center">' ;
                         for($x = 0; $x < sizeof($items); $x++){
                             echo '<div class="col-sm-4" id="items">' ;
                             echo '<div class="card">' ;
@@ -144,6 +152,8 @@
                             echo '</div>' ;
                             echo '</div>' ;
                         }
+                        echo '</div>' ;
+                            echo '</div>' ;
                     ?>
                 </div>
             </div>
@@ -232,6 +242,8 @@
         </div>
     </div>
 
+    <div id="user_model_details"></div>
+
     <body>
 
         <script>
@@ -278,7 +290,6 @@
                 fetch_group_chat_history();
             }, 1000);
 
-
             function update_last_activity() {
                 $.ajax({
                     url: "../chat/update_last_activity.php",
@@ -298,8 +309,7 @@
                 modal_content += '</div>';
                 modal_content += '<div class="form-group">';
                 modal_content += '<textarea name="chat_message_' + to_user_id + '" id="chat_message_' +
-                    to_user_id +
-                    '" class="form-control chat_message"></textarea>';
+                    to_user_id + '" class="form-control chat_message"></textarea>';
                 modal_content += '</div><div class="form-group" align="right">';
                 modal_content += '<button type="button" name="send_chat" id="' + to_user_id +
                     '" class="btn btn-info send_chat">Send</button></div></div>';
@@ -315,10 +325,6 @@
                     width: 400
                 });
                 $('#user_dialog_' + to_user_id).dialog('open');
-                $('#chat_message_' + to_user_id).emojioneArea({
-                    pickerPosition: "top",
-                    toneStyle: "bullet"
-                });
             });
 
             $(document).on('click', '.send_chat', function() {
@@ -333,9 +339,7 @@
                             chat_message: chat_message
                         },
                         success: function(data) {
-                            $('#chat_message_' + to_user_id).val('');
-                            var element = $('#chat_message_' + to_user_id).emojioneArea();
-                            element[0].emojioneArea.setText('');
+                            //$('#chat_message_'+to_user_id).val('');
                             $('#chat_history_' + to_user_id).html(data);
                         }
                     })
@@ -468,6 +472,23 @@
                     })
                 }
             });
+
+            $('#addBttn').on('click', function() {
+                var email = $('#email').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '../Friends/sendrequest.php',
+                    dataType: "json",
+                    data: {
+                        email: email
+                    },
+                    success: function(data) {
+                        alert("User request sent");
+                        $('#email').text('');
+                        window.location.reload();
+                    }
+                });
+            });
         });
 
         function openTab(evt, tabName) {
@@ -483,25 +504,7 @@
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
         }
-
-        $('#addBttn').on('click', function() {
-            var email = $('#email').val();
-            console.log(email);
-            $.ajax({
-                type: 'POST',
-                url: '../Friends/sendrequest.php',
-                dataType: "json",
-                data: {
-                    email: email
-                },
-                success: function(data) {
-                    alert("User request sent");
-                    $('#email').text('');
-                    window.location.reload();
-                }
-            });
-        });
         </script>
         <?php
-    include('footer.php');
+include('footer.php');
 ?>
