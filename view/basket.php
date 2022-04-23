@@ -1,6 +1,6 @@
 <?php
     session_start();
-	include("../model/api-store.php");
+	include_once("../model/api-store.php");
 	include_once("../model/getGames.php");
 
 	// Message code is set to be used later

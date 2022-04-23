@@ -1,8 +1,6 @@
 <?php
     include('header.php');
-    include('../model/api-store.php');
-
-    session_start();
+    include_once('../model/api-store.php');
 
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
@@ -144,9 +142,6 @@
 
         //  controls save changes button
         $('#save').click(function() {
-            alert($("textarea[name='forename']").val());
-            alert($("textarea[name='surname']").val());
-            alert($("textarea[name='bio']").val());
 
             $.ajax({
                 type: "POST",
@@ -157,7 +152,6 @@
                     bio: $("textarea[name='bio']").val()
                 },
                 success: function(text) {
-                    alert(text);
 					window.location.reload()
                 }
             });
