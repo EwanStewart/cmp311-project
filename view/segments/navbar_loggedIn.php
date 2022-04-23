@@ -58,7 +58,7 @@
             <h6><?php echo $_SESSION["email"] ?></h6>
         </div>
         <?php
-        include('../model/getGames.php');
+        include_once('../model/getGames.php');
         $credits = getCredits();
         echo '<br><p>Total Credits: ' . $credits . '</p>';
         

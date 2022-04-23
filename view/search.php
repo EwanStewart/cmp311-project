@@ -25,7 +25,7 @@
    <body>
    
 	<?php	
-		include('../model/getGames.php');
+		include_once('../model/getGames.php');
 	?>
 
 	  
