@@ -23,7 +23,7 @@ function getGameTitle($param) {
 function getAvaliableGames() {
     global $conn;
 
-    $sqlSelect = "SELECT * FROM gameKeys WHERE public = 1";							
+    $sqlSelect = "SELECT * FROM gameKeys WHERE public = 1 and purchasedBy IS NULL";							
     $stmtSelect = $conn->prepare($sqlSelect);
     $stmtSelect->execute();										
     $result = $stmtSelect->get_result();		
