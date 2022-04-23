@@ -57,8 +57,15 @@
             ?>
             <h6><?php echo $_SESSION["email"] ?></h6>
         </div>
+        <?php
+        include('../model/getGames.php');
+        $credits = getCredits();
+        echo '<br><p>Total Credits: ' . $credits . '</p>';
+        
+    ?>
         <a href="../view/account.php">Account</a>
-        <a href="#">Games</a>
+        <a href="../view/basket.php">Basket</a>
+        <a href="../view/publishedKeys.php">Games</a>
         <a href="../view/friends.php">Friends</a>
         <a href="../view/refer.php">Refer a friend</a>
         <a href="../model/logout.php">Sign Out</a>
