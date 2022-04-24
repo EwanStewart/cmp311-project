@@ -89,7 +89,15 @@
                                 }
                                 echo '<div class="card-footer">' ;
                                 echo '<button type="button" class="btn btn-info btn-xs"><a href="../Friends/deleteFriend.php?fid='.$item[$i]->sUserID.'&uid='.$userID.'&rid='.$item[$i]->fUserID.'">Delete Friend</a></button>' ;
-                                echo '<button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$item[$i]->sUserID.'" data-tousername="'.$item[$i]->forename.'">Start Chat</button>';
+                                $touser = 0;
+                                if($item[$i]->fUserID == $_SESSION['uID'])
+                                {
+                                    $touser = $item[$i]->sUserID;
+                                }else if($item[$i]->sUserID == $_SESSION['uID'])
+                                {
+                                    $touser = $item[$i]->fUserID;
+                                }
+                                echo '<button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$touser.'" data-tousername="'.$item[$i]->forename.'">Start Chat</button>';
                                 echo '</div>' ;
                                 echo '</div>' ;
                                 echo '</div>' ;
