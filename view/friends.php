@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
     session_start();
     include ("../Friends/getfriends.php");
     $userID = $_SESSION['uID'];
@@ -67,29 +68,34 @@
                         $item = json_decode($itemtxt) ;
                         echo '<div class="col-12" id="items">' ;
                         echo '<div class="row align-items-center">' ;
-                        for($i = 0; $i < sizeof($item); $i++){
-                            echo '<div class="col-sm-4" id="items">' ;
-                            echo '<div class="card">' ;
-                            echo '<div class="card-header">' ;
-                            echo '<h1>'.$item[$i]->forename.'</h1>' ;
-                            echo '</div>' ;
-                            echo '<div class="card-body">' ;
-                            echo '<p>'.$item[$i]->email.'</p>' ;
-                            echo '</div>' ;
-                            if($item[$i]->last_activity == "Online")
-                            {
-                                echo '<span style="color:green;">'.$item[$i]->last_activity.'</span>';
+                        if(sizeof($item) != 0)
+                        {
+                            for($i = 0; $i < sizeof($item); $i++){
+                                echo '<div class="col-sm-4" id="items">' ;
+                                echo '<div class="card">' ;
+                                echo '<div class="card-header">' ;
+                                echo '<h1>'.$item[$i]->forename.'</h1>' ;
+                                echo '</div>' ;
+                                echo '<div class="card-body">' ;
+                                echo '<p>'.$item[$i]->email.'</p>' ;
+                                echo '</div>' ;
+                                if($item[$i]->last_activity == "Online")
+                                {
+                                    echo '<span style="color:green;">'.$item[$i]->last_activity.'</span>';
+                                }
+                                else
+                                {
+                                    echo '<span style="color:crimson;">Last active: '.$item[$i]->last_activity.'</span>';
+                                }
+                                echo '<div class="card-footer">' ;
+                                echo '<button type="button" class="btn btn-info btn-xs"><a href="../Friends/deleteFriend.php?fid='.$item[$i]->sUserID.'&uid='.$userID.'&rid='.$item[$i]->fUserID.'">Delete Friend</a></button>' ;
+                                echo '<button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$item[$i]->sUserID.'" data-tousername="'.$item[$i]->forename.'">Start Chat</button>';
+                                echo '</div>' ;
+                                echo '</div>' ;
+                                echo '</div>' ;
                             }
-                            else
-                            {
-                                echo '<span style="color:crimson;">Last active: '.$item[$i]->last_activity.'</span>';
-                            }
-                            echo '<div class="card-footer">' ;
-                            echo '<button type="button" class="btn btn-info btn-xs"><a href="../Friends/deleteFriend.php?fid='.$item[$i]->sUserID.'&uid='.$userID.'&rid='.$item[$i]->fUserID.'">Delete Friend</a></button>' ;
-                            echo '<button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$item[$i]->sUserID.'" data-tousername="'.$item[$i]->forename.'">Start Chat</button>';
-                            echo '</div>' ;
-                            echo '</div>' ;
-                            echo '</div>' ;
+                        }else{
+                            echo '<p>Currently no friends in the list.</p>';
                         }
                         echo '</div>' ;
                         echo '</div>' ;
@@ -106,22 +112,28 @@
                             echo '<div class="row align-items-center">' ;
                         $itemReq = getRequests($userID);
                         $items = json_decode($itemReq);
-                        for($y = 0; $y < sizeof($items); $y++){
-                            echo '<div class="col-sm-4" id="items">' ;
-                            echo '<div class="card">' ;
-                            echo '<div class="card-header">' ;
-                            echo '<h1>'.$items[$y]->forename.'</h1>' ;
-                            echo '</div>' ;
-                            echo '<div class="card-body">' ;
-                            echo '<p>'.$items[$y]->email.'</p>' ;
-                            echo '</div>' ;
-                            echo '<div class="card-footer">' ;
-                            echo '<a href="../Friends/addFriend.php?rid='.$items[$y]->fUserID.'&uid='.$userID.'">Add friend</a>' ;
-                            echo '<a href="../Friends/deleteRecieved.php?rid='.$items[$y]->fUserID.'&uid='.$userID.'">Delete Request</a>' ;
-                            echo '</div>' ;
-                            echo '</div>' ;
-                            echo '</div>' ;
+                        if(sizeof($items) != 0)
+                        {
+                            for($y = 0; $y < sizeof($items); $y++){
+                                echo '<div class="col-sm-4" id="items">' ;
+                                echo '<div class="card">' ;
+                                echo '<div class="card-header">' ;
+                                echo '<h1>'.$items[$y]->forename.'</h1>' ;
+                                echo '</div>' ;
+                                echo '<div class="card-body">' ;
+                                echo '<p>'.$items[$y]->email.'</p>' ;
+                                echo '</div>' ;
+                                echo '<div class="card-footer">' ;
+                                echo '<a href="../Friends/addFriend.php?rid='.$items[$y]->fUserID.'&uid='.$userID.'">Add friend</a>' ;
+                                echo '<a href="../Friends/deleteRecieved.php?rid='.$items[$y]->fUserID.'&uid='.$userID.'">Delete Request</a>' ;
+                                echo '</div>' ;
+                                echo '</div>' ;
+                                echo '</div>' ;
+                            }
+                        }else{
+                            echo '<p>Currently no requests recieved.</p>';
                         }
+                        
                         echo '</div>' ;
                         echo '</div>' ;
                     ?>
@@ -137,23 +149,28 @@
                         $items = json_decode($itm);
                         echo '<div class="col-12" id="items">' ;
                         echo '<div class="row align-items-center">' ;
-                        for($x = 0; $x < sizeof($items); $x++){
-                            echo '<div class="col-sm-4" id="items">' ;
-                            echo '<div class="card">' ;
-                            echo '<div class="card-header">' ;
-                            echo '<h1>'.$items[$x]->forename.'</h1>' ;
-                            echo '</div>' ;
-                            echo '<div class="card-body">' ;
-                            echo '<p>'.$items[$x]->email.'</p>' ;
-                            echo '</div>' ;
-                            echo '<div class="card-footer">' ;
-                            echo '<a href="../Friends/deleteRequest.php?sid='.$items[$x]->sUserID.'&uid='.$userID.'">Delete Request</a>' ;
-                            echo '</div>' ;
-                            echo '</div>' ;
-                            echo '</div>' ;
+                        if(sizeof($items) != 0){
+                            for($x = 0; $x < sizeof($items); $x++){
+                                echo '<div class="col-sm-4" id="items">' ;
+                                echo '<div class="card">' ;
+                                echo '<div class="card-header">' ;
+                                echo '<h1>'.$items[$x]->forename.'</h1>' ;
+                                echo '</div>' ;
+                                echo '<div class="card-body">' ;
+                                echo '<p>'.$items[$x]->email.'</p>' ;
+                                echo '</div>' ;
+                                echo '<div class="card-footer">' ;
+                                echo '<a href="../Friends/deleteRequest.php?sid='.$items[$x]->sUserID.'&uid='.$userID.'">Delete Request</a>' ;
+                                echo '</div>' ;
+                                echo '</div>' ;
+                                echo '</div>' ;
+                            }
+                        }else{
+                            echo '<p>Currently no requests sent.</p>';
                         }
+                        
                         echo '</div>' ;
-                            echo '</div>' ;
+                        echo '</div>' ;
                     ?>
                 </div>
             </div>
@@ -165,6 +182,8 @@
         <button type="button" name="group_chat" id="group_chat" class="btn btn-warning btn-xs">Group
             Chat</button>
     </div>
+
+    <?php echo $_SESSION['uID']; ?>
 
 
 
@@ -339,7 +358,7 @@
                             chat_message: chat_message
                         },
                         success: function(data) {
-                            //$('#chat_message_'+to_user_id).val('');
+                            $('#chat_message_' + to_user_id).val('');
                             $('#chat_history_' + to_user_id).html(data);
                         }
                     })
