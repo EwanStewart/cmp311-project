@@ -38,6 +38,27 @@
 </script>
 <?php
     $referralCode = getReferralCode();
+
+    //	establish connection to database
+    include_once("../controller/connection.php");
+    $conn = getDatabaseConnection();
+
+    //  get user id
+    $userID = $_SESSION['uID'];
+
+    //  get current referrals
+    $stmt = $conn->prepare("SELECT `referrals` FROM `cmp311user` WHERE `id` = ?");
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $rows = array();
+    while($buffer = mysqli_fetch_assoc($result)){
+        $rows[] = $buffer;
+    }
+
+    $currentReferrals = $rows[0]["referrals"];
+
 ?>
 <div class="container" style="margin-top: 150px; !important">
     <div class="row justify-content-center" style="margin-top: 150px;">
@@ -59,7 +80,9 @@
 
                     <p class="card-text" style="margin-bottom: 20px;">Recieve 100 credits each for your first 10 referrals!</p>
 
-                    <p class="card-text referralCounter">[PLACEHOLDER REFERRAL COUNTER]</p>
+                    <?php
+                        echo '<p class="card-text referralCounter">You have referred ' . $currentReferrals . ' people!</p>';
+                    ?>
 
                 </div>
                     
