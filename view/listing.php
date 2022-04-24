@@ -1,9 +1,9 @@
 
 <?php
     include('header.php');
-    include('../model/getGames.php');
+    include_once('../model/getGames.php');
     $appid = $_GET['appid'];
-    require_once('../model/getGames.php');
+    include_once('../model/getGames.php');
     $data = checkedGameCached($appid);
     $game = $data[0];
     $title = $game['title'];

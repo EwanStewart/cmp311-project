@@ -1,6 +1,6 @@
 <?php
     include('header.php');
-    include("../model/api-store.php");
+    include_once("../model/api-store.php");
 
     session_start();
     ?>
