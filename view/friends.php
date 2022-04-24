@@ -132,8 +132,8 @@
                                 echo '<p>'.$items[$y]->email.'</p>' ;
                                 echo '</div>' ;
                                 echo '<div class="card-footer">' ;
-                                echo '<a href="../Friends/addFriend.php?rid='.$items[$y]->fUserID.'&uid='.$userID.'">Add friend</a>' ;
-                                echo '<a href="../Friends/deleteRecieved.php?rid='.$items[$y]->fUserID.'&uid='.$userID.'">Delete Request</a>' ;
+                                echo '<button class="btn btn-info btn-xs"><a href="../Friends/addFriend.php?rid='.$items[$y]->fUserID.'&uid='.$userID.'">Add friend</a></button>';
+                                echo '<button class="btn btn-info btn-xs"><a href="../Friends/deleteRecieved.php?rid='.$items[$y]->fUserID.'&uid='.$userID.'">Delete Request</a></button>' ;
                                 echo '</div>' ;
                                 echo '</div>' ;
                                 echo '</div>' ;
@@ -168,7 +168,7 @@
                                 echo '<p>'.$items[$x]->email.'</p>' ;
                                 echo '</div>' ;
                                 echo '<div class="card-footer">' ;
-                                echo '<a href="../Friends/deleteRequest.php?sid='.$items[$x]->sUserID.'&uid='.$userID.'">Delete Request</a>' ;
+                                echo '<button class="btn btn-info btn-xs"><a href="../Friends/deleteRequest.php?sid='.$items[$x]->sUserID.'&uid='.$userID.'">Delete Request</a></button>' ;
                                 echo '</div>' ;
                                 echo '</div>' ;
                                 echo '</div>' ;
@@ -190,10 +190,6 @@
         <button type="button" name="group_chat" id="group_chat" class="btn btn-warning btn-xs">Group
             Chat</button>
     </div>
-
-    <?php echo $_SESSION['uID']; ?>
-
-
 
     <style>
     .chat_message_area {
