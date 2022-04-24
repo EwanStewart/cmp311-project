@@ -8,7 +8,7 @@
     <div class="vstack g-1">
         <div class="hstack g-2">
             <?php
-                include('../model/api-store.php');
+                include_once('../model/api-store.php');
 
                 $profilePictureID = getProfilePictureID();
 
@@ -57,8 +57,15 @@
             ?>
             <h6><?php echo $_SESSION["email"] ?></h6>
         </div>
+        <?php
+        include_once('../model/getGames.php');
+        $credits = getCredits();
+        echo '<br><p>Total Credits: ' . $credits . '</p>';
+        
+    ?>
         <a href="../view/account.php">Account</a>
-        <a href="#">Games</a>
+        <a href="../view/basket.php">Basket</a>
+        <a href="../view/publishedkeys.php">Games</a>
         <a href="../view/friends.php">Friends</a>
         <a href="../view/refer.php">Refer a friend</a>
         <a href="../model/logout.php">Sign Out</a>

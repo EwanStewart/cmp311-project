@@ -131,90 +131,96 @@
         </div>
 
         <?php
+            $duplicates = array();
             for ($i=0;$i<count($data);$i++){
                 $cached = checkedGameCached($data[$i]["appID"]);
-                if (!$cached) {
-                    $steamData = getSteamData($data[$i]["appID"]);
-                    $param = array();
-
-
-                    if ($steamData[$data[$i]["appID"]]["success"]) {
-                        $appid = $data[$i]["appID"];
-                        $title = getGameTitle($data[$i]["appID"])[0]["name"];
-                        $s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
-                        //$price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
-                        if (isset($steamData[$data[$i]["appID"]]["data"]["price_overview"]["final"])) {
-                            $price = (ceil($steamData[$data[$i]["appID"]]["data"]["price_overview"]["final"] / 100 )) * 100;
+                if (in_array($data[$i]["appID"], $duplicates)) {
+                    continue;
+                } else {
+                    array_push($duplicates, $data[$i]["appID"]);
+                    if (!$cached) {
+                        $steamData = getSteamData($data[$i]["appID"]);
+                        $param = array();
+    
+    
+                        if ($steamData[$data[$i]["appID"]]["success"]) {
+                            $appid = $data[$i]["appID"];
+                            $title = getGameTitle($data[$i]["appID"])[0]["name"];
+                            $s_desc = strip_tags(min(100,$steamData[$data[$i]["appID"]]["data"]["short_description"]));
+                            //$price = $steamData[$data[$i]["appID"]]["data"]["price_overview"]["final_formatted"];
+                            if (isset($steamData[$data[$i]["appID"]]["data"]["price_overview"]["final"])) {
+                                $price = (ceil($steamData[$data[$i]["appID"]]["data"]["price_overview"]["final"] / 100 )) * 100;
+                            } else {
+                                $price = "0";
+                            }                        
+                            $img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
+                            $genre = $steamData[$data[$i]["appID"]]["data"]["genres"][0]["description"];
                         } else {
-                            $price = "0";
-                        }                        
-                        $img = $steamData[$data[$i]["appID"]]["data"]["header_image"];
-                        $genre = $steamData[$data[$i]["appID"]]["data"]["genres"][0]["description"];
-                    } else {
-                        $appid = $data[$i]["appID"];
-                        $title = getGameTitle($appid)[0]["name"];
-                        $s_desc = "No data avaliable from Steam";
-                        $price = "No data avaliable from Steam";
-                        $img = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
-                        $genre = "No data avaliable from Steam";
-
+                            $appid = $data[$i]["appID"];
+                            $title = getGameTitle($appid)[0]["name"];
+                            $s_desc = "No data avaliable from Steam";
+                            $price = "No data avaliable from Steam";
+                            $img = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+                            $genre = "No data avaliable from Steam";
+    
+                        }
+    
+    
+                        array_push($param, $appid, $title, $s_desc, $price, $img, $genre);
+                        insertGameDataToCache($param);
                     }
-
-
-                    array_push($param, $appid, $title, $s_desc, $price, $img, $genre);
-                    insertGameDataToCache($param);
-                }
-
-                $cached = checkedGameCached($data[$i]["appID"])[0];
-
-                $gameid = $data[$i]["appID"];
-                $title = $cached["title"];
-                $img = $cached["img"];
-                $price = $cached["price"];
-                $desc = $cached["s_desc"];
-
-                echo '
-                    <div class="card">
-                        <div class="card-wrapper">
-                            <div class="row align-items-center">
-                                <div class="col-12 col-md-3">
-                                    <!--<div class="image-wrapper">
-                                        <img src="'.$img.'" class="img-fluid" title="">
-                                    </div>-->
-                                    <div class="text-center">
-                                        <img class="shadow-sm w-75 rounded" src="'. $img .'"/>
+    
+                    $cached = checkedGameCached($data[$i]["appID"])[0];
+    
+                    $gameid = $data[$i]["appID"];
+                    $title = $cached["title"];
+                    $img = $cached["img"];
+                    $price = $cached["price"];
+                    $desc = $cached["s_desc"];
+    
+                    echo '
+                        <div class="card">
+                            <div class="card-wrapper">
+                                <div class="row align-items-center">
+                                    <div class="col-12 col-md-3">
+                                        <!--<div class="image-wrapper">
+                                            <img src="'.$img.'" class="img-fluid" title="">
+                                        </div>-->
+                                        <div class="text-center">
+                                            <img class="shadow-sm w-75 rounded" src="'. $img .'"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <div class="card-box">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="top-line">
-                                                    <h4 class="card-title"><strong>'.$title.'</strong></h4>
-                                                    <p class="cost">
-                                                        '.$price.' Credits
-                                                    </p>
-                                                    <p> 															
-                                                        <input type="submit" name="submit" data-shopbutton="true" data-gameid="'.$gameid.'" value="Add to Basket">
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div class="row align-items-center">
+                                    <div class="col-12 col-md-9">
+                                        <div class="card-box">
+                                            <div class="row">
                                                 <div class="col-12">
-                                                    <div class="bottom-line">
-                                                        <p>'. $desc .'
+                                                    <div class="top-line">
+                                                        <h4 class="card-title"><strong>'.$title.'</strong></h4>
+                                                        <p class="cost">
+                                                            '.$price.' Credits
                                                         </p>
+                                                        <p> 															
+                                                            <input type="submit" name="submit" data-shopbutton="true" data-gameid="'.$gameid.'" value="Add to Basket">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="row align-items-center">
+                                                    <div class="col-12">
+                                                        <div class="bottom-line">
+                                                            <p>'. $desc .'
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                            </div>
                         </div>
-                    </div>
-                    </br></br>
-                ';
+                        </br></br>
+                    ';
+                }
             }
         ?>
         <br><br>

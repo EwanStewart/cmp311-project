@@ -18,12 +18,27 @@ function getGameTitle($param) {
     return $rows;
 }
 
+function getCredits() {
+    //get the total amount of credits
+    global $conn;
+    $sqlSelect = "SELECT credit FROM cmp311user WHERE email = ?";
+    $stmtSelect = $conn->prepare($sqlSelect);
+    $stmtSelect->bind_param("s", $_SESSION["email"]);
+    $stmtSelect->execute();
+    $result = $stmtSelect->get_result();
+    if ($result->num_rows > 0) { 
+        while($row = $result->fetch_assoc()) { 					
+            $rows[] = $row;
+        }
+    }
+    return $rows[0]["credit"];
 
+}
 
 function getAvaliableGames() {
     global $conn;
 
-    $sqlSelect = "SELECT * FROM gameKeys WHERE public = 1";							
+    $sqlSelect = "SELECT * FROM gameKeys WHERE public = 1 and purchasedBy IS NULL";							
     $stmtSelect = $conn->prepare($sqlSelect);
     $stmtSelect->execute();										
     $result = $stmtSelect->get_result();		
