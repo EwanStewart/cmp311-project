@@ -15,6 +15,7 @@
 		$sql = "SELECT basket.userID, basket.keyID, gameKeys.store, gameKeys.gameKey, steam.name, steam.appid FROM ((basket INNER JOIN gameKeys ON gameKeys.id = basket.keyID) INNER JOIN steam ON steam.appid = gameKeys.appID) WHERE basket.userID = " . $id;
 		//$sql = "SELECT * FROM basket WHERE userID = " . $id;
 		$result = mysqli_query($conn, $sql);
+		$rows = array();
 		while($r = mysqli_fetch_assoc($result)) {
     		$rows[] = $r;
 		}
@@ -74,6 +75,7 @@
 		$id = $_SESSION['uID'];
 		$sql = "SELECT keyTransactions.userID, keyTransactions.keyID, keyTransactions.dateOfPurchase, keyTransactions.cost, gameKeys.store, gameKeys.gameKey, steam.name, steam.appid FROM ((keyTransactions INNER JOIN gameKeys ON gameKeys.id = keyTransactions.keyID) INNER JOIN steam ON steam.appid = gameKeys.appID) WHERE keyTransactions.userID = " . $id;
 		$result = mysqli_query($conn, $sql);
+		$rows = array();
 		while($r = mysqli_fetch_assoc($result)) {
     		$rows[] = $r;
 		}
@@ -86,6 +88,7 @@
 		$id = $_SESSION['uID'];
 		$sql = "SELECT * FROM gameKeys WHERE gameKeys.userID = " . $id;
 		$result = mysqli_query($conn, $sql);
+		$rows = array();
 		while($r = mysqli_fetch_assoc($result)) {
     		$rows[] = $r;
 		}
@@ -227,148 +230,148 @@
 		header( "Content-type: text/xml");
         $data =         "<?xml version='1.0' encoding='UTF-8'?>";
 
-        $data = $data . "<rss version='2.0'>";
-        $data = $data . "<channel>";
+$data = $data . "<rss version='2.0'>";
+    $data = $data . "<channel>";
 
-		foreach($rows as $row){
-            $data = $data . "<item>";
+        foreach($rows as $row){
+        $data = $data . "<item>";
 
-            $data = $data . "<nid>"         . $row["announcementID"] . "</nid>";
-            $data = $data . "<title>"       . $row["title"] . "</title>";
+            $data = $data . "<nid>" . $row["announcementID"] . "</nid>";
+            $data = $data . "<title>" . $row["title"] . "</title>";
             $data = $data . "<description>" . $row["description"] . "</description>";
-            $data = $data . "<imageFile>"   . $row["imageFile"] . "</imageFile>";
+            $data = $data . "<imageFile>" . $row["imageFile"] . "</imageFile>";
 
             $data = $data . "</item>";
         }
 
         $data = $data . "</channel>";
-        $data = $data . "</rss>";
+    $data = $data . "</rss>";
 
-		//return RSS feed
-        return $data;
-	}
+//return RSS feed
+return $data;
+}
 
-	function getProfilePictureID(){
-		//	function to return ID of users profile picture
+function getProfilePictureID(){
+// function to return ID of users profile picture
 
-		//	establish connection to database
-		$conn = getDatabaseConnection();
+// establish connection to database
+$conn = getDatabaseConnection();
 
-		//	get user id
-		$userID = $_SESSION['uID'];
+// get user id
+$userID = $_SESSION['uID'];
 
-		//	get profile picture id
-		$sql = "SELECT profilePictureID FROM cmp311user WHERE id = $userID";
-		$result = mysqli_query($conn, $sql);
-		$data = mysqli_fetch_assoc($result);
+// get profile picture id
+$sql = "SELECT profilePictureID FROM cmp311user WHERE id = $userID";
+$result = mysqli_query($conn, $sql);
+$data = mysqli_fetch_assoc($result);
 
-		//	close conn
-		$conn->close();
+// close conn
+$conn->close();
 
-		//return profile picture ID
-        return $data["profilePictureID"];
-	}
+//return profile picture ID
+return $data["profilePictureID"];
+}
 
-	function getBio(){
-		//	function to return bio of user
+function getBio(){
+// function to return bio of user
 
-		//	establish connection to database
-		$conn = getDatabaseConnection();
+// establish connection to database
+$conn = getDatabaseConnection();
 
-		//	get user id
-		$userID = $_SESSION['uID'];
+// get user id
+$userID = $_SESSION['uID'];
 
-		//	get bio
-		$sql = "SELECT bio FROM cmp311user WHERE id = $userID";
-		$result = mysqli_query($conn, $sql);
-		$data = mysqli_fetch_assoc($result);
+// get bio
+$sql = "SELECT bio FROM cmp311user WHERE id = $userID";
+$result = mysqli_query($conn, $sql);
+$data = mysqli_fetch_assoc($result);
 
-		//	close conn
-		$conn->close();
+// close conn
+$conn->close();
 
-		//return bio
-        return $data["bio"];
-	}
+//return bio
+return $data["bio"];
+}
 
-	function getForename(){
-		//	function to return firstname of user
+function getForename(){
+// function to return firstname of user
 
-		//	establish connection to database
-		$conn = getDatabaseConnection();
+// establish connection to database
+$conn = getDatabaseConnection();
 
-		//	get user id
-		$userID = $_SESSION['uID'];
+// get user id
+$userID = $_SESSION['uID'];
 
-		//	get forename
-		$sql = "SELECT forename FROM cmp311user WHERE id = $userID";
-		$result = mysqli_query($conn, $sql);
-		$data = mysqli_fetch_assoc($result);
+// get forename
+$sql = "SELECT forename FROM cmp311user WHERE id = $userID";
+$result = mysqli_query($conn, $sql);
+$data = mysqli_fetch_assoc($result);
 
-		//	close conn
-		$conn->close();
+// close conn
+$conn->close();
 
-		//return forename
-        return $data["forename"];
-	}
+//return forename
+return $data["forename"];
+}
 
-	function getSurname(){
-		//	function to return surname of user
+function getSurname(){
+// function to return surname of user
 
-		//	establish connection to database
-		$conn = getDatabaseConnection();
+// establish connection to database
+$conn = getDatabaseConnection();
 
-		//	get user id
-		$userID = $_SESSION['uID'];
+// get user id
+$userID = $_SESSION['uID'];
 
-		//	get surname
-		$sql = "SELECT surname FROM cmp311user WHERE id = $userID";
-		$result = mysqli_query($conn, $sql);
-		$data = mysqli_fetch_assoc($result);
+// get surname
+$sql = "SELECT surname FROM cmp311user WHERE id = $userID";
+$result = mysqli_query($conn, $sql);
+$data = mysqli_fetch_assoc($result);
 
-		//	close conn
-		$conn->close();
+// close conn
+$conn->close();
 
-		//return forename
-        return $data["surname"];
-	}
+//return forename
+return $data["surname"];
+}
 
-	function getReferralCode(){
-		//function to get referral code of user
+function getReferralCode(){
+//function to get referral code of user
 
-		//	establish connection to database
-		$conn = getDatabaseConnection();
+// establish connection to database
+$conn = getDatabaseConnection();
 
-		//	get user id
-		$userID = $_SESSION['uID'];
+// get user id
+$userID = $_SESSION['uID'];
 
-		//	get referral code
-		$sql = "SELECT referralCode FROM cmp311user WHERE id = $userID";
-		$result = mysqli_query($conn, $sql);
-		$data = mysqli_fetch_assoc($result);
+// get referral code
+$sql = "SELECT referralCode FROM cmp311user WHERE id = $userID";
+$result = mysqli_query($conn, $sql);
+$data = mysqli_fetch_assoc($result);
 
-		if ($data["referralCode"] == NULL){
-			//	get email
-			$sql = "SELECT email FROM cmp311user WHERE id = $userID";
-			$result = mysqli_query($conn, $sql);
-			$dataEmail = mysqli_fetch_assoc($result);
-			$email = $dataEmail["email"];
+if ($data["referralCode"] == NULL){
+// get email
+$sql = "SELECT email FROM cmp311user WHERE id = $userID";
+$result = mysqli_query($conn, $sql);
+$dataEmail = mysqli_fetch_assoc($result);
+$email = $dataEmail["email"];
 
-			//	create unique referral code
-			$referralCode = hash("md5", $email);
+// create unique referral code
+$referralCode = hash("md5", $email);
 
-			//  insert referral code
-            $stmt = $conn->prepare("UPDATE `cmp311user` SET `referralCode` = ? WHERE `id` = ?");
-            $stmt->bind_param("si", $referralCode, $userID);
-            $stmt->execute();
-            $result = $stmt->get_result();
+// insert referral code
+$stmt = $conn->prepare("UPDATE `cmp311user` SET `referralCode` = ? WHERE `id` = ?");
+$stmt->bind_param("si", $referralCode, $userID);
+$stmt->execute();
+$result = $stmt->get_result();
 
-			//	return referral code
-			return $referralCode;
-		}else{
-			//	return referral code
-			return $data["referralCode"];
-		}
-	}
+// return referral code
+return $referralCode;
+}else{
+// return referral code
+return $data["referralCode"];
+}
+}
 
 
 
