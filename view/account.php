@@ -219,9 +219,7 @@
 
                 <div class="rounded-circle img-thumbnail accountPage-image__container">
                     <?php
-
-                        $profilePictureID = getProfilePictureID();
-
+                    $profilePictureID = getProfilePictureID();
                     switch($profilePictureID){
                         case 0:
                             echo'<img class="accountPage-image__img center-in-parent" src="../image/blank.png">';
