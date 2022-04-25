@@ -49,7 +49,6 @@
 
 						$cached = checkedGameCached($history[$i]["appid"])[0];
 						$img = $cached["img"];
-						var_dump($history);
 						echo '
 							<div class="row my-2">
 								<div class="col-4">
