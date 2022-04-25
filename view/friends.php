@@ -308,10 +308,12 @@
                         } else if (data.status == 'requested') {
                             $('#info').text("Requested");
                             $('#info').css("display", "block");
+                            $('#addBttn').css("display", "none");
                             $('.informative').slideDown();
                         } else if (data.status == 'friends') {
                             $('#info').text("Friends");
                             $('#info').css("display", "block");
+                            $('#addBttn').css("display", "none");
                             $('.informative').slideDown();
                         } else {
                             $('.user-content').slideUp();
