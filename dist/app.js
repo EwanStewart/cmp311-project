@@ -1,6 +1,5 @@
 "use strict";
 
-//import * as mdc from "material-components-web"
 $(document).ready(function () {
   var buttons = document.querySelectorAll('.mdc-button, .mdc-fab');
 
@@ -15,12 +14,22 @@ $(document).ready(function () {
   for (var i = 0, textField; textField = textFields[i]; i++) {
     var _ = new mdc.textField.MDCTextField(textField);
   }
+
+  var carousel = new bootstrap.Carousel(document.querySelector("#topGamesCarousel"), {
+    interval: 8000,
+    wrap: true
+  });
 });
 $(document).scroll(function () {
   document.getElementById("loginPopup").classList.remove("displayPopup");
+  document.getElementById("accountPopup").classList.remove("displayPopup");
 });
 
 function showLoginBox(e) {
   document.getElementById("loginPopup").classList.toggle("displayPopup");
+}
+
+function showAccountBox(e) {
+  document.getElementById("accountPopup").classList.toggle("displayPopup");
 }
 //# sourceMappingURL=app.js.map

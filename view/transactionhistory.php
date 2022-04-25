@@ -33,51 +33,49 @@
 	<div>
 	<div class="container mdc-top-app-bar--prominent-fixed-adjust">
 				
-			<?php
-				
-				$history = getUserTransactions();
+		<?php
+			
+			$history = getUserTransactions();
 
-				if (sizeof($history) < 1){
-                    echo '
-                    <div class="card container justify-content-center p-4">
-                        <h2 class="card-title text-center">You haven\'t purchased any items yet. Why not have a look around the store? .</h2>
-                    </div>
-                    ';				
-				}else{
-					echo '<div class="card container justify-content-center p-4 my-2">';
-					for ($i=0;$i<sizeof($history);$i++){
+			if (sizeof($history) < 1){
+				echo '
+				<div class="card container justify-content-center p-4">
+					<h2 class="card-title text-center">You haven\'t purchased any items yet. Why not have a look around the store? .</h2>
+				</div>
+				';				
+			}else{
+				echo '<div class="card container justify-content-center p-4 my-2">';
+				for ($i=0;$i<sizeof($history);$i++){
 
-						$cached = checkedGameCached($history[$i]["appid"])[0];
-						$img = $cached["img"];
-						echo '
-							<div class="row my-2">
-								<div class="col-4">
-									<div><img class="shadow-sm w-75 rounded" src="'. $img .'"/></div>
-								</div>
-								<div class="col-8">
-									<div class="row">
-										<div class="col-8">
-											<h2 class="font-weight-bold">'. $history[$i]["name"] .'</h2>
-										</div>
-										<div class="col-4 text-center">
-											<h4>Price Paid: '. $history[$i]["cost"] .' Credits</h4>
-											<br>						
-											<a href="../view/feedback.php?key_id='.$history[$i]["keyID"].'">
-												<button class="btn btn-secondary btn-sm">Leave Feedback/Report a problem?</button>
-											</a>
-										</div>
-										<div class="col">
-											<h4>Key: '. $history[$i]["gameKey"] .'</h4>
-										</div>
+					$cached = checkedGameCached($history[$i]["appid"])[0];
+					$img = $cached["img"];
+					echo '
+						<div class="row my-2">
+							<div class="col-4">
+								<div><img class="shadow-sm w-75 rounded" src="'. $img .'"/></div>
+							</div>
+							<div class="col-8">
+								<div class="row">
+									<div class="col-8">
+										<h2 class="font-weight-bold">'. $history[$i]["name"] .'</h2>
 									</div>
+									<div class="col-4 text-center">
+										<h4>Price Paid: '. $history[$i]["cost"] .' Credits</h4>
+										<br>						
+										<a href="../view/feedback.php?key_id='.$history[$i]["keyID"].'">
+											<button class="btn btn-secondary btn-sm">Leave Feedback/Report a problem?</button>
+										</a>
+									</div>
+									<div class="col">
+										<h4>Key: '. $history[$i]["gameKey"] .'</h4>
 									</div>
 								</div>
 							</div>
-						';
-					}
+						</div>
+					';
 				}
-			?>
-		</div>
+			}
+		?>
 	</div>
 
 </body>

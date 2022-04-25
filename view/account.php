@@ -1,10 +1,11 @@
 <?php
-    include('header.php');
-    include_once('../model/api-store.php');
 
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
+
+    include('header.php');
+    include_once('../model/api-store.php');
 ?>
 <script>
     $(document).ready(function() {
@@ -216,53 +217,53 @@
             </div>
             <div class="row text-center">
 
-                <?php
-
+                <div class="rounded-circle img-thumbnail accountPage-image__container">
+                    <?php
                     $profilePictureID = getProfilePictureID();
-
                     switch($profilePictureID){
                         case 0:
-                            echo'<img class="rounded-circle" width="150px" src="../image/blank.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/blank.png">';
                             break;
                 
                         case 1:
-                            echo'<img class="rounded-circle" width="150px" src="../image/witcher3.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/witcher3.png">';
                             break;
                 
                         case 2:
-                            echo'<img class="rounded-circle" width="150px" src="../image/gta5trevor.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/gta5trevor.png">';
                             break;
                 
                         case 3:
-                            echo'<img class="rounded-circle" width="150px" src="../image/owgenji.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/owgenji.png">';
                             break;
 
                         case 4:
-                            echo'<img class="rounded-circle" width="150px" src="../image/mario.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/mario.png">';
                             break;
 
                         case 5:
-                            echo'<img class="rounded-circle" width="150px" src="../image/pokeball.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/pokeball.png">';
                             break;
 
                         case 6:
-                            echo'<img class="rounded-circle" width="150px" src="../image/falloutboy.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/falloutboy.png">';
                             break;
 
                         case 7:
-                            echo'<img class="rounded-circle" width="150px" src="../image/skyrim.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/skyrim.png">';
                             break;
 
                         case 8:
-                            echo'<img class="rounded-circle" width="150px" src="../image/zombie.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/zombie.png">';
                             break;
 
                         default:
-                            echo'<img class="rounded-circle" width="150px" src="../image/blank.png">';
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/blank.png">';
                             break;
                     }
 
-                ?>
+                    ?>
+                </div>
 
 
                 

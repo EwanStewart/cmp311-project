@@ -36,6 +36,17 @@
 			// Make note of transaction in log
 			$sql = "INSERT INTO keyTransactions (userID, keyID, cost) VALUES ($id, $keyid, $cost)";
 			$result = mysqli_query($conn, $sql);
+			// Give credits to users who submitted keys
+			$sql = "SELECT cmp311user.credit, cmp311user.id FROM cmp311user JOIN gameKeys ON gameKeys.userID = cmp311user.id AND gameKeys.id = $keyid";
+			$result = mysqli_query($conn, $sql);
+			while($r = mysqli_fetch_assoc($result)) {
+				$row = $r;
+			}
+			$credit = $row["credit"];
+			$crID = $row["id"];
+			$finalvalue = ($crID + $cost);	
+			$sql = "UPDATE cmp311user SET credit = $finalvalue WHERE id = $crID";	
+			$result = mysqli_query($conn, $sql);	
 		}
 		// Empty basket
 		$sql = "DELETE FROM basket WHERE userID = $id";
