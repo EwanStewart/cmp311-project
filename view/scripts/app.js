@@ -1,4 +1,3 @@
-//import * as mdc from "material-components-web"
 $(document).ready(function () {
     var buttons = document.querySelectorAll('.mdc-button, .mdc-fab');
     for (var i = 0, button; button = buttons[i]; i++) {
@@ -10,6 +9,11 @@ $(document).ready(function () {
     for (var i = 0, textField; textField = textFields[i]; i++) {
         var _ = new mdc.textField.MDCTextField(textField);
     }
+
+    let carousel = new bootstrap.Carousel(document.querySelector("#topGamesCarousel"), {
+        interval: 8000,
+        wrap: true
+    });
 });
 
 $(document).scroll(function () {

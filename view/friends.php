@@ -39,8 +39,6 @@
     <div class="container mdc-top-app-bar--prominent-fixed-adjust">
     </div>
     <div class="friends_container">
-
-
         <h3>Friends</h3>
         <input type="text" id="email" placeholder="Enter email" />
         <input type="button" id="getUser" value="Search" />

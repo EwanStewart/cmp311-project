@@ -23,8 +23,6 @@
 @use "../../node_modules/@material/drawer";
 @use "../../node_modules/@material/list";
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
-
 @import "../../node_modules/@material/button";
 @import "../../node_modules/@material/button/mdc-button";
 @import "../../node_modules/@material/button/styles";
@@ -34,6 +32,7 @@
 @import "../../node_modules/@material/tab-scroller/mdc-tab-scroller";
 @import "../../node_modules/@material/tab-indicator/mdc-tab-indicator";
 @import "../../node_modules/@material/tab/mdc-tab";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 @include textfield.core-styles;
 
@@ -146,6 +145,41 @@
   margin-left: 8px;
 }
 
+.margin-all-2{
+  margin: 2px;
+}
+
+.margin-all-4{
+  margin: 4px;
+}
+
+.margin-all-8{
+  margin: 8px;
+}
+
+.home-store-item-card{
+  @include card.core-styles();
+  display: flex;
+  flex-direction: row;
+}
+
+.accountPage-image__container{
+  min-width: 150px;
+  width: 100%;
+  max-height: 150px;
+  height: 100%;
+  position:relative;
+  overflow:hidden;
+  padding-bottom:100%;
+  text-align: center;
+}
+
+.accountPage-image__img{
+  left: 0;
+  horiz-align: center;
+  position: absolute;
+  height: 100%;
+}
 
 
 //-------------------------
@@ -155,6 +189,11 @@
   margin-top: 100px;
   padding: 10px 5px;
   background-color: white;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
 
 .plan-header {
@@ -273,6 +312,10 @@
   border: 1px solid #ccc;
   border-top: none;
 }
+
+
+
+
 
 
 
