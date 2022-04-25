@@ -1,13 +1,15 @@
 <?php
-    session_start();
-	include("../model/api-store.php");
-	include("../model/getGames.php");
+	include_once("../model/api-store.php");
+	include_once("../model/getGames.php");
 
 	// Message code is set to be used later
     // Zero means default message
     $msgType = 0;
-    $code = $_GET['msg'];  
-    $msgType += $code;
+	if (isset($_GET['msg'])){
+		$code = $_GET['msg'];
+		$msgType += $code;
+	}
+
 ?>
 <!DOCTYPE html>
 <head>

@@ -12,6 +12,13 @@
 ?>
 
 <div>
+    <?php
+        if(isset($_GET['feedback'])){
+            if($_GET['feedback'] == 'success'){
+                ?><script>alert("Thank you for your feedback, a moderator will be in touch if required!"); </script><?php
+            }
+        }
+    ?>
     <script>
     $(function() {
 
@@ -85,9 +92,13 @@
         }
 
         ?>
+
+
         <h3>
             <strong> New Listings </strong>
         </h3>
+
+
         <div class="row">
             <div id="topGamesCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -116,9 +127,6 @@
                 </button>
             </div>
         </div>
-
-        
-
         <br />
         <br />
         <div class="title">
@@ -127,6 +135,7 @@
                 </br></br>
             </h3>
         </div>
+
         <?php
             $duplicates = array();
             for ($i=0;$i<count($data);$i++){
@@ -174,7 +183,7 @@
                     $img = $cached["img"];
                     $price = $cached["price"];
                     $desc = $cached["s_desc"];
-    
+
                     echo '
                         <div class="mdc-card margin-all-8">
                             <div class="container">

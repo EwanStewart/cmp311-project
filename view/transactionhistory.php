@@ -4,8 +4,8 @@
 	error_reporting(E_ALL);
 
     //session_start();
-	include("../model/api-store.php");
-	include("../model/getGames.php");
+	include_once("../model/api-store.php");
+	include_once("../model/getGames.php");
 
 	// Message code is set to be used later
     // Zero means default message
@@ -49,7 +49,6 @@
 
 						$cached = checkedGameCached($history[$i]["appid"])[0];
 						$img = $cached["img"];
-
 						echo '
 							<div class="row my-2">
 								<div class="col-4">
@@ -62,10 +61,15 @@
 										</div>
 										<div class="col-4 text-center">
 											<h4>Price Paid: '. $history[$i]["cost"] .' Credits</h4>
+											<br>						
+											<a href="../view/feedback.php?key_id='.$history[$i]["keyID"].'">
+												<button class="btn btn-secondary btn-sm">Leave Feedback/Report a problem?</button>
+											</a>
 										</div>
 										<div class="col">
 											<h4>Key: '. $history[$i]["gameKey"] .'</h4>
 										</div>
+									</div>
 									</div>
 								</div>
 							</div>

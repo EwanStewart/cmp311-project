@@ -3,10 +3,9 @@
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
+
     include('header.php');
     include_once('../model/api-store.php');
-
-    session_start();
 ?>
 <script>
     $(document).ready(function() {
@@ -144,9 +143,6 @@
 
         //  controls save changes button
         $('#save').click(function() {
-            alert($("textarea[name='forename']").val());
-            alert($("textarea[name='surname']").val());
-            alert($("textarea[name='bio']").val());
 
             $.ajax({
                 type: "POST",
@@ -157,7 +153,6 @@
                     bio: $("textarea[name='bio']").val()
                 },
                 success: function(text) {
-                    alert(text);
 					window.location.reload()
                 }
             });
@@ -227,47 +222,47 @@
 
                         $profilePictureID = getProfilePictureID();
 
-                        switch($profilePictureID){
-                            case 0:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/blank.png">';
-                                break;
+                    switch($profilePictureID){
+                        case 0:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/blank.png">';
+                            break;
+                
+                        case 1:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/witcher3.png">';
+                            break;
+                
+                        case 2:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/gta5trevor.png">';
+                            break;
+                
+                        case 3:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/owgenji.png">';
+                            break;
 
-                            case 1:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/witcher3.png">';
-                                break;
+                        case 4:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/mario.png">';
+                            break;
 
-                            case 2:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/gta5trevor.png">';
-                                break;
+                        case 5:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/pokeball.png">';
+                            break;
 
-                            case 3:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/owgenji.png">';
-                                break;
+                        case 6:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/falloutboy.png">';
+                            break;
 
-                            case 4:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/mario.png">';
-                                break;
+                        case 7:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/skyrim.png">';
+                            break;
 
-                            case 5:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/pokeball.png">';
-                                break;
+                        case 8:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/zombie.png">';
+                            break;
 
-                            case 6:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/falloutboy.png">';
-                                break;
-
-                            case 7:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/skyrim.png">';
-                                break;
-
-                            case 8:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/zombie.png">';
-                                break;
-
-                            default:
-                                echo'<img class="accountPage-image__img center-in-parent" src="../image/blank.png">';
-                                break;
-                        }
+                        default:
+                            echo'<img class="accountPage-image__img center-in-parent" src="../image/blank.png">';
+                            break;
+                    }
 
                     ?>
                 </div>
