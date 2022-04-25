@@ -4,17 +4,22 @@ $rating = $_POST['rating'];
 $moderator = $_POST['moderator'];
 $email = $_POST['email'];
 $user_id = $_POST['user_id'];
-$transaction_id = $_POST['transaction_id'];
+$key_id = $_POST['key_id'];
 
 //insert into feedback table prepared statement
-$sql = "INSERT INTO feedback (feedback, rating, moderator, email, user_id, transaction_id) VALUES (?, ?, ?, ?, ?, ?)";
-$stmt = mysqli_stmt_init($conn);
-if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../publishedGameKeys.php?status=failure");
+
+require_once("../controller/connection.php");
+$conn = getDatabaseConnection();
+
+$sql = "INSERT INTO feedback (feedback_desc, rating, contactMod, sendingUserID, key_id, email) VALUES (?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sisiis", $feedback, $rating, $moderator, $user_id, $key_id, $email);
+//if sql execution is successful, redirect to index.php
+if($stmt->execute()){
+    header("Location: ../view/index.php?feedback=success");
 } else {
-    mysqli_stmt_bind_param($stmt, "sissis", $feedback, $rating, $moderator, $email, $user_id, $transaction_id);
-    mysqli_stmt_execute($stmt);
-    header("Location: ../publishedGameKeys.php?status=success");
+    header("Location: ../view/index.php?feedback=failure");
 }
+
 
 ?>

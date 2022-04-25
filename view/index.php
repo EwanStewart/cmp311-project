@@ -18,7 +18,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <?php
+        if(isset($_GET['feedback'])){
+            if($_GET['feedback'] == 'success'){
+                ?><script>alert("Thank you for your feedback, a moderator will be in touch if required!"); </script><?php
+            }
+        }
+    ?>
+
     <script>
+
     $(function() {
 
         $("[data-shopButton]").click(function() {

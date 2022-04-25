@@ -53,7 +53,7 @@
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                 </div>
                 <input type="hidden" name="user_id" value="<?php echo $_SESSION['uID']; ?>">
-                <input type="hidden" name="transaction_id" value="<?php echo $transaction_id; ?>">
+                <input type="hidden" name="key_id" value="<?php echo $_GET['key_id']; ?>">
 
                 
                 <button type="submit" class="btn btn-primary">Submit</button>
