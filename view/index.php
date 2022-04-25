@@ -12,12 +12,6 @@
 ?>
 
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <script>
     $(function() {
 
@@ -91,31 +85,35 @@
         }
 
         ?>
-
-
         <h3>
             <strong> New Listings </strong>
         </h3>
-
-
         <div class="row">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>   
+            <div id="topGamesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#topGamesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#topGamesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#topGamesCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <?php echo "<a href='listing.php?appid=".$a[0][0]['appid']."'> <img class='img-fluid' style='width:100%;' src=".$a[0][0]['img']."></a>";?>
+                    <div class="carousel-item active">
+                        <?php echo "<a href='listing.php?appid=".$a[0][0]['appid']."'> <img class='d-block w-100' src=".$a[0][0]['img']."></a>";?>
                     </div>
-                    <div class="item">
-                    <?php echo "<a href='listing.php?appid=".$a[1][0]['appid']."'> <img class='img-fluid' style='width:100%;' src=".$a[1][0]['img']."></a>";?>
+                    <div class="carousel-item">
+                        <?php echo "<a href='listing.php?appid=".$a[1][0]['appid']."'> <img class='d-block w-100' src=".$a[1][0]['img']."></a>";?>
                     </div>
-                    <div class="item">
-                    <?php echo "<a href='listing.php?appid=".$a[2][0]['appid']."'> <img class='img-fluid' style='width:100%;' src=".$a[2][0]['img']."></a>";?>
+                    <div class="carousel-item">
+                        <?php echo "<a href='listing.php?appid=".$a[2][0]['appid']."'> <img class='d-block w-100' src=".$a[2][0]['img']."></a>";?>
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#topGamesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#topGamesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
 
@@ -129,7 +127,6 @@
                 </br></br>
             </h3>
         </div>
-
         <?php
             $duplicates = array();
             for ($i=0;$i<count($data);$i++){
@@ -179,47 +176,35 @@
                     $desc = $cached["s_desc"];
     
                     echo '
-                        <div class="card">
-                            <div class="card-wrapper">
-                                <div class="row align-items-center">
+                        <div class="mdc-card margin-all-8">
+                            <div class="container">
+                                <div class="row margin-all-2 align-items-center">
                                     <div class="col-12 col-md-3">
-                                        <!--<div class="image-wrapper">
-                                            <img src="'.$img.'" class="img-fluid" title="">
-                                        </div>-->
-                                        <div class="text-center">
-                                            <img class="shadow-sm w-75 rounded" src="'. $img .'"/>
+                                        <div class="margin-all-2">
+                                            <img class="w-100 rounded" src="'. $img .'"/>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <div class="card-box">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="top-line">
-                                                        <h4 class="card-title"><strong>'.$title.'</strong></h4>
-                                                        <p class="cost">
-                                                            '.$price.' Credits
-                                                        </p>
-                                                        <p> 															
-                                                            <input type="submit" name="submit" data-shopbutton="true" data-gameid="'.$gameid.'" value="Add to Basket">
-                                                        </p>
-                                                    </div>
+                                        <div class="margin-all-2">
+                                            <div>
+                                                <h5 class="mdc-typography--headline5">'.$title.'</h5>
+                                                <h6 class="mdc-typography--headline6">'.$price.' Credits</h6>
+                                                <div class="mdc-touch-target-wrapper">
+                                                    <button class="mdc-button mdc-button--outlined mdc-button--touch" type="submit" name="submit" data-shopbutton="true" data-gameid="'.$gameid.'" value="Add to Basket">
+                                                        <span class="mdc-button__ripple"></span>
+                                                        <span class="mdc-button__touch"></span>
+                                                        <span class="mdc-button__label">Add to Basket</span>
+                                                    </button>
                                                 </div>
-                                                </div>
-                                                <div class="row align-items-center">
-                                                    <div class="col-12">
-                                                        <div class="bottom-line">
-                                                            <p>'. $desc .'
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <p class="mdc-typography">
+                                                    '. $desc .'
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </div>
-                        </div>
-                        </br></br>
-                    ';
+                        </div>';
                 }
             }
         ?>
