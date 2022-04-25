@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    // ini_set('display_errors', 1);
-    // ini_set('display_startup_errors', 1);
-    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     include("../model/api-store.php") ;
     $conn = getDatabaseConnection();
@@ -28,6 +28,7 @@
         //Transaction ID string is created by incrementing number of existing transactions by one
         //and filling the rest with zeros to bring it to 8 characters
         $tID = numberOfTransactions();
+        $tID++;
         $transactionStr = (string)$tID;
         while (strlen($transactionStr) < 8){
             $transactionStr = "0" . $transactionStr;
@@ -41,31 +42,53 @@
         $request = json_encode($data) ;
         
         //Interacts with AberPay API
-        $url = "https://driesh.abertay.ac.uk/~g510572/aberpay/" ;
-        $ch = curl_init() ;
+        $url = "https://driesh.abertay.ac.uk/~g510572/aberpay/";
+        $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json', 
-        'Content-Length: ' . strlen($request)) );  
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen($request)) );
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,  2);
+
         $response = curl_exec($ch);
+
+        //decode response
+        $item = json_decode($response, JSON_INVALID_UTF8_IGNORE);
+
+        var_dump($item);
+
+        //extract values from response
+        $status = $item["status"];
+        //$error = $item["error"];
+        //$errortxt = $item["errortxt"];
+        //$transaction = $item["transaction"];
         
         //If the API returns a successful transaction
-        if (strstr($response, '{"status":1,')){
+        if ($status == 1){
             
             //The transaction ID, user ID, and price paid are stored in the DB
-            $sql = "INSERT INTO `subTransactions`(`id`,`userID`, `cost`) VALUES ('".$transactionStr."', '".$id."', '".$price."' )";
-            $result = mysqli_query($conn, $sql);
+            //$sql = "INSERT INTO `subTransactions`(`id`,`userID`, `cost`) VALUES ('".$transactionStr."', '".$id."', '".$price."' )";
+            //$result = mysqli_query($conn, $sql);
+
+            $stmt = $conn->prepare("INSERT INTO `subTransactions` (`id`, `userID`, `cost`) VALUES (?, ?, ?)");
+            $stmt->bind_param("sid", $transactionStr, $id, $price);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
             var_dump($result);
 
             //'".$transactionStr.",".$id.", ".$price."'
             //Success Message is shown to user
+
             header('Location: ../view/account.php');
 
         }else{
             //Error message is shown to user
+
             header('Location: ../view/details?error=2');
         }
     }
