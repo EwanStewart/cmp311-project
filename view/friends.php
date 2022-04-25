@@ -39,8 +39,6 @@
     <div class="container mdc-top-app-bar--prominent-fixed-adjust">
     </div>
     <div class="friends_container">
-
-
         <h3>Friends</h3>
         <input type="text" id="email" placeholder="Enter email" />
         <input type="button" id="getUser" value="Search" />
@@ -48,9 +46,10 @@
             <p>Name: <span id="userName"></span></p>
             <p>Email: <span id="userEmail"></span></p>
             <p>Register Date: <span id="userCreated"></span></p>
-            <button id="addBttn" class="btn btn-primary" style="display: none;">Add friend</button>
+
             <p id="status" style="display: none;"></p>
         </div>
+        <button id="addBttn" class="btn btn-primary" style="display: none;">Add friend</button>
         <div class="informative" style="display: none;">
             <p>Friend status: <span id="info"></span></p>
         </div>
@@ -185,13 +184,25 @@
         </div>
     </div>
     <!-- GROUP CHAT BUTTON -->
-    <div class="col-md-2 col-sm-3">
+    <div class="group-button">
         <input type="hidden" id="is_active_group_chat_window" value="no" />
         <button type="button" name="group_chat" id="group_chat" class="btn btn-warning btn-xs">Group
             Chat</button>
     </div>
 
     <style>
+    .group-button {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tab {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
     .chat_message_area {
         position: relative;
         width: 100%;
@@ -239,8 +250,11 @@
         justify-content: center;
         align-items: center;
     }
-    </style>
 
+    #addBttn {
+        display: inline;
+    }
+    </style>
     <div id="group_chat_dialog" title="Group Chat Window">
         <div id="group_chat_history"
             style="height:400px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;">
@@ -265,7 +279,8 @@
         </div>
     </div>
 
-    <div id="user_model_details"></div>
+    <div id="user_model_details">
+    </div>
 
     <body>
 
@@ -286,9 +301,9 @@
                             $('#userEmail').text(data.result.email);
                             $('#userCreated').text(data.result.created);
                             $('.user-content').slideDown();
-                            $('#addBttn').css("display", "block");
+                            $('#addBttn').css("display", "inline");
                         } else if (data.status == null) {
-                            $('#addBttn').css("display", "block");
+                            $('#addBttn').css("display", "inline");
                             $('#status').css("display", "none");
                         } else if (data.status == 'requested') {
                             $('#info').text("Requested");
@@ -300,6 +315,7 @@
                             $('.informative').slideDown();
                         } else {
                             $('.user-content').slideUp();
+                            $('#addBttn').css("display", "none");
                             alert("User not found.");
                         }
                     }
