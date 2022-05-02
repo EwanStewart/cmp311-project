@@ -50,6 +50,8 @@
         document.getElementById("log").click();
     } else if (pop == 3) {
         alert("Please log in to contribute");
+    } else if (pop == 4) {
+        alert("Please subscribe to access this feature");
     }
     </script>
     <div class="container mdc-top-app-bar--prominent-fixed-adjust">

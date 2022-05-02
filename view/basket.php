@@ -1,6 +1,20 @@
 <?php
-	include_once("../model/api-store.php");
-	include_once("../model/getGames.php");
+	require_once('header.php');
+	require_once("../model/api-store.php");
+	require_once("../model/getGames.php");
+
+	if(!isset($_SESSION['uID'])) {
+		header("Location: ../view/index.php?pop=3");
+    }
+
+    $sub = checkValidSubscription();
+    if($sub == 0) {
+        ?>
+        <script>
+            window.location.href = "../view/index.php?pop=4";
+        </script>
+        <?php
+    }
 
 	// Message code is set to be used later
     // Zero means default message
@@ -23,9 +37,6 @@
 </head>
 
 <body>
-	<?php
-		include('header.php');
-	?>
 
 	<div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
