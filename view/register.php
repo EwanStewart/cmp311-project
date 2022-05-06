@@ -1,23 +1,17 @@
-<?php include('header.php');
-    session_start();
-    ?>
+<?php
+ include('header.php');
+
+?>
+
 <div class="container mdc-top-app-bar--prominent-fixed-adjust d-flex justify-content-center">
     <div class="align-content-center">
         <h4 class="mdc-typography--headline4">Create your Account</h4>
         <div class="vstack gap-2">
-            <h6 class="text-danger">This design isn't final, but it's close enough to what I want</h6>
-            <h6 class="text-danger">TODO: Slight cleanup before this is submitted</h6>
             <form class="vstack gap-2" action="../model/signup.php" method="post">
                 <label class="mdc-text-field mdc-text-field--filled">
                     <span class="mdc-text-field__ripple"></span>
                     <span class="mdc-floating-label" id="email_label">Email</span>
                     <input class="mdc-text-field__input" type="email" name="email" required="required" id="email" aria-labelledby="email_label">
-                    <span class="mdc-line-ripple"></span>
-                </label>
-                <label class="mdc-text-field mdc-text-field--filled">
-                    <span class="mdc-text-field__ripple"></span>
-                    <span class="mdc-floating-label" id="username_label">Username</span>
-                    <input class="mdc-text-field__input" type="text" name="username" required="required" id="username" aria-labelledby="username_label">
                     <span class="mdc-line-ripple"></span>
                 </label>
                 <br/>
@@ -44,7 +38,7 @@
                     </button>
                     <button type="submit" class="mdc-button mdc-button--raised mdc-button--icon-trailing">
                         <span class="mdc-button__ripple"></span>
-                        <span class="mdc-button__label">Next</span>
+                        <span class="mdc-button__label">Submit</span>
                         <span class="mdc-button--icon-trailing material-icons">
                     navigate_next
                 </span>
