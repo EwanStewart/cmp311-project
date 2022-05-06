@@ -2,10 +2,6 @@
     require_once('header.php');
     require_once('../model/getGames.php');
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     $data = getAvaliableGames();
     $carouselData = getNewGames();
     
