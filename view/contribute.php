@@ -1,15 +1,22 @@
 <?php
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);
     require_once('header.php');
-    
+    require_once('../model/api-store.php');
+
     if(!isset($_SESSION['uID'])) {
 		?>
 		<script>
             window.location.href = "../view/index.php?pop=3";
 		</script>
 		<?php
+    }
+    
+    $sub = checkValidSubscription();
+    if($sub == 0) {
+        ?>
+        <script>
+            window.location.href = "../view/index.php?pop=4";
+        </script>
+        <?php
     }
 ?>
 

@@ -7,10 +7,11 @@
 
 	$id = $_SESSION['uID'];
 
+	require_once('../model/api-store.php');
+
 	include_once("../controller/connection.php");
 	$conn = getDatabaseConnection();
 
-	include_once("../model/api-store.php");
 	$totalCost = totalBasketCost();
 
 	$sql = "SELECT credit FROM cmp311user WHERE id = $id LIMIT 1";
