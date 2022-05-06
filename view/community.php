@@ -13,7 +13,7 @@
                     $conn = getDatabaseConnection();
 
                     //  get users by referrals
-                    $stmt = $conn->prepare("SELECT * FROM `cmp311user` ORDER BY `referrals` DESC");
+                    $stmt = $conn->prepare("SELECT * FROM `cmp311user` WHERE `referrals` > 0 ORDER BY `referrals` DESC");
                     $stmt->execute();
                     $result = $stmt->get_result();
 
