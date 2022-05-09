@@ -69,6 +69,11 @@
   background: #f3f3f3;
 }
 
+.nav-bar-modal-accountContainer{
+  margin: 8px;
+  padding: 8px;
+}
+
 .top-app-bar-accountPopup{
   @include card.core-styles();
   @include shape-radius(8px, false);

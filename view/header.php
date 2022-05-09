@@ -29,58 +29,105 @@ session_start();
 </head>
 
 <body>
-    <nav class="mdc-top-app-bar mdc-top-app-bar--prominent">
-        <section class="d-flex container-fluid flex-row">
-            <div class="d-flex float-start">
-                <a href="index.php" class="d-flex flex-row align-items-center justify-content-center text-decoration-none">
-                    <img class="brand_icon" src="../image/TPCG_logo_no_text.png" />
-                    <H2 class="h2 text-decoration-none text-black">TPCG</H2>
+<aside class="mdc-drawer mdc-drawer--modal">
+    <div class="mdc-drawer__header">
+
+        <?php
+            if(isset($_SESSION['email'])){
+                include("segments/modal_loggedIn.php");
+            }
+        ?>
+        <?php
+            if(!isset($_SESSION['email'])){
+                include("segments/modal_loggedOut.php");
+            }
+        ?>
+
+    </div>
+    <div class="mdc-drawer__content">
+        <nav class="mdc-list">
+            <a class="mdc-list-item mdc-list-item--activated" href="index.php" aria-current="page">
+                <span class="mdc-list-item__ripple"></span>
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">store</i>
+                <span class="mdc-list-item__text">Store</span>
+            </a>
+            <a class="mdc-list-item" href="contribute.php">
+                <span class="mdc-list-item__ripple"></span>
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">publish</i>
+                <span class="mdc-list-item__text">Contribute</span>
+            </a>
+            <a class="mdc-list-item" href="community.php">
+                <span class="mdc-list-item__ripple"></span>
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">forum</i>
+                <span class="mdc-list-item__text">Community</span>
+            </a>
+            <a class="mdc-list-item" href="about.php">
+                <span class="mdc-list-item__ripple"></span>
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">info</i>
+                <span class="mdc-list-item__text">About</span>
+            </a>
+            <a class="mdc-list-item" href="announcements.php">
+                <span class="mdc-list-item__ripple"></span>
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">campaign</i>
+                <span class="mdc-list-item__text">Announcements</span>
+            </a>
+        </nav>
+    </div>
+</aside>
+
+<div class="mdc-drawer-scrim"></div>
+<nav class="mdc-top-app-bar mdc-top-app-bar--prominent">
+    <section class="d-flex container-fluid flex-row">
+        <div class="d-flex float-start">
+            <a href="index.php" class="d-flex flex-row align-items-center justify-content-center text-decoration-none">
+                <img class="brand_icon" src="../image/TPCG_logo_no_text.png" />
+                <H2 class="h2 text-decoration-none text-black">TPCG</H2>
+            </a>
+            <div class="d-flex flex-row justify-content-center align-items-center margin-left-8">
+                <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="index.php">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">Store</span>
                 </a>
-                <div class="d-flex flex-row justify-content-center align-items-center margin-left-8">
-                    <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="index.php">
-                        <span class="mdc-button__ripple"></span>
-                        <span class="mdc-button__label">Store</span>
-                    </a>
-                    <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="contribute.php">
-                        <span class="mdc-button__ripple"></span>
-                        <span class="mdc-button__label">Contribute</span>
-                    </a>
-                    <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="community.php">
-                        <span class="mdc-button__ripple"></span>
-                        <span class="mdc-button__label">Community</span>
-                    </a>
-                    <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="about.php">
-                        <span class="mdc-button__ripple"></span>
-                        <span class="mdc-button__label">About</span>
-                    </a>
-                    <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="announcements.php">
-                        <span class="mdc-button__ripple"></span>
-                        <span class="mdc-button__label">Announcements</span>
-                    </a>
-                </div>
+                <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="contribute.php">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">Contribute</span>
+                </a>
+                <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="community.php">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">Community</span>
+                </a>
+                <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="about.php">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">About</span>
+                </a>
+                <a class="top-app-bar-mainLink mdc-button top-app-bar-button" href="announcements.php">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">Announcements</span>
+                </a>
             </div>
-            <div class="d-flex float-end ms-auto">
-                <div class="d-flex flex-row justify-content-center align-items-center">
-                    <div class="d-flex flex-row justify-content-center align-items-center margin-left-8">
-                        <div>
-                            <?php
+        </div>
+        <div class="d-flex float-end ms-auto">
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <div class="d-flex flex-row justify-content-center align-items-center margin-left-8">
+                    <div>
+                        <?php
                             if(isset($_SESSION['email'])){
                                 include('segments/navbar_loggedIn.php');
                             }
-                            ?>
-                        </div>
-                        <?php
+                        ?>
+                    </div>
+                    <?php
                         if(!isset($_SESSION['email'])){
                             include('segments/navbar_loggedOut.php');
                         }
-                        ?>
-                    </div>
+                    ?>
                 </div>
             </div>
-        </section>
-        <?php
-            if(basename($_SERVER['PHP_SELF']) == "index.php" || basename($_SERVER['PHP_SELF']) == "search.php") {
-                echo '<section class="d-flex container-fluid top-app-bar-lowerSection">
+        </div>
+    </section>
+    <?php
+        if(basename($_SERVER['PHP_SELF']) == "index.php" || basename($_SERVER['PHP_SELF']) == "search.php") {
+            echo '<section class="d-flex container-fluid top-app-bar-lowerSection">
             <div class="col-9">
                 <div class="d-flex flex-row justify-content-center">
                     <div class="mdc-touch-target-wrapper">
@@ -113,7 +160,7 @@ session_start();
                 </label>
             </div>
         </section>';
-            }
-        ?>
+        }
+    ?>
 
-    </nav>
+</nav>
