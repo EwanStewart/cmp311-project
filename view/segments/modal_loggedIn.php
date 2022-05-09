@@ -10,61 +10,10 @@
     <div class="">
         <div class="nav-bar-modal-accountContainer">
             <div class="vstack g-1">
-                <div class="hstack g-2">
-                    <?php
-                        include_once('../model/api-store.php');
-
-                        $profilePictureID = getProfilePictureID();
-
-                        switch($profilePictureID){
-                            case 0:
-                                echo'<img width="64" height="64" src="../image/blank.png" />';
-                                break;
-
-                            case 1:
-                                echo'<img width="64" height="64" src="../image/witcher3.png" />';
-                                break;
-
-                            case 2:
-                                echo'<img width="64" height="64" src="../image/gta5trevor.png" />';
-                                break;
-
-                            case 3:
-                                echo'<img width="64" height="64" src="../image/owgenji.png" />';
-                                break;
-
-                            case 4:
-                                echo'<img width="64" height="64" src="../image/mario.png" />';
-                                break;
-
-                            case 5:
-                                echo'<img width="64" height="64" src="../image/pokeball.png" />';
-                                break;
-
-                            case 6:
-                                echo'<img width="64" height="64" src="../image/falloutboy.png" />';
-                                break;
-
-                            case 7:
-                                echo'<img width="64" height="64" src="../image/skyrim.png" />';
-                                break;
-
-                            case 8:
-                                echo'<img width="64" height="64" src="../image/zombie.png" />';
-                                break;
-
-                            default:
-                                echo'<img width="64" height="64" src="../image/blank.png" />';
-                                break;
-                        }
-
-                    ?>
-                    <h6><?php echo $_SESSION["email"] ?></h6>
-                </div>
                 <?php
                     include_once('../model/getGames.php');
                     $credits = getCredits();
-                    echo '<br><p>Total Credits: ' . $credits . '</p>';
+                    echo '<p>Total Credits: ' . $credits . '</p>';
 
                 ?>
                 <a href="../view/account.php">Account</a>

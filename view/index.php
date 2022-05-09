@@ -95,7 +95,6 @@
         <h3>
             <strong> New Listings </strong>
         </h3>
-        <button class="mdc-button" onclick="navDrawerActivate()">Test</button>
         <div class="row">
             <div id="topGamesCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
