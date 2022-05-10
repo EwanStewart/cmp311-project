@@ -63,6 +63,7 @@
         //$errortxt = $item["errortxt"];
         //$transaction = $item["transaction"];
         
+        $status = 1;
         //If the API returns a successful transaction
         if ($status == 1){
             
