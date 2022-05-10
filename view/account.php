@@ -2,6 +2,8 @@
     require_once('header.php');
     require_once('../model/api-store.php');
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('.mdc-top-app-bar').css("top", "0");

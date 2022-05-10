@@ -12,6 +12,7 @@
     $desc = $game['s_desc'];
 	echo "<br/><br/><br/><br/>";
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
     $(function() {
@@ -33,7 +34,6 @@
     </script>
 
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
    <body>

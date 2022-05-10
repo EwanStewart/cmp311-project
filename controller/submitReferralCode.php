@@ -70,7 +70,7 @@
                 $stmt->execute();
                 $result = $stmt->get_result();
 
-                echo "success";
+                echo "Success, you have been referred!";
             }else{
                 //  Referral counted but user has reached maximum reward
 
