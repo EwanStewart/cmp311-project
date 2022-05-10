@@ -23,14 +23,41 @@ $(document).ready(function () {
     interval: 8000,
     wrap: true
   });
-  topAppBar.setScrollTarget(document.getElementById('main-content'));
-  topAppBar.listen('MDCTopAppBar:nav', function () {
-    topAppBar.open = !topAppBar.open;
+  $("[data-shopbutton]").click(function () {
+    $.ajax({
+      type: "POST",
+      url: "https://mayar.abertay.ac.uk/~cmp311g21c02/cmp311/controller/addToBasket.php",
+      data: {
+        gameID: $(this).attr("data-gameID")
+      },
+      success: function success(text) {
+        alert(text); // Function DOES reach here
+      }
+    });
   });
+  var query = window.location.search;
+  var params = new URLSearchParams(query);
+  var pop = params.get('pop');
+  console.log(pop);
+
+  if (pop == 1) {
+    document.getElementById("reg").click();
+  } else if (pop == 2) {
+    document.getElementById("log").click();
+  } else if (pop == 3) {
+    alert("Please log in to contribute");
+  } else if (pop == 4) {
+    alert("Please subscribe to access this feature");
+  }
 });
 $(document).scroll(function () {
-  document.getElementById("loginPopup").classList.remove("displayPopup");
-  document.getElementById("accountPopup").classList.remove("displayPopup");
+  try {
+    document.getElementById("accountPopup").classList.remove("displayPopup");
+  } catch (e) {}
+
+  try {
+    document.getElementById("loginPopup").classList.remove("displayPopup");
+  } catch (e) {}
 });
 
 function showLoginBox(e) {
@@ -46,5 +73,8 @@ function navDrawerActivate() {
   drawer.open = !drawer.open;
   console.log("Nav bar open: " + topAppBar.open);
   console.log("Drawer open: " + drawer.open);
-}
+} //move all index code to here
+
+
+$(document).ready(function () {});
 //# sourceMappingURL=app.js.map
