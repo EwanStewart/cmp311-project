@@ -1,7 +1,6 @@
 <?php
-
-    include('header.php');
-    include_once('../model/api-store.php');
+    require_once('header.php');
+    require_once('../model/api-store.php');
 ?>
 <script>
     $(document).ready(function() {
@@ -171,7 +170,7 @@
         $email = $_SESSION['country'];
     }
 ?>
-<div class="container" style="margin-top: 150px; !important">
+<div class="container mdc-top-app-bar--prominent-fixed-adjust">
     <div class="row justify-content-center">
         <div id="popup" style="display:none;" class="row">
             <br>
