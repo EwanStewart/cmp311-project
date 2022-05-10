@@ -26,7 +26,8 @@
                     <span class="mdc-floating-label" id="passwordConf_label">Confirm Password</span>
                     <input class="mdc-text-field__input" type="password" name="passwordConf" required="required" id="passwordConf" aria-labelledby="passwordConf_label">
                     <span class="mdc-line-ripple"></span>
-                </label>
+                </label>                    
+                <p style="font-weight:bold;"> Password must contain a capital letter, a number and must be greater than 8 characters!</p>
                 <br/>
                 <div class="center-in-parent">
                     <button type="reset" class="mdc-button mdc-button--icon-trailing">
@@ -46,7 +47,9 @@
                 </div>
             </form>
             <div class="vstack gap-2">
-                <p>For convenience, why don't you sign in with Google instead?</p>
+                <div class="center-in-parent">
+                    <br/> <p>For convenience, why don't you sign in with Google instead?</p>
+                </div>
                 <a href='<?php echo $login_url ?>' class="mdc-button mdc-button--outlined" role="button">
                     <span class="mdc-button__ripple"></span>
                     <img class="mdc-button--icon-leading" width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
