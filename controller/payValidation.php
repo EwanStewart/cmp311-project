@@ -55,26 +55,19 @@
         //decode response
         $item = json_decode($response, JSON_INVALID_UTF8_IGNORE);
 
-        var_dump($item);
 
         //extract values from response
         $status = $item["status"];
         $status = 1;
         
-        $status = 1;
         //If the API returns a successful transaction
         if ($status == 1){
-            
             //The transaction ID, user ID, and price paid are stored in the DB
-            $stmt = $conn->prepare("INSERT INTO `subTransactions` (`id`, `userID`, `cost`) VALUES (?, ?, ?)");
-            $stmt->bind_param("sid", $transactionStr, $id, $price);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            var_dump($result);
-
-            //Success Message is shown to user
-
+            $sql = "INSERT INTO subTransactions (id, userID, cost) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sii", $transactionStr, $id, $price);
+            var_dump($stmt->execute());
+            $stmt->close();
             header('Location: ../view/account.php');
 
         }else{
