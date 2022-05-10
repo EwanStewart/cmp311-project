@@ -19,7 +19,6 @@
         <?php
     }
 ?>
-
 <script>
     //do something
     jQuery(document).ready(function(){
@@ -92,7 +91,7 @@
                         <h6>Game Key</h6>
                         <!-- pattern for five blocks of five characters seperated by a dash> -->
                         <p> <input type="text" name="key" pattern="[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}"  
-                        oninvalid="setCustomValidity('The correct format is XXXXX-XXXXX-XXXXX-XXXXX-XXXXX')"placeholder="Steam Key" required/> </p>
+                        placeholder="Steam Key" required/> </p>
 
                         <h6>Applicable Store</h6>
 
