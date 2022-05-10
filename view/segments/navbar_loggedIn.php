@@ -78,4 +78,5 @@
 
     </div>
 </div>
+<!--Shouldn't use this script, should use the compiled version in the dist folder-->
 <script type="text/javascript" src="../view/scripts/app.js"></script>

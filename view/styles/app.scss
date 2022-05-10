@@ -69,6 +69,31 @@
   background: #f3f3f3;
 }
 
+.nav-bar-modal-accountContainer{
+  margin: 8px;
+  padding: 8px;
+}
+
+.hide-on-mobile {
+  display: none;
+}
+
+@media all and (min-width: 992px) {
+  .hide-on-mobile {
+    display: inherit;
+  }
+}
+
+.show-on-mobile {
+  display: inherit;
+}
+
+@media all and (min-width: 992px) {
+  .show-on-mobile {
+    display: none;
+  }
+}
+
 .top-app-bar-accountPopup{
   @include card.core-styles();
   @include shape-radius(8px, false);

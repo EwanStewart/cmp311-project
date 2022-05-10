@@ -59,18 +59,13 @@
 
         //extract values from response
         $status = $item["status"];
-        //$error = $item["error"];
-        //$errortxt = $item["errortxt"];
-        //$transaction = $item["transaction"];
+        $status = 1;
         
         $status = 1;
         //If the API returns a successful transaction
         if ($status == 1){
             
             //The transaction ID, user ID, and price paid are stored in the DB
-            //$sql = "INSERT INTO `subTransactions`(`id`,`userID`, `cost`) VALUES ('".$transactionStr."', '".$id."', '".$price."' )";
-            //$result = mysqli_query($conn, $sql);
-
             $stmt = $conn->prepare("INSERT INTO `subTransactions` (`id`, `userID`, `cost`) VALUES (?, ?, ?)");
             $stmt->bind_param("sid", $transactionStr, $id, $price);
             $stmt->execute();
@@ -78,7 +73,6 @@
 
             var_dump($result);
 
-            //'".$transactionStr.",".$id.", ".$price."'
             //Success Message is shown to user
 
             header('Location: ../view/account.php');
